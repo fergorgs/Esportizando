@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,58 +11,96 @@ import {
   ScrollView,
   KeyboardAvoidingView
 } from 'react-native';
+import { useForm, Controller } from "react-hook-form";
+
+import { auth } from "../auth/fire.js";
 // import * as firebase from 'firebase';
 // import moment from "moment";
 // import * as Facebook from 'expo-facebook';
 
 
-export default class SignIn extends Component {
-
-  state = {
-    email   : '',
-    password: '',
-    errorMessage: '',
-    currentDate: new Date(),
-    isSelected:0,
-  }
-
+function SignIn(props) { 
   //Sets the Header to be null
   //The screen does not need a header
-  static navigationOptions = {
-    headerShown: false
-  }
-
-  render() {
-    return (
-
-          <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
-            
-            <Image
-              resizeMode = "contain"
-              style={{width: 200, height: 200, marginBottom:30}}
-              source={{uri: 'https://previews.123rf.com/images/huad262/huad2621212/huad262121200005/16765900-the-letter-e-caught-on-blazing-fire.jpg'}}
-            />
+  //static navigationOptions = {
+  //  headerShown: false
+  //}
+    const { navigation } = props;
+    const [ token, setToken ] = useState();
+    const [ error, setError ] = useState();
+    const { control, handleSubmit, errors } = useForm();
     
+    const onSubmit = async (data) => {
+        const { email, password } = data;
+
+        auth.signInWithEmailAndPassword(email, password)
+            .then(async (result) => {
+                setError("");
+                const token = await result.user?.getIdToken();
+                setToken(token);
+                // navigation.navigate('AppScreen');
+            })
+            .catch((e) => setError(e.message));
+
+    }
+
+    return (
+        <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
+          
+            <Image
+                resizeMode = "contain"
+                style={{width: 200, height: 200, marginBottom:30}}
+                source={{uri: 'https://previews.123rf.com/images/huad262/huad2621212/huad262121200005/16765900-the-letter-e-caught-on-blazing-fire.jpg'}}
+            />
+            { error && <Text>{ error }</Text> }
+            { token && <Text>{ token }</Text> }
+            
              {/*Text Input email*/}
             <View style={styles.inputContainer}>
-              <Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/envelope/androidL/40/3498db'}}/>
-              <TextInput style={styles.inputs}
-                  placeholder="Email"
-                  keyboardType="email-address"
-                  autoCapitalize = 'none'
-                  underlineColorAndroid='transparent'
-                  onChangeText={(email) => this.setState({email})}/>
+                <Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/envelope/androidL/40/3498db'}}/>
+                <Controller
+                    control={ control }
+                    name="email"
+                    rules={{ required: true }}
+                    defaultValue=""
+                    render={({ onChange, onBlur, value }) => 
+                        <TextInput style={styles.inputs}
+                            placeholder="Email"
+                            keyboardType="email-address"
+                            autoCapitalize = 'none'
+                            underlineColorAndroid='transparent'
+                            onBlur={onBlur}
+                            onChangeText={value => onChange(value)}
+                            value={value}
+                            //onChangeText={(email) => this.setState({email})}
+                        />
+                    }
+                />
+                { errors.email && <Text>Required field.</Text> }
             </View>
             
              {/*Text Input password*/}
             <View style={styles.inputContainer}>
-              <Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/password/androidL/40/3498db'}}/>
-              <TextInput style={styles.inputs}
-                  placeholder="Password"
-                  secureTextEntry={true}
-                  autoCapitalize = 'none'
-                  underlineColorAndroid='transparent'
-                  onChangeText={(password) => this.setState({password})}/>
+                <Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/password/androidL/40/3498db'}}/>
+                <Controller
+                    control={ control }
+                    name="password"
+                    rules={{ required: true }}
+                    defaultValue=""
+                    render={({ onChange, onBlur, value }) => 
+                        <TextInput style={styles.inputs}
+                            placeholder="Password"
+                            secureTextEntry={true}
+                            autoCapitalize = 'none'
+                            underlineColorAndroid='transparent'
+                            onBlur={onBlur}
+                            onChangeText={value => onChange(value)}
+                            value={value}
+                            //onChangeText={(password) => this.setState({password})}
+                        />
+                    }
+                />
+                { errors.password && <Text>Required field.</Text> }
             </View>
             
             {/*Button - Screen Recover Password */}
@@ -70,107 +108,27 @@ export default class SignIn extends Component {
             {/*  onPress={() => this.props.navigation.navigate('RecoverScreen')}> */}
                 <Text>Forgot your password?</Text>
             </TouchableOpacity>
-    
+            
             {/*Button - Login*/}
-            <TouchableOpacity style={[styles.buttonContainer, styles.loginButton]}
-            onPress={() => this.props.navigation.navigate('AppScreen')}>
-              <Text style={styles.loginText}>Login</Text>
+            <TouchableOpacity 
+                style={[styles.buttonContainer, styles.loginButton]}
+                onPress={ handleSubmit(onSubmit) }>
+                <Text style={styles.loginText}>Login</Text>
               
             </TouchableOpacity>
-    
+            
             {/*Button - Screen Sign Up */}
             <TouchableOpacity style={styles.buttonContainer}>
             {/* // onPress={() => this.props.navigation.navigate('SignUpScreen')}> */}
                 <Text>Register</Text>
             </TouchableOpacity>
-
-          </KeyboardAvoidingView>
-    
-        );
-  }
-  //   render() {
-  //     {/*Pressed the button Sign in*/}
-  //     if(this.state.isSelected===1)
-  //     {
-  //       return(
-  //       <View style={styles.containerLoading}>
-  //         <Text style={{color:'#e93766', fontSize: 20,textAlign:"center"}}>
-  //           Seguir para o menu principal
-  //         </Text>
-  //         <TouchableHighlight style={{
-  //             height:45,
-  //             justifyContent: 'center',
-  //             alignItems: 'center',
-  //             marginTop:30,
-  //             marginBottom:20,
-  //             width:250,
-  //             borderRadius:30,
-  //             backgroundColor: "#e93766",
-  //         }} 
-  //           onPress={()=> this.props.navigation.navigate("AppScreen")}>
-  //           <Text style={styles.signUpText}>Continuar</Text>
-  //         </TouchableHighlight>
-  //       </View>
-  //       )
-  //     }  
-  //   return (
-
-  //     <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
-          
-  //        {/*Renders logo ProjectEDU*/}
-  //       <Image
-  //         resizeMode = "contain"
-  //         style={{width: 200, height: 200, marginBottom:30}}
-  //         source={{uri: 'https://previews.123rf.com/images/huad262/huad2621212/huad262121200005/16765900-the-letter-e-caught-on-blazing-fire.jpg'}}
-  //       />
-
-  //        {/*Text Input email*/}
-  //       <View style={styles.inputContainer}>
-  //         <Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/envelope/androidL/40/3498db'}}/>
-  //         <TextInput style={styles.inputs}
-  //             placeholder="Email"
-  //             keyboardType="email-address"
-  //             autoCapitalize = 'none'
-  //             underlineColorAndroid='transparent'
-  //             onChangeText={(email) => this.setState({email})}/>
-  //       </View>
         
-  //        {/*Text Input password*/}
-  //       <View style={styles.inputContainer}>
-  //         <Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/password/androidL/40/3498db'}}/>
-  //         <TextInput style={styles.inputs}
-  //             placeholder="Password"
-  //             secureTextEntry={true}
-  //             autoCapitalize = 'none'
-  //             underlineColorAndroid='transparent'
-  //             onChangeText={(password) => this.setState({password})}/>
-  //       </View>
-     
-  //       {/*Button - Screen Recover Password */}
-  //       <TouchableOpacity style={styles.restoreButtonContainer}>
-  //       {/*  onPress={() => this.props.navigation.navigate('RecoverScreen')}> */}
-  //           <Text>Forgot your password?</Text>
-  //       </TouchableOpacity>
-
-  //       {/*Button - Login*/}
-  //       <TouchableOpacity style={[styles.buttonContainer, styles.loginButton]}
-  //       onPress={this.props.navigation.navigate('AppScreen')}>
-  //         <Text style={styles.loginText}>Login</Text>
-          
-  //       </TouchableOpacity>
-
-  //       {/*Button - Screen Sign Up */}
-  //       <TouchableOpacity style={styles.buttonContainer}>
-  //       {/* // onPress={() => this.props.navigation.navigate('SignUpScreen')}> */}
-  //           <Text>Register</Text>
-  //       </TouchableOpacity>
-
-
-  //     </KeyboardAvoidingView>
-
-  //   );
-  // }
+        </KeyboardAvoidingView>
+        
+    );
 }
+
+export default SignIn;
 
 const styles = StyleSheet.create({
   container: {
