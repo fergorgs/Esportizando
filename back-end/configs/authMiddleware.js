@@ -11,8 +11,8 @@ module.exports = {
         if(token.length < 2 || token[0] !== "Bearer") return res.sendStatus(403);
         token = token[1].trim();
         auth.verifyIdToken(token)
-            .then(({ uid }) => {
-                req.user = uid;
+            .then((user) => {
+                req.user = user;
                 next();
             })
             .catch(e => {
