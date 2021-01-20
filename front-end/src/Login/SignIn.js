@@ -12,7 +12,7 @@ import {
   KeyboardAvoidingView
 } from 'react-native';
 import { useForm, Controller } from "react-hook-form";
-
+import { useSelector, useDispatch } from "react-redux";
 import { auth } from "../auth/fire.js";
 // import * as firebase from 'firebase';
 // import moment from "moment";
@@ -25,6 +25,10 @@ function SignIn(props) {
   //static navigationOptions = {
   //  headerShown: false
   //}
+
+    const sel = useSelector(state => state);
+    const dispatch = useDispatch();
+
     const { navigation } = props;
     const [ token, setToken ] = useState();
     const [ error, setError ] = useState();
@@ -38,11 +42,17 @@ function SignIn(props) {
                 setError("");
                 const token = await result.user?.getIdToken();
                 setToken(token);
+                dispatch({
+                    type: "SIGN_IN",
+                    payload: token
+                });
                 // navigation.navigate('AppScreen');
             })
             .catch((e) => setError(e.message));
 
     }
+    
+    console.log(sel);
 
     return (
         <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
@@ -52,8 +62,8 @@ function SignIn(props) {
                 style={{width: 200, height: 200, marginBottom:30}}
                 source={{uri: 'https://previews.123rf.com/images/huad262/huad2621212/huad262121200005/16765900-the-letter-e-caught-on-blazing-fire.jpg'}}
             />
-            { error && <Text>{ error }</Text> }
-            { token && <Text>{ token }</Text> }
+            { Boolean(error) && <Text>{ error }</Text> }
+            { Boolean(token) && <Text>{ token }</Text> }
             
              {/*Text Input email*/}
             <View style={styles.inputContainer}>
