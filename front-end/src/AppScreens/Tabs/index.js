@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AppointmentsScreen from './Appointments'
 
 
 // PLACE HOLDER FUNCTIONS
@@ -30,14 +30,6 @@ function MapsScreen() {
     );
 }
 
-function AppointmentsScreen() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Next appointments</Text>
-      </View>
-    );
-}
-
 function ProfileScreen() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -49,18 +41,19 @@ function ProfileScreen() {
 
 const Tab = createBottomTabNavigator();
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Timeline" component={TimelineScreen} />
-        <Tab.Screen name="Events" component={EventsScreen} />
-        <Tab.Screen name="Map" component={MapsScreen} />
-        <Tab.Screen name="Appointments" component={AppointmentsScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
+export default class App extends Component {
+
+  render(){
+    return (
+        <Tab.Navigator>
+          <Tab.Screen name="Timeline" component={TimelineScreen} />
+          <Tab.Screen name="Events" component={EventsScreen} />
+          <Tab.Screen name="Map" component={MapsScreen} />
+          <Tab.Screen name="Appointments" component={AppointmentsScreen} />
+          <Tab.Screen name="Profile" component={ProfileScreen} />
+        </Tab.Navigator>
+    );
+  }
 }
 
 
