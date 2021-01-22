@@ -3,11 +3,11 @@ import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 
 export default class Loading extends Component {
 
-  componentDidMount() {
+  //componentDidMount() {
 
-    this.props.navigation.navigate('LoginScreen')
+  //  this.props.navigation.navigate('LoginScreen')
 
-  }
+  //}
 
   render() {
     return (

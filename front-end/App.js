@@ -4,13 +4,14 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import { store, persistor } from "./src/store";
 import SwitchNavigator from './src';
+import Loading from './src/Loading';
 
 export default class App extends React.Component {
 
     render() {
         return (
             <Provider store={ store }>
-                <PersistGate //loading={ <Text>Loading</Text> } 
+                <PersistGate loading= { <Loading /> } 
                     persistor={ persistor }
                 >
                     <SwitchNavigator />
