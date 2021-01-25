@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import TabsScreen from './Tabs'
 import QuestionnaireScreen from './Questionnaire'
 import NewEventScreen from './Cards/NewEventScreen'
+import NewEventCard from './Cards/NewEventCard';
 import EventCardScreen from './Cards/EventCardScreen'
 
 
@@ -17,7 +18,7 @@ export default class BaseStack extends Component {
         <Stack.Navigator headerMode="none">
           <Stack.Screen name="Tabs" component={TabsScreen} headerMode="none"/>
           <Stack.Screen name="Questionário" component={QuestionnaireScreen} />
-          <Stack.Screen name="Novo Evento" component={NewEventScreen} />
+          <Stack.Screen name="Novo Evento" component={NewEventCard} />
           <Stack.Screen name="Evento" component={EventCardScreen} />
         </Stack.Navigator>
       </NavigationContainer>

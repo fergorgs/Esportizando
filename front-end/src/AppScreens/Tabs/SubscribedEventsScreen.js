@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList, ScrollView } from 'react-native';
 import EventPreviewCard from '../General/EventPreviewCard'
 
 export default class SubscribedEventsScreen extends Component {
@@ -37,16 +37,16 @@ export default class SubscribedEventsScreen extends Component {
     render () {
 
         return (
-            <FlatList
-                data={this.events}
-                renderItem={({item}) => {
-                    return <EventPreviewCard 
-                        eventObject={item} 
-                        navigation={this.props.navigation}
-                    />
-                }}
-                keyExtractor={item => item.id}
-            />
+                <FlatList
+                    data={this.events}
+                    renderItem={({item}) => {
+                        return <EventPreviewCard 
+                            eventObject={item} 
+                            navigation={this.props.navigation}
+                        />
+                    }}
+                    keyExtractor={item => item.id}
+                />
         )
     }
 }

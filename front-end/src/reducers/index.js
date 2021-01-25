@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
-//import { AsyncStorage } from "react-native";
+import { AsyncStorage } from "react-native";
 
-import storage from 'redux-persist/lib/storage';
+//import storage from 'redux-persist/lib/storage';
 
 import authReducer from "./auth.js";
 
 const config = {
     key: "auth",
-    storage, //: AsyncStorage,
+    storage: AsyncStorage,
     whitelist: [ "auth" ]
 }
 

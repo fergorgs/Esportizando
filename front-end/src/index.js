@@ -27,10 +27,17 @@ function Switch(props) {
 
     auth.onAuthStateChanged(async (user) => {
         const token = await user?.getIdToken();
-        dispatch({
-            type: 'SIGN_IN',
-            payload: token
-        });
+
+        if (token)
+            dispatch({
+                type: 'SIGN_IN',
+                payload: token
+            });
+        else
+            dispatch({
+                type: 'SIGN_OUT'
+            });
+
         setLoading(false);
     });
 

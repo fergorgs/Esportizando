@@ -46,7 +46,7 @@ function Login({ navigation }) {
                     type: "SIGN_IN",
                     payload: token
                 });
-                navigation.navigate('AppScreen');
+                //navigation.navigate('AppScreen');
             })
             .catch((e) => setError(e.message));
 

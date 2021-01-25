@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableHighlight, View, Image } from "react-native";
 import { Icon } from 'react-native-elements'
-import { withNavigation } from 'react-navigation';
+//import { withNavigation } from 'react-navigation';
 
 class EventPreviewCard extends Component {
     
@@ -22,7 +22,6 @@ class EventPreviewCard extends Component {
 
 
     render () {
-
         // console.log(this.props.navigation)
         return (
             <TouchableHighlight 
@@ -52,7 +51,7 @@ class EventPreviewCard extends Component {
                     <View style={styles.middleStrip}>
                         <Text>{this.state.eventObject.address}</Text>
                         <Text>{this.state.eventObject.date}</Text>
-                        {this.subCount}
+                        {this.getSubCount()}
                     </View>
                     <Icon name="info" style={{flexDirection: "row-reverse"}}/>
                 </View>
@@ -94,4 +93,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default withNavigation(EventPreviewCard)
+export default EventPreviewCard;

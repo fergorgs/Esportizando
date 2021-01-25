@@ -39,7 +39,13 @@ export default class OwnEventsScreen extends Component {
                 <View style={{minHeight: '100%'}}>
                     <FlatList
                         data={this.events}
-                        renderItem={this.renderItem}
+                        //renderItem={this.renderItem}
+                        renderItem={({item}) => {
+                            return <EventPreviewCard 
+                                eventObject={item} 
+                                navigation={this.props.navigation}
+                            />
+                        }}
                         keyExtractor={item => item.id}
                     />
                 </View>
