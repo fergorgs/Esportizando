@@ -12,11 +12,13 @@ import { Picker } from '@react-native-community/picker';
 import { Header, Icon } from 'react-native-elements';
 import { useForm } from 'react-hook-form';
 
+import Loading from '../../Loading';
 
-function NewEventCard({ navigation }) {
-    
+function NewEventCard({ navigation, route }) {
     const { register, handleSubmit, setValue, getValues, errors } = useForm();
+
     const [ selected, setSelected ] = useState('none');
+    const [ loading, setLoading ] = useState(false);
 
     useEffect(() => {
         register('name');
@@ -27,11 +29,48 @@ function NewEventCard({ navigation }) {
         register('sport');
     }, [ register ]);
 
+    useEffect(() => {
+        const fetch = () => {
+            setLoading(true);
+            // get data
+
+
+            setTimeout(() => {
+                setValue('name', 'teste apenas');
+                setValue('description', 'teste');
+                setValue('address', 'rua teste');
+                setValue('maxCap', '10');
+                setValue('price', '14');
+                setValue('sport', 'futebol');
+                setSelected('futebol');
+                setLoading(false);
+            }, 3000);
+        };
+
+        if (route.params?.id)
+            fetch();
+    }, [ route.params?.id ]);
+
     const onSubmit = (data) => {
+        setLoading(true);
         console.log(data);
+        // send data
+
+        if (route.params?.id) {
+            //update
+        } else {
+            //create
+        }
+
+        setTimeout(() => {
+            setLoading(false);
+            navigation.goBack();
+        }, 3000);
     };
 
     return (
+        loading ?
+        <Loading /> :
         <View style={{flex: 1}}>
             <Header
                 backgroundColor="white"
@@ -75,6 +114,7 @@ function NewEventCard({ navigation }) {
                         />
                     </View>
                     <TextInput
+                        defaultValue={ getValues('name') }
                         placeholder="Nome do evento"
                         style={styles.singleLineInput}
                         onChangeText={ text => {
@@ -82,6 +122,7 @@ function NewEventCard({ navigation }) {
                         }}
                     />
                     <TextInput
+                        defaultValue={ getValues('description') }
                         placeholder="Descrição"
                         style={styles.multiLineInput}
                         multiline={true}
@@ -91,6 +132,7 @@ function NewEventCard({ navigation }) {
                     />
                     <Text>Insira uma descrição breve, conte o que será feito, pipipi popopo</Text>
                     <TextInput
+                        defaultValue={ getValues('address') }
                         placeholder="Endereço"
                         style={styles.singleLineInput}
                         onChangeText={ text => {
@@ -100,9 +142,9 @@ function NewEventCard({ navigation }) {
                     <View style={{flexDirection: 'row'}}>
                         <View style={{width: '50%', paddingRight: 7}}>
                             <TextInput
+                                defaultValue={ getValues('maxCap') || '0' }
                                 keyboardType="numeric"
                                 style={styles.numberInput}
-                                defaultValue='0'
                                 onChangeText={ text => {
                                     setValue('maxCap', text);
                                 }}
@@ -111,9 +153,9 @@ function NewEventCard({ navigation }) {
                         </View>
                         <View style={{width: '50%', paddingLeft: 7}}>
                             <TextInput
+                                defaultValue={ getValues('price') || '0' }
                                 keyboardType="numeric"
                                 style={styles.numberInput}
-                                defaultValue='0'
                                 onChangeText={ text => {
                                     setValue('price', text);
                                 }}
@@ -137,7 +179,7 @@ function NewEventCard({ navigation }) {
                                 setSelected(text);
                             }}
                         >
-                            <Picker.Item label="Esporte" value="none"/>
+                            <Picker.Item label="Selecione um esporte" value="none"/>
                             <Picker.Item label="Futebol" value="futebol"/>
                             <Picker.Item label="Volei" value="volei"/>
                             <Picker.Item label="Basquete" value="basquete"/>

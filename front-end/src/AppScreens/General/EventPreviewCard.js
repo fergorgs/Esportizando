@@ -30,7 +30,9 @@ class EventPreviewCard extends Component {
                     if(this.state.eventObject.owned)
                     {
                         // Não ta funcionando :(
-                        this.props.navigation.navigate('Novo Evento')
+                        this.props.navigation.navigate('Novo Evento', {
+                            id: 1
+                        });
                     }
                     else
                     {
