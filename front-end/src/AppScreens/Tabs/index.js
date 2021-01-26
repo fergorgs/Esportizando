@@ -3,17 +3,18 @@ import { Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AppointmentsScreen from './Appointments'
 import ProfileScreen from './Profile';
+import TimelineScreen from './Timeline'
 
 
 // PLACE HOLDER FUNCTIONS
 // To be replaced by separet components
-function TimelineScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Timeline</Text>
-    </View>
-  );
-}
+// function TimelineScreen() {
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Timeline</Text>
+//     </View>
+//   );
+// }
 
 function EventsScreen() {
   return (
