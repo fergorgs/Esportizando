@@ -6,6 +6,7 @@ import QuestionnaireScreen from './Questionnaire'
 import NewEventScreen from './Cards/NewEventScreen'
 import NewEventCard from './Cards/NewEventCard';
 import EventCardScreen from './Cards/EventCardScreen'
+import LocationCardScreen from './Cards/LocationCardScreen'
 
 
 const Stack = createStackNavigator();
@@ -20,6 +21,7 @@ export default class BaseStack extends Component {
           <Stack.Screen name="Questionário" component={QuestionnaireScreen} />
           <Stack.Screen name="Novo Evento" component={NewEventCard} />
           <Stack.Screen name="Evento" component={EventCardScreen} />
+          <Stack.Screen name="Local" component={LocationCardScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
