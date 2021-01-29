@@ -8,14 +8,18 @@ import Event from '../../../api/controllers/Event';
 function OwnEventsScreen({ navigation }) {
     const [ events, setEvents ] = useState([]);
     const [ fetching, setFetching ] = useState(false);
+    const [ reRender, setReRender ] = useState(true);
     //constructor(props) {
     //    super(props)
     //}
     
     useEffect(() => {
         const fetch = async () => {
-            const data = await Event.getAllCreated();
+            setFetching(true);
+            const { data } = await Event.getAllCreated();
             setEvents(data);
+            //setReRender(!reRender);
+            setFetching(false);
         };
 
         fetch();
@@ -49,16 +53,18 @@ function OwnEventsScreen({ navigation }) {
         const { data } = await Event.getAllCreated();
         console.log(data);
         setEvents(data);
+        //setReRender(!reRender);
         setFetching(false);
     };
 
-    console.log(events);
+    //console.log(events);
     //render () {
     return (
         <View>
             <View style={{minHeight: '100%'}}>
                 <FlatList
                     data={ events }
+                    //extraData={ reRender }
                     //renderItem={this.renderItem}
                     renderItem={({ item }) => {
                         return <EventPreviewCard 
@@ -74,7 +80,9 @@ function OwnEventsScreen({ navigation }) {
             <FloatingAction
               onPressMain={() => {
                 //   console.log(this.props.navigation)
-                navigation.navigate('Novo Evento')
+                navigation.navigate('Novo Evento', {
+                    refresh: fetchData
+                });
                 //this.action.reset()
                 // this.props.navigation.goBack()
               }}

@@ -78,6 +78,7 @@ function NewEventCard({ navigation, route }) {
                 console.log(res);
 
                 setLoading(false);
+                route.params?.refresh();
                 navigation.goBack();
             } catch (e) {
                 console.log(e);

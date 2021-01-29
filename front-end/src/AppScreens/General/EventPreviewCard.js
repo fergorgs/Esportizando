@@ -47,7 +47,7 @@ class EventPreviewCard extends Component {
                             source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Football_iu_1996.jpg'}}
                         />
                         <Text style={{fontSize: 20, paddingLeft: 10, paddingRight: 40 }}>
-                            {this.state.eventObject.title}
+                            {this.state.eventObject.name}
                         </Text>
                     </View>
                     <View style={styles.middleStrip}>
