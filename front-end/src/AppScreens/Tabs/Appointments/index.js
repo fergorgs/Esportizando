@@ -8,7 +8,7 @@ import OwnEventsScreen from './OwnEventsScreen';
 
 const Tab = createMaterialTopTabNavigator();
 
-export default class Appointments extends Component {
+class Appointments extends Component {
   
   render(){
     return (
@@ -22,15 +22,15 @@ export default class Appointments extends Component {
 
 
 
-//const Stack = createStackNavigator();
-//
-//export default class MyStack extends Component {
-//  
-//  render(){
-//    return (
-//      <Stack.Navigator>
-//        <Stack.Screen name="Compromissos" component={Appointments} />
-//      </Stack.Navigator>
-//    );
-//  }
-//}
+const Stack = createStackNavigator();
+
+export default class MyStack extends Component {
+ 
+ render(){
+   return (
+     <Stack.Navigator>
+       <Stack.Screen name="Compromissos" component={Appointments} />
+     </Stack.Navigator>
+   );
+ }
+}

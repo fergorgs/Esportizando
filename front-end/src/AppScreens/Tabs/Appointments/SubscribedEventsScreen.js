@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, FlatList, ScrollView } from 'react-native';
-import EventPreviewCard from '../General/EventPreviewCard'
+import EventPreviewCard from '../../General/EventPreviewCard'
 
 export default class SubscribedEventsScreen extends Component {
     

@@ -6,7 +6,7 @@ import AppNavigator from './AppScreens';
 import Loading from './Loading';
 
 import { auth } from './auth/fire';
-
+import { config } from './api';
 //Switch Navigator for the 3 mains screens of the app
 //Defines the inital screen to be displayed and the app containers
 //const AppNavigator = createSwitchNavigator({
@@ -27,7 +27,7 @@ function Switch(props) {
 
     auth.onAuthStateChanged(async (user) => {
         const token = await user?.getIdToken();
-
+        config(token);
         if (token)
             dispatch({
                 type: 'SIGN_IN',

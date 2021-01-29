@@ -10,15 +10,21 @@ import {
 } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import { Header, Icon } from 'react-native-elements';
+
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 import Loading from '../../Loading';
+import Event from '../../api/controllers/Event';
+
+
 
 function NewEventCard({ navigation, route }) {
     const { register, handleSubmit, setValue, getValues, errors } = useForm();
 
     const [ selected, setSelected ] = useState('none');
     const [ loading, setLoading ] = useState(false);
+    const token = useSelector(state => state.auth.token);
 
     useEffect(() => {
         register('name');
@@ -47,25 +53,37 @@ function NewEventCard({ navigation, route }) {
             }, 3000);
         };
 
+        const set = () => {
+            setValue('price', '0');
+            setValue('maxCap', '0');
+        };
+
         if (route.params?.id)
             fetch();
+        else 
+            set();
     }, [ route.params?.id ]);
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         setLoading(true);
         console.log(data);
         // send data
-
+        
         if (route.params?.id) {
             //update
         } else {
             //create
+            try {
+                const res = await Event.create(data, token);
+                console.log(res);
+
+                setLoading(false);
+                navigation.goBack();
+            } catch (e) {
+                console.log(e);
+            }
         }
 
-        setTimeout(() => {
-            setLoading(false);
-            navigation.goBack();
-        }, 3000);
     };
 
     return (

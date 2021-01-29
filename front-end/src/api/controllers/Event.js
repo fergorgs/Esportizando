@@ -1,7 +1,11 @@
 import { API } from '../index.js';
 
-const getAll = () => {
-    return API.get("/event");
+const getAllCreated = () => {
+    return API.get("/event/created");
+};
+
+const getAllSubscribed = () => {
+    return API.get("/event/joined");
 };
 
 const get = id => {
@@ -21,15 +25,16 @@ const remove = id => {
 };
 
 const subscribe = id => {
-    return API.post(`/event/${id}`);
+    return API.post(`/event/joined`, id);
 }
 
 const EventController = {
-    getAll,
-    get,
+    getAllCreated,
+    getAllSubscribed,
+    //get,
     create,
-    update,
-    remove,
+    //update,
+    //remove,
     subscribe
 };
 

@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 
 // initialization
 app.use(cors()) // dev
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Connect to DB
