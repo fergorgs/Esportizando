@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AppointmentsScreen from './Appointments'
 import ProfileScreen from './Profile';
+import EventsScreen from './Events'
 
 
 // PLACE HOLDER FUNCTIONS
@@ -15,13 +16,13 @@ function TimelineScreen() {
   );
 }
 
-function EventsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Events</Text>
-    </View>
-  );
-}
+// function EventsScreen() {
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Events</Text>
+//     </View>
+//   );
+// }
 
 function MapsScreen() {
     return (
