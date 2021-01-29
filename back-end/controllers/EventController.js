@@ -1,6 +1,5 @@
 const db = require("../configs/firebase").database();
-
-
+const fields = ["name", "description", "address", "maxCap", "price", "sport"]
 
 module.exports =  {
 
@@ -46,7 +45,6 @@ module.exports =  {
 
     create(req, res) {
         // req.user = {uid: "1"}; // testing
-        const fields = ["name", "description", "address", "maxCap", "price", "sport"]
         const miss = [];
         const evnt = {};
         for(let f of fields) {
@@ -64,11 +62,30 @@ module.exports =  {
     },
 
     join(req, res) {
-        // req.user = { uid: "1" }; // testing
+        req.user = { uid: "1" }; // testing
         const { event } = req.body;
-        db.ref(`events/${event.id}/participants`).push(req.user);
-        db.ref(`users/${req.user.uid}/joinedEvents`).push(event);
+        db.ref(`events/${event.id}/participants/${req.user.uid}`).set(req.user);
+        db.ref(`users/${req.user.uid}/joinedEvents/${event.id}`).set(event);
         return res.sendStatus(200);
+    },
+
+    update(req, res) {
+        req.user = { uid: "1" }; // testing
+        const { eventId } = req.body;
+        if(eventId === undefined) return res.status(400).send("No event id specified");
+        db.ref(`events/${eventId}`).once("value", data => {
+            const obj = data.val();
+            if(!obj) return res.status(400).send("No such event");
+            if(obj.createdBy !== req.user.id) res.status(400).send("Access denied");
+            const nEvent = {};
+            for(let f of fields) 
+                nEvent = fields[f];
+            const update = {};
+            const updatedEvent = {...obj, ...nEvent};
+            for(let el in obj.participants) update[`users/${el}/joinedEvents/${eventId}`] = updatedEvent;
+            update[`/events/${eventId}`] = updatedEvent;
+            db.ref().update(update, (e) => e ? res.status(400).send(e) : res.sendStatus(200));
+        });
     }
 
 }
