@@ -1,48 +1,54 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from "react-native-vector-icons/Ionicons";
+
 import AppointmentsScreen from './Appointments'
 import ProfileScreen from './Profile';
 import TimelineScreen from './Timeline'
 import MapScreen from './Map'
-
-
-// PLACE HOLDER FUNCTIONS
-// To be replaced by separet components
-// function TimelineScreen() {
-//   return (
-//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//       <Text>Timeline</Text>
-//     </View>
-//   );
-// }
-
-function EventsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Events</Text>
-    </View>
-  );
-}
-
-// function MapsScreen() {
-//     return (
-//       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//         <Text>Map</Text>
-//       </View>
-//     );
-// }
+import EventsScreen from './Events'
 
 
 
-
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 export default class App extends Component {
 
   render(){
     return (
-        <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarLabel: () => {
+            const names = {
+              Timeline: 'Linha do tempo',
+              Events: 'Eventos',
+              Map: 'Mapa',
+              Appointments: 'Compromissos',
+              Profile: 'Perfil',
+            }
+
+            return <Text style={styles.menuLabels}>{names[route.name]}</Text>
+          },
+          tabBarIcon: ({ color, size }) => {
+            const icons = {
+              Timeline: 'home',
+              Events: 'barbell-outline',
+              Map: 'map-outline',
+              Appointments: 'book-outline',
+              Profile: 'menu',
+            };
+      
+            return (
+              <Icon
+                name={icons[route.name]}
+                color={color}
+                size={size}
+              />
+            );
+          },
+        })}
+      >
           <Tab.Screen name="Timeline" component={TimelineScreen} />
           <Tab.Screen name="Events" component={EventsScreen} />
           <Tab.Screen name="Map" component={MapScreen} />
@@ -53,14 +59,9 @@ export default class App extends Component {
   }
 }
 
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex:1,
-//         width:Dimensions.get("window").width,
-//         alignItems:"center",
-//         marginTop: 200,
-//         marginLeft: 30,
-//         marginRight: 30,
-//     },
-// })
+const styles = StyleSheet.create({
+  menuLabels: {
+    fontSize: 10,
+    color: 'gray'
+  }
+})
