@@ -58,10 +58,10 @@ export default class EventCardScreen extends Component{
                             Esporte
                         </Text>
                         <Text style={styles.multiLineInput}>
-                            Descrição do evento descrição do evento descrição do evento
-                            descrição do evento descrição do evento descrição do evento
-                            descrição do evento descrição do evento descrição do evento
-                            descrição do evento descrição do evento descrição do evento
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                            sed do eiusmod tempor incididunt ut labore et dolore magna 
+                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+                            ullamco laboris nisi ut aliquip ex ea commodo consequat. 
                         </Text>
                         <View style={styles.singleLineInput}>
                             <Text style={{fontSize: 20}}>Endereço:</Text>
