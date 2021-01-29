@@ -32,6 +32,7 @@ const Map = (props) => {
                   latitudeDelta: 0.1,
                   longitudeDelta: 0.0421,
                 }}
+                showsUserLocation={true}
             >
                 <MapView.Marker
                     key={123}
