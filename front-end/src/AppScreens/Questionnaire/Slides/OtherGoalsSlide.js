@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native'
 
 import LabeledCheckbox from '../LabeledCheckbox'
 
 
-const OtherGoalsSlide = () => {
+const OtherGoalsSlide = ({ update }) => {
 
     const [checked1, setChecked1] = React.useState(false);
     const [checked2, setChecked2] = React.useState(false);
@@ -17,6 +17,50 @@ const OtherGoalsSlide = () => {
     const [checked9, setChecked9] = React.useState(false);
     const [checked10, setChecked10] = React.useState(false);
     const [checked11, setChecked11] = React.useState(false);
+
+    useEffect(() => {
+        update('reduceCholesterol', checked1);
+    }, [ checked1 ]);
+
+    useEffect(() => {
+        update('balance', checked2);
+    }, [ checked2 ]);
+
+    useEffect(() => {
+        update('concentration', checked3);
+    }, [ checked3 ]);
+
+    useEffect(() => {
+        update('sleep', checked4);
+    }, [ checked4 ]);
+
+    useEffect(() => {
+        update('immunity', checked5);
+    }, [ checked5 ]);
+
+    useEffect(() => {
+        update('posture', checked6);
+    }, [ checked6 ]);
+
+    useEffect(() => {
+        update('reduceSagging', checked7);
+    }, [ checked7 ]);
+
+    useEffect(() => {
+        update('motorCoordination', checked8);
+    }, [ checked8 ]);
+
+    useEffect(() => {
+        update('bloodCirculation', checked9);
+    }, [ checked9 ]);
+
+    useEffect(() => {
+        update('flexibility', checked10);
+    }, [ checked10 ]);
+
+    useEffect(() => {
+        update('breath', checked11);
+    }, [ checked11 ]);
 
     return (
         <View style={styles.slide1}>

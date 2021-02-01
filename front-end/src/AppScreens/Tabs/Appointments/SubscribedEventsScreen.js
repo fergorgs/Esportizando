@@ -27,7 +27,7 @@ function SubscribedEventsScreen({ navigation }) {
     const fetchData = async () => {
         setFetching(true);
         const { data } = await Event.getAllSubscribed();
-        console.log(data);
+        //console.log(data);
         setEvents(data);
         //setReRender(!reRender);
         setFetching(false);

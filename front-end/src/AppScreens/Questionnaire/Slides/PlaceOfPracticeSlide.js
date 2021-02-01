@@ -1,12 +1,21 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native'
 
 import LabeledRadioButton from '../LabeledRadioButton'
 
 
-const PlaceOfPracticeSlide = () => {
+const PlaceOfPracticeSlide = ({ update }) => {
 
-    const [checked, setChecked] = React.useState(false);
+    const [checked1, setChecked1] = React.useState(true);
+    const [checked2, setChecked2] = React.useState(false);
+
+    useEffect(() => {
+        update('outdoors', checked1);
+    }, [ checked1 ]);
+
+    useEffect(() => {
+        update('indoors', checked2);
+    }, [ checked2 ]);
 
     return (
         <View style={styles.slide1}>
@@ -16,18 +25,29 @@ const PlaceOfPracticeSlide = () => {
             <View style={{margin: 50, justifyContent: 'space-between', height: 210}}>
               <LabeledRadioButton
                 label="Espaço aberto (praia, campo, ruas)"
-                status={ checked === 'first' ? 'checked' : 'unchecked' }
-                onPress={() => setChecked('first')}
+                status={ checked1 && !checked2 ? 'checked' : 'unchecked' }
+                onPress={() => {
+                    setChecked1(true);
+                    setChecked2(false);
+                }}
               />
               <LabeledRadioButton
                 label="Espaço fechado (ginásio, academia, salão)"
-                status={ checked === 'second' ? 'checked' : 'unchecked' }
-                onPress={() => setChecked('second')}
+                status={ checked2 && !checked1 ? 'checked' : 'unchecked' }
+                //onPress={() => setChecked('second')}
+                onPress={() => {
+                    setChecked2(true);
+                    setChecked1(false);
+                }}
               />
               <LabeledRadioButton
                 label="Tanto faz ¯\_(ツ)_/¯"
-                status={ checked === 'third' ? 'checked' : 'unchecked' }
-                onPress={() => setChecked('third')}
+                status={ checked1 && checked2 ? 'checked' : 'unchecked' }
+                //onPress={() => setChecked('third')}
+                onPress={() => {
+                    setChecked1(true);
+                    setChecked2(true);
+                }}
               />
             </View>
             {/* <Text style={styles.text2}>

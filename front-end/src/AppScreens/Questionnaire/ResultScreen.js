@@ -2,54 +2,57 @@ import React, { Component } from 'react';
 import { View, Text, FlatList, StyleSheet, ScrollView, Button } from 'react-native';
 import SportPreviewCard from '../General/SportPreviewCard'
 import { Header } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 
 const ResultScreen = () => {
 
-    const sports = [
-    {
-        name: 'Futebol',
-        benefits: [
-            'aeróbico',
-            'fortalece o quadril',
-        ],
-        id: 3694756241542
-    },
-    {
-        name: 'Basquete',
-        benefits: [
-            'aeróbico',
-            'trabalha o superior',
-            'melhora o condicionamento',
-            'baixo impacto'
-        ],
-        id: 3641556241542
-    },
-    {
-        name: 'Caminhada',
-        benefits: [
-            'aeróbico',
-            'trabalha as pernas',
-            'emagresse',
-            'melhora o condicionamento'
-        ],
-        id: 3641556246582
-    },
-    {
-        name: 'Pilates',
-        benefits: [
-            'melhora a flexibilidade',
-            'trabalha o corpo todo',
-            'melhora a concentração'
-        ],
-        id: 3641964541542
-    },]
+    //const sports = [
+    //{
+    //    name: 'Futebol',
+    //    benefits: [
+    //        'aeróbico',
+    //        'fortalece o quadril',
+    //    ],
+    //    id: 3694756241542
+    //},
+    //{
+    //    name: 'Basquete',
+    //    benefits: [
+    //        'aeróbico',
+    //        'trabalha o superior',
+    //        'melhora o condicionamento',
+    //        'baixo impacto'
+    //    ],
+    //    id: 3641556241542
+    //},
+    //{
+    //    name: 'Caminhada',
+    //    benefits: [
+    //        'aeróbico',
+    //        'trabalha as pernas',
+    //        'emagresse',
+    //        'melhora o condicionamento'
+    //    ],
+    //    id: 3641556246582
+    //},
+    //{
+    //    name: 'Pilates',
+    //    benefits: [
+    //        'melhora a flexibilidade',
+    //        'trabalha o corpo todo',
+    //        'melhora a concentração'
+    //    ],
+    //    id: 3641964541542
+    //},]
 
     const navigation = useNavigation();
+    const route = useRoute();
 
-    let sportCards = sports.map((item) => {
+    const { data } = route.params;
 
+    let sportCards = data.map((item) => {
+        console.log(item);
         return (<SportPreviewCard 
             sportObject={item} 
             navigation={navigation}

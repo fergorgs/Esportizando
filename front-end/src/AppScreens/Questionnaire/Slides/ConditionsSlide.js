@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native'
 
 import LabeledCheckbox from '../LabeledCheckbox'
 
 
-const ConditionsSlide = () => {
+const ConditionsSlide = ({ update }) => {
 
     const [checked1, setChecked1] = React.useState(false);
     const [checked2, setChecked2] = React.useState(false);
@@ -13,6 +13,34 @@ const ConditionsSlide = () => {
     const [checked5, setChecked5] = React.useState(false);
     const [checked6, setChecked6] = React.useState(false);
     const [checked7, setChecked7] = React.useState(false);
+
+    useEffect(() => {
+        update('diabetes', checked1);
+    }, [ checked1 ]);
+
+    useEffect(() => {
+        update('highBloodPressure', checked2);
+    }, [ checked2 ]);
+
+    useEffect(() => {
+        update('lowBloodPressure', checked3);
+    }, [ checked3 ]);
+
+    useEffect(() => {
+        update('heartDiseases', checked4);
+    }, [ checked4 ]);
+
+    useEffect(() => {
+        update('osteoporosis', checked5);
+    }, [ checked5 ]);
+
+    useEffect(() => {
+        update('frequentDizziness', checked6);
+    }, [ checked6 ]);
+
+    useEffect(() => {
+        update('boneOrJointProblems', checked7);
+    }, [ checked7 ]);
 
     return (
         <View style={styles.slide1}>

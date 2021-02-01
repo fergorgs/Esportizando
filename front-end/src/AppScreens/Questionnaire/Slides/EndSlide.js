@@ -2,9 +2,17 @@ import * as React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 
-const EndSlide = () => {
+import Questionnaire from '../../../api/controllers/Questionnaire';
+
+const EndSlide = ({ answers }) => {
 
     const navigation = useNavigation();
+
+    const handleSubmit = async () => {
+        const { data } = await Questionnaire.submit(answers);
+        console.log("sports: ", data);
+        navigation.navigate('Result', { data });
+    }
 
     return (
         <View style={styles.slide1}>
@@ -13,7 +21,7 @@ const EndSlide = () => {
             </Text>
             <Button 
               title={'Conhecer!'}
-              onPress={() => {navigation.navigate('Result')}}
+              onPress={ handleSubmit }
             />
         </View>
     )

@@ -1,14 +1,26 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native'
 
 import LabeledCheckbox from '../LabeledCheckbox'
 
 
-const OpponentsSlide = () => {
+const OpponentsSlide = ({ update }) => {
 
     const [checked1, setChecked1] = React.useState(false);
     const [checked2, setChecked2] = React.useState(false);
     const [checked3, setChecked3] = React.useState(false);
+    
+    useEffect(() => {
+        update('noContact', checked1);
+    }, [ checked1 ]);
+
+    useEffect(() => {
+        update('contact', checked2);
+    }, [ checked2 ]);
+
+    useEffect(() => {
+        update('noOpponent', checked3);
+    }, [ checked3 ]);
 
     return (
         <View style={styles.slide1}>

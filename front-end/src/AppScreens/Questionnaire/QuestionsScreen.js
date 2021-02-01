@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import Swiper from 'react-native-swiper'
 
@@ -17,24 +17,38 @@ import EquipamentsSlide from './Slides/EquipamentsSlide'
 import ConditionsSlide from './Slides/ConditionsSlide'
 import EndSlide from './Slides/EndSlide'
 
+//import Questionnaire from '../../api/controllers/Questionnaire';
+
 const QuestionsScreen = () => {
+    const [ data, setData ] = useState({});
+    
+    const update = (key, value) => {
+        setData(last => ({ ...last, [key]: value }));
+    };
+    
+    //const submit = async () => {
+    //    const res = await Questionnaire.submit(data);
+    //};
 
     return (
         <Swiper loop={false} showsButtons={true}>
             <WelcomeSlide/>
             <ExplanationSlide/>
-            <TeamOrAloneSlide/>
-            <OpponentsSlide/>
-            <MainObjectivesSlide/>
-            <OtherGoalsSlide/>
-            <FocussedMusclesSlide/>
-            <SpecificitiesSlide/>
+            <TeamOrAloneSlide update={ update } />
+            <OpponentsSlide update={ update } />
+            <MainObjectivesSlide update={ update } />
+            <OtherGoalsSlide update={ update } />
+            <FocussedMusclesSlide update={ update } />
+            <SpecificitiesSlide update={ update } />
             <MidWaySlide/>
-            <TimeSlide/>
-            <PlaceOfPracticeSlide/>
-            <EquipamentsSlide/>
-            <ConditionsSlide/>
-            <EndSlide/>
+            <TimeSlide update={ update } />
+            <PlaceOfPracticeSlide update={ update } />
+            <EquipamentsSlide update={ update } />
+            <ConditionsSlide update={ update } />
+            <EndSlide 
+                answers={ data }
+                //submit={ submit } 
+            />
         </Swiper>
     )
 }
