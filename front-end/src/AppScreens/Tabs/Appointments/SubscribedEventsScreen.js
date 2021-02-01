@@ -74,6 +74,8 @@ function SubscribedEventsScreen({ navigation }) {
                 />
             }}
             keyExtractor={item => item.id}
+            refreshing={ fetching }
+            onRefresh={ fetchData }
         />
     )
     //}

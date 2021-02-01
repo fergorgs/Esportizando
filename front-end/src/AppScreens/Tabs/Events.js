@@ -97,40 +97,36 @@ function Events(props) {
                 
                 {/* <Icon name="list"/> */}
             </View>
-            <ScrollView 
-                contentContainerStyle={{justifyContent: 'space-around'}}
-            >
-                <View style={{flex: 1}}>
-                    { titleKey ?
-                    
-                    <FlatList
-                        data={ search }
-                        renderItem={({ item }) => {
-                            return <EventPreviewCard 
-                                eventObject={ item } 
-                                navigation={ navigation }
-                            />
-                        }}
-                        keyExtractor={ item => item.id }
-                        //refreshing={ fetching }
-                        //onRefresh={ fetchData }
-                    />
-                    : 
-                    <FlatList
-                        data={ events }
-                        renderItem={({ item }) => {
-                            return <EventPreviewCard 
-                                eventObject={ item } 
-                                navigation={ navigation }
-                            />
-                        }}
-                        keyExtractor={ item => item.id }
-                        refreshing={ fetching }
-                        onRefresh={ fetchData }
-                    />
-                    }
-                </View>
-            </ScrollView>
+            <View style={{flex: 1}}>
+                { titleKey ?
+                
+                <FlatList
+                    data={ search }
+                    renderItem={({ item }) => {
+                        return <EventPreviewCard 
+                            eventObject={ item } 
+                            navigation={ navigation }
+                        />
+                    }}
+                    keyExtractor={ item => item.id }
+                    //refreshing={ fetching }
+                    //onRefresh={ fetchData }
+                />
+                : 
+                <FlatList
+                    data={ events }
+                    renderItem={({ item }) => {
+                        return <EventPreviewCard 
+                            eventObject={ item } 
+                            navigation={ navigation }
+                        />
+                    }}
+                    keyExtractor={ item => item.id }
+                    refreshing={ fetching }
+                    onRefresh={ fetchData }
+                />
+                }
+            </View>
         </View>
     );
 }
