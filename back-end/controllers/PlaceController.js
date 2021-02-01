@@ -1,5 +1,4 @@
 const db = require("../configs/firebase").database();
-
 const fields = ["name", "address", "lat", "long"];
 
 module.exports =  {
@@ -20,7 +19,6 @@ module.exports =  {
     },
 
     listCreated(req, res) {
-        req.user = {uid: "1"};
         db.ref(`places`).orderByChild("createdBy").equalTo(req.user.uid).once("value", data => {
             if(!data.val()) return res.status(200).send([]);
             const obj = data.val();
@@ -36,7 +34,6 @@ module.exports =  {
     },
 
     create(req, res) {
-        req.user = {uid: "1"}; // testing
         const miss = [];
         const palce = {};
         for(let f of fields) {
@@ -54,7 +51,6 @@ module.exports =  {
     },
 
     update(req, res) {
-        req.user = {uid: "1"}; // testing
         const placeId = req.body.placeId;
         if(placeId === undefined) return res.status(400).send("No place id specified");
         db.ref(`places/${placeId}`).once("value", data => {
