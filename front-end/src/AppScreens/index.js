@@ -19,7 +19,7 @@ export default class BaseStack extends Component {
       <NavigationContainer>
         <Stack.Navigator headerMode="none">
           <Stack.Screen name="Tabs" component={TabsScreen} headerMode="none"/>
-          <Stack.Screen name="Questionário" component={QuestionnaireScreen} />
+          <Stack.Screen name="Questionario" component={QuestionnaireScreen} headerMode="none"/>
           <Stack.Screen name="Novo Evento" component={NewEventCard} />
           <Stack.Screen name="Evento" component={EventCardScreen} />
           <Stack.Screen name="Esporte" component={SportCardScreen} />
