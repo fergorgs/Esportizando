@@ -77,13 +77,14 @@ function NewEventCard({ navigation, route }) {
                 const res = await Event.create(data, token);
                 console.log(res);
 
-                setLoading(false);
                 route.params?.refresh();
                 navigation.goBack();
             } catch (e) {
                 console.log(e);
             }
         }
+
+        setLoading(false);
 
     };
 

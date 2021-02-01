@@ -36,7 +36,8 @@ class EventPreviewCard extends Component {
                     }
                     else
                     {
-                        this.props.navigation.navigate('Evento')
+                        this.props.navigation.navigate('Evento', 
+                            this.state.eventObject);
                     }
                 }}>
                 <View style={styles.card}>

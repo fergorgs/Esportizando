@@ -5,91 +5,112 @@ import ImagePicker from 'react-native-image-picker'
 import { Header } from 'react-native-elements';
 import { Icon } from 'react-native-elements'
 
-export default class EventCardScreen extends Component{
+import { useNavigation, useRoute } from '@react-navigation/native';
 
-    
+import Event from '../../api/controllers/Event';
 
+function EventCardScreen(props) {
+
+    const navigation = useNavigation();
+    const route = useRoute();
+
+    const { params: event } = route;
+
+
+    const submitSubscription = async () => {
+        try {
+            console.log(event);
+            const res = await Event.subscribe({ event });
+            navigation.goBack();
+        } catch(err) {
+            console.log(err);
+        }
+    };
     // tutorial from:
     // https://heartbeat.fritz.ai/how-to-upload-images-in-a-react-native-app-4cca03ded855
-    state = {
-        photo: null,
-      }
-    
-      handleChoosePhoto = () => {
-        const options = {
-          noData: true,
-        }
-        ImagePicker.launchImageLibrary(options, response => {
-          if (response.uri) {
-            this.setState({ photo: response })
-          }
-        })
-      }
+    //state = {
+    //    photo: null,
+    //  }
+    //
+    //  handleChoosePhoto = () => {
+    //    const options = {
+    //      noData: true,
+    //    }
+    //    ImagePicker.launchImageLibrary(options, response => {
+    //      if (response.uri) {
+    //        this.setState({ photo: response })
+    //      }
+    //    })
+    //  }
 
-    render(){
+    //render(){
 
-        const { photo } = this.state
+        //const { photo } = this.state
 
-        return (
-            <View style={{flex: 1}}>
-                <Header
-                    backgroundColor="white"
-                    leftComponent={
-                        <Icon
-                          name='chevron-left'
-                          onPress={() => this.props.navigation.goBack()}
-                        />
-                    }
-                    centerComponent={{ text: 'Evento', style: { color: '#000', fontSize: 20 } }}
-                />
-                <ScrollView 
-                    contentContainerStyle={{justifyContent: 'space-around'}}
-                >
-                    <View style={styles.container}>
-                        {/* {photo && ( */}
-                        <Image
-                            style={{ width: 150, height: 150 }}
-                            source={{uri: 'https://mrconfeccoes.com.br/wp-content/uploads/2018/03/default.jpg'}}
-                        />
-                        <Text style={{...styles.singleLineInput, ...{fontSize: 25}}}>
-                            Nome do Evento
+    return (
+        <View style={{flex: 1}}>
+            <Header
+                backgroundColor="white"
+                leftComponent={
+                    <Icon
+                      name='chevron-left'
+                      onPress={() => navigation.goBack()}
+                    />
+                }
+                centerComponent={{ text: 'Evento', style: { color: '#000', fontSize: 20 } }}
+            />
+            <ScrollView 
+                contentContainerStyle={{justifyContent: 'space-around'}}
+            >
+                <View style={styles.container}>
+                    {/* {photo && ( */}
+                    <Image
+                        style={{ width: 150, height: 150 }}
+                        source={{uri: 'https://mrconfeccoes.com.br/wp-content/uploads/2018/03/default.jpg'}}
+                    />
+                    <Text style={{...styles.singleLineInput, ...{fontSize: 25}}}>
+                        { event.name }
+                    </Text>
+                    <Text style={styles.singleLineInput}>
+                        { event.sport }
+                    </Text>
+                    <Text style={styles.multiLineInput}>
+                        { event.description }
+                    </Text>
+                    <View style={styles.singleLineInput}>
+                        <Text style={{fontSize: 20}}>Endereço:</Text>
+                        <Text style={{fontSize: 15, marginTop: 5}}>
+                            { event.address }
                         </Text>
-                        <Text style={styles.singleLineInput}>
-                            Esporte
-                        </Text>
-                        <Text style={styles.multiLineInput}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                            sed do eiusmod tempor incididunt ut labore et dolore magna 
-                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                            ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        </Text>
-                        <View style={styles.singleLineInput}>
-                            <Text style={{fontSize: 20}}>Endereço:</Text>
-                            <Text style={{fontSize: 15, marginTop: 5}}>
-                                Avenida dos Bandeirantes, 1034, São Paulo
+                    </View>
+                    <View style={{flexDirection: 'row'}}>
+                        <View style={{width: '50%', paddingRight: 7}}>
+                            <Text style={{...styles.singleLineInput, ...{fontSize: 15}}}>
+                                { event.maxCap }
                             </Text>
                         </View>
-                        <View style={{flexDirection: 'row'}}>
-                            <View style={{width: '50%', paddingRight: 7}}>
-                                <Text style={{...styles.singleLineInput, ...{fontSize: 15}}}>
-                                    4 vagas
-                                </Text>
-                            </View>
-                            <View style={{width: '50%', paddingLeft: 7}}>
-                                <Text style={{...styles.singleLineInput, ...{fontSize: 15}}}>
-                                    R$ 7,50 por pessoa
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={{marginTop: 20}}>
-                            <Button title="Inscrever-se"/>
+                        <View style={{width: '50%', paddingLeft: 7}}>
+                            <Text style={{...styles.singleLineInput, ...{fontSize: 15}}}>
+                                { event.price && event.price !== "0" ? 
+                                    `R$ ${ event.price } por pessoa` :
+                                    "Gratis"
+                                }
+                            </Text>
                         </View>
                     </View>
-                </ScrollView>
-            </View>
-        )
-    }
+                    <View style={{marginTop: 20}}>
+                        <Button 
+                            onPress={ submitSubscription } 
+                            title="Inscrever-se"/>
+                    </View>
+                </View>
+            </ScrollView>
+        </View>
+    )
+    //}
 }
+
+export default EventCardScreen;
 
 const styles = StyleSheet.create({
     container: {
