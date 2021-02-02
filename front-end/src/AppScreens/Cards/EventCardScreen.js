@@ -14,13 +14,15 @@ function EventCardScreen(props) {
     const navigation = useNavigation();
     const route = useRoute();
 
-    const { params: event } = route;
+    const { event, refresh } = route.params;
 
 
     const submitSubscription = async () => {
         try {
             console.log(event);
             const res = await Event.subscribe({ event });
+
+            refresh();
             navigation.goBack();
         } catch(err) {
             console.log(err);
@@ -99,9 +101,12 @@ function EventCardScreen(props) {
                         </View>
                     </View>
                     <View style={{marginTop: 20}}>
-                        <Button 
-                            onPress={ submitSubscription } 
-                            title="Inscrever-se"/>
+                        { 
+                            !event.status &&
+                            <Button
+                                onPress={ submitSubscription } 
+                                title="Inscrever-se"/>
+                        }
                     </View>
                 </View>
             </ScrollView>
