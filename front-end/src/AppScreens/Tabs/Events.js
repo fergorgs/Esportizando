@@ -106,6 +106,7 @@ function Events(props) {
                         return <EventPreviewCard 
                             eventObject={ item } 
                             navigation={ navigation }
+                            refresh={ fetchData }
                         />
                     }}
                     keyExtractor={ item => item.id }
@@ -119,6 +120,7 @@ function Events(props) {
                         return <EventPreviewCard 
                             eventObject={ item } 
                             navigation={ navigation }
+                            refresh={ fetchData }
                         />
                     }}
                     keyExtractor={ item => item.id }

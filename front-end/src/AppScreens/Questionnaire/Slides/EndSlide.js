@@ -9,6 +9,7 @@ import Questionnaire from '../../../api/controllers/Questionnaire';
 const EndSlide = ({ answers }) => {
 
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
     const handleSubmit = async () => {
         const { data } = await Questionnaire.submit(answers);

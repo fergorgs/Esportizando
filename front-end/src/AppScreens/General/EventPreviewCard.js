@@ -14,10 +14,15 @@ class EventPreviewCard extends Component {
     }
 
     getSubCount(){
-        if(this.props.eventObject.owned)
-            return <Text>Inscritos: {this.props.eventObject.subCount}</Text>
-        else
-            return null
+        console.log(this.props.eventObject);
+        if (this.props.eventObject.participants)
+            return "Inscritos: " + 
+                Object.keys(this.props.eventObject.participants).length;
+
+        return null;
+        //if(this.props.eventObject.owned)
+        //else
+           // return null
     }
 
 
@@ -27,17 +32,20 @@ class EventPreviewCard extends Component {
             <TouchableHighlight 
                 style={styles.container} 
                 onPress={() => {
-                    if(this.state.eventObject.owned)
+                    if(this.state.eventObject.status === 'creator')
                     {
                         // Não ta funcionando :(
                         this.props.navigation.navigate('Novo Evento', {
-                            id: 1
+                            event: this.props.eventObject,
+                            refresh: this.props.refresh
                         });
                     }
                     else
                     {
-                        this.props.navigation.navigate('Evento', 
-                            this.state.eventObject);
+                        this.props.navigation.navigate('Evento', {
+                            event: this.state.eventObject,
+                            refresh: this.props.refresh
+                        });
                     }
                 }}>
                 <View style={styles.card}>
@@ -54,7 +62,7 @@ class EventPreviewCard extends Component {
                     <View style={styles.middleStrip}>
                         <Text>{this.state.eventObject.address}</Text>
                         <Text>{this.state.eventObject.date}</Text>
-                        {this.getSubCount()}
+                        <Text> { this.getSubCount() } </Text>
                     </View>
                     <Icon name="info" style={{flexDirection: "row-reverse"}}/>
                 </View>

@@ -11,6 +11,9 @@ import {
 import { Picker } from '@react-native-community/picker';
 import { Header, Icon } from 'react-native-elements';
 
+import DateTimePicker from '@react-native-community/datetimepicker';
+//import DatePicker from 'react-native-date-picker';
+
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
@@ -23,6 +26,13 @@ function NewEventCard({ navigation, route }) {
     const { register, handleSubmit, setValue, getValues, errors } = useForm();
 
     const [ selected, setSelected ] = useState('none');
+    const now = new Date();
+    now.setSeconds(0);
+    const [ picking, setPicking ] = useState(false);
+    const [ date, setDate ] = useState(now);
+    const [ time, setTime ] = useState(now);
+    const [ mode, setMode ] = useState('date');
+
     const [ loading, setLoading ] = useState(false);
     const token = useSelector(state => state.auth.token);
 
@@ -32,6 +42,7 @@ function NewEventCard({ navigation, route }) {
         register('address');
         register('maxCap');
         register('price');
+        register('dateTime');
         register('sport');
     }, [ register ]);
 
@@ -58,11 +69,11 @@ function NewEventCard({ navigation, route }) {
             setValue('maxCap', '0');
         };
 
-        if (route.params?.id)
+        if (route.params?.event)
             fetch();
         else 
             set();
-    }, [ route.params?.id ]);
+    }, [ route.params?.event ]);
 
     const onSubmit = async (data) => {
         setLoading(true);
@@ -86,6 +97,25 @@ function NewEventCard({ navigation, route }) {
 
         setLoading(false);
 
+    };
+        
+    const showPicker = (type) => {
+        setMode(type);
+        setPicking(true);
+    };
+
+    const selectDateTime = (_, selected) => {
+        const curr = selected || 
+            (mode === 'date' && date) || 
+            (mode === 'time' && time);
+
+        //setShow(Platform.OS === 'ios');
+        setPicking(false);
+        
+        if (mode === 'date')
+            setDate(curr);
+        if (mode === 'time')
+            setTime(curr);
     };
 
     return (
@@ -155,10 +185,55 @@ function NewEventCard({ navigation, route }) {
                         defaultValue={ getValues('address') }
                         placeholder="Endereço"
                         style={styles.singleLineInput}
-                        onChangeText={ text => {
+                        date={ text => {
                             setValue('address', text);
                         }}
                     />
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                        <View 
+                            style={{ 
+                                marginTop: 15,
+                                alignItems: 'center',
+                                flexDirection: 'row', 
+                                width: '100%' 
+                            }}
+                        >
+                            <Button 
+                                onPress={ () => showPicker('date') } 
+                                title="Selecione Data"
+                            />
+                            <Text> { date.toLocaleDateString('pt-BR') } </Text>
+                        </View>
+                        <View 
+                            style={{ 
+                                marginTop: 15,
+                                alignItems: 'center',
+                                flexDirection: 'row', 
+                                width: '100%' 
+                            }}
+                        >
+                            <Button 
+                                onPress={ () => showPicker('time') } 
+                                title="Selecione Hora"
+                            />
+                            <Text> { time.toLocaleTimeString('pt-BR') } </Text>
+                        </View>
+                    </View>
+                    { 
+                        picking &&
+                        <DateTimePicker
+                            value={ 
+                                mode === 'date' && date || 
+                                mode === 'time' && time 
+                            }
+                            is24Hour={ true }
+                            minuteInterval={ 15 } 
+                            //placeholder="Data e hora"
+                            //style={styles.singleLineInput}
+                            mode={ mode }
+                            onChange={ selectDateTime }
+                        /> 
+                    }
                     <View style={{flexDirection: 'row'}}>
                         <View style={{width: '50%', paddingRight: 7}}>
                             <TextInput
