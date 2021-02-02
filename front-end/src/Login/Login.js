@@ -14,6 +14,10 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { auth } from "../auth/fire.js";
+
+import { config } from "../api";
+
+import User from "../api/controllers/User";
 // import * as firebase from 'firebase';
 // import moment from "moment";
 // import * as Facebook from 'expo-facebook';
@@ -26,7 +30,6 @@ function Login({ navigation }) {
   //  headerShown: false
   //}
 
-    const sel = useSelector(state => state);
     const dispatch = useDispatch();
 
     //const { navigation } = props;
@@ -42,6 +45,16 @@ function Login({ navigation }) {
                 setError("");
                 const token = await result.user?.getIdToken();
                 setToken(token);
+
+                config(token);
+                    
+                const { data } = await User.verifyQuestionnaire();
+                console.log({ data });
+                dispatch({
+                    type: "TEST_UPDATE",
+                    payload: data.tookTest 
+                });
+
                 dispatch({
                     type: "SIGN_IN",
                     payload: token
@@ -51,8 +64,6 @@ function Login({ navigation }) {
             .catch((e) => setError(e.message));
 
     }
-    
-    console.log(sel);
 
     return (
         <KeyboardAvoidingView style={styles.container} behavior="height" enabled>

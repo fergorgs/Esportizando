@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
 import Icon from "react-native-vector-icons/Ionicons";
+
+import { useSelector } from "react-redux";
 
 import AppointmentsScreen from './Appointments'
 import ProfileScreen from './Profile';
@@ -13,9 +16,19 @@ import EventsScreen from './Events'
 
 const Tab = createBottomTabNavigator()
 
-export default class App extends Component {
+function App() {
+    const tookTest = useSelector(state => state.user.tookTest);
+    const { push } = useNavigation();
 
-  render(){
+    useEffect(() => {
+        if (!tookTest) 
+            push("Questionario");
+    }, [ tookTest ]);
+
+
+    console.log({ tookTest });
+
+  //render(){
     return (
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -56,8 +69,10 @@ export default class App extends Component {
           <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
     );
-  }
+  //}
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   menuLabels: {
