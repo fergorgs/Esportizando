@@ -26,7 +26,7 @@ module.exports =  {
 
     subs(req, res) {
         if(req.body.sport === undefined) return res.status(400).send("No sport specified");
-        db.ref(`users/${req.user.id}/subcribedSports/${sportId}`).set(req.body.sport, e => {
+        db.ref(`users/${req.user.uid}/subcribedSports/${sportId}`).set(req.body.sport, e => {
             if(e) return res.status(400).send(e.message);
             return res.sendStatus(200);
         });

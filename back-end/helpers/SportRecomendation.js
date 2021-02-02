@@ -53,7 +53,6 @@ module.exports = {
     fields,
 
     recomend(questionnaire) {
-        console.log(questionnaire);
         const sports = [
             {
                 name: 'FutebolA',

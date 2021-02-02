@@ -31,11 +31,13 @@ module.exports =  {
             else quest[f] = req.body[f];
         }
         if(miss.length) return res.status(400).send(`Missing field(s): ${miss}`);
-        db.ref(`users/${req.user.uid}/questionnaire`).set(quest, (e) => {
-            if(e) return res.status(400).send(e);
-            const sports = recomend(quest);
-            console.log(sports);
-            return res.status(201).send(sports);
+        db.ref(`users/${req.user.uid}/questionnaire`).set(quest, (_e) => {
+            if(_e) return res.status(400).send(_e.message);
+            db.ref(`users/${req.user.uid}/tookTest`).set(true, (e) => {
+                if(e) return res.status(400).send(e.message);
+                const sports = recomend(quest);
+                return res.status(201).send(sports);
+            });
         });
     },
 

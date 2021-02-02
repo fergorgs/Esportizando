@@ -3,11 +3,11 @@ const router = require("express").Router();
 const { authenticate } = require("./configs/authMiddleware");
 const { auth } = require("./configs/firebase");
 // import Controllers
-const { SampleController, EventController, PlaceController, QuestionnaireController, SportController } = require("./controllers/controllers");
+const { EventController, PlaceController, QuestionnaireController, SportController, UserController } = require("./controllers/controllers");
 
-// router.method(path, Controller.handler);
-router.get("/", SampleController.index);
-router.get("/restricted", authenticate, SampleController.index);
+// User
+router.get("/user/", authenticate, UserController.index);
+router.post("/user/", authenticate, UserController.create);
 
 // Event
 router.get("/event/", authenticate, EventController.list);
@@ -31,5 +31,6 @@ router.post("/questionnaire/", authenticate, QuestionnaireController.create);
 router.get("/sport/", authenticate, SportController.index);
 router.get("/sport/list/", SportController.list);
 router.put("/sport/subscribe/", authenticate, SportController.subs);
+
 
 module.exports = router;
