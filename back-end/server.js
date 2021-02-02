@@ -12,5 +12,6 @@ app.use(bodyParser.json());
 // Connect to DB
 app.use(router);
 
+const port = process.env.PORT || 8000;
 // start server
-app.listen(process.env.PORT || 8000);
+app.listen(port, () => console.log(`listening on ${port}`));

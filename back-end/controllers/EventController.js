@@ -1,5 +1,5 @@
 const db = require("../configs/firebase").database();
-const fields = ["name", "description", "date", "address", "maxCap", "price", "sport"]
+const fields = ["name", "description", "date", "time", "address", "maxCap", "price", "sport"]
 
 module.exports =  {
 
@@ -67,9 +67,16 @@ module.exports =  {
 
     join(req, res) {
         const { event } = req.body;
-        db.ref(`events/${event.id}/participants/${req.user.uid}`).set(true);
-        db.ref(`users/${req.user.uid}/joinedEvents/${event.id}`).set(event);
-        return res.sendStatus(200);
+        if(!event.participants) event.participants = {};
+        event.participants[req.user.uid] = true
+        const update = {};
+        for(let part in event.participants) 
+            update[`users/${part}/joinedEvents/${event.id}`] = event;
+        update[`events/${event.id}/participants/${req.user.uid}`] = true;
+        db.ref().update(update, e => {
+            if(e) return res.status(400).send(e.message);
+            return res.sendStatus(200);
+        });
     },
 
     update(req, res) {
