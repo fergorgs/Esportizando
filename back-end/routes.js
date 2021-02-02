@@ -31,6 +31,7 @@ router.post("/questionnaire/", authenticate, QuestionnaireController.create);
 router.get("/sport/", authenticate, SportController.index);
 router.get("/sport/list/", SportController.list);
 router.put("/sport/subscribe/", authenticate, SportController.subs);
+router.post("/sport/", SportController.create);
 
 
 module.exports = router;
