@@ -2,6 +2,8 @@ import * as React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 
+import { useDispatch } from "react-redux";
+
 import Questionnaire from '../../../api/controllers/Questionnaire';
 
 const EndSlide = ({ answers }) => {
@@ -10,7 +12,12 @@ const EndSlide = ({ answers }) => {
 
     const handleSubmit = async () => {
         const { data } = await Questionnaire.submit(answers);
-        console.log("sports: ", data);
+        //console.log("sports: ", data);
+        dispatch({
+            type: "TEST_UPDATE",
+            payload: true
+        });
+
         navigation.navigate('Result', { data });
     }
 

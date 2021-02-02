@@ -5,6 +5,9 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./src/store";
 import SwitchNavigator from './src';
 import Loading from './src/Loading';
+import { setup } from './src/api';
+
+setup(store);
 
 export default class App extends React.Component {
 
