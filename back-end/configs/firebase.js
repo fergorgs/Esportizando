@@ -8,6 +8,7 @@ if(!process.env.DATABASE_URL) {
     accKey = require("./credential/serviceAccountKey.json");
     firebaseConfig = require("./credential/firebaseConfig.json");
 } else {
+    console.log(process.env.FIREBASE_TYPE);
     accKey = {
         type: process.env.FIREBASE_TYPE,
         project_id: process.env.PROJECT_ID,
@@ -21,7 +22,7 @@ if(!process.env.DATABASE_URL) {
         client_x509_cert_url: process.env.CLIENT_CERT_URL
     };
     firebaseConfig = {
-        databaseUrl: process.env.DATABASE_URL
+        databaseURL: process.env.DATABASE_URL
     };
 }
 
