@@ -47,10 +47,24 @@
             "twoHours": true,
             "upper": false,
             "water": false
-        }
+        },
+        "shortDdescription": "O futebol ou futebol de campo, é um esporte de equipe jogado com os pés, disputado entre dois times de onze jogadores cada um e um árbitro que se ocupa da correta aplicação das normas. O objetivo principal do futebol é fazer gol no time adversário. Vence quem tiver o placar a seu favor.",
+        "description": "As partidas duram 90 minutos (divididos em dois tempos de 45 minutos), e as pausas são repostas com acréscimos determinados pelo árbitro. Em disputas eliminatórias, comumente conhecidas como mata-mata, se o jogo estiver empatado é realizada a prorrogação, composta por 30 minutos (divididos em dois tempos de 15 minutos). Caso a disputa permaneça empatada, haverá cobrança de pênaltis para definição do vencedor. Jogadas violentas podem ser punidas com cartões amarelo (serve como advertência) e vermelho (expulsão do jogador), e somente o goleiro pode usar as mãos durante a partida. Faltas cometidas dentro da área são punidas com a marcação de pênalti (cobrança feita de uma marca que fica a 11 metros do gol).",
+        "benefits": [
+            "Melhora a concentração",
+            "Proporciona gasto calórico",
+            "Promove a socialização",
+            "Ajuda a aliviar o estresse e a ansiedade",
+            "Melhora o humor e a disposição",
+            "Ajuda a fortalecer os músculos, principalmente das pernas",
+            "Melhora a frequência dos batimentos cardíacos e a circulação sanguínea",
+            "Incentiva o trabalho em equipe"
+
+        ],
+        "target": "É um esporte para todas as idades e níveis de condicionamento. Portanto devem ter maiores cuidados aqueles com problemas nos joelhos, já que é um esporte que costuma ocasionar bastante lesões na região de joelho e tornozelos. "
     },
     {
-        "name": "Voleibol ",
+        "name": "Voleibol",
         "props": {
             "abdomen": true,
             "alone": false,
@@ -97,7 +111,21 @@
             "twoHours": true,
             "upper": true,
             "water": false
-        }
+        },
+        "shortDdescription": "E um esporte coletivo com bola ,onde usa-se basicamente as mãos para jogá-lo.  O objetivo da modalidade é fazer a bola passar sobre a rede de modo a que a bola toque no chão dentro da quadra adversária. Disputado numa quadra retangular, dividida ao meio por uma rede.",
+        "description": "O vôlei de quadra é formado por duas equipes com 6 jogadores em cada. No total, são 12 jogadores. Existem ainda 6 jogadores reserva. Cada equipe ocupa um lado da quadra, e a disputa do ponto inicia-se com o saque, e a bola pode ser tocada três vezes por cada equipe sem bater no chão antes de ser devolvida ao campo adversário com as mãos ou os punhos, admitindo-se também o uso da cabeça e do tórax em defesas. Modernamente, passou-se a aceitar também o uso dos pés, para defender ou impedir a bola de cair no chão. Os fundamentos do vôlei são: Saque, Recepção, Levantamento, Ataque, Bloqueio. \nAs principais regras do vôlei são:\nCada equipe possui um técnico;\n Uma partida é constituída de 5 sets;\n Não existe tempo pré-determinado para cada set;\n Cada set tem um máximo de 25 pontos com uma diferença mínima de 2 pontos;\n Em caso de empate no set no final (24 x 24), a partida continua até que a diferença de dois pontos seja atingida (26 x 24, 27 x 25, etc.);\n Após o saque, a equipe só pode tocar três vezes na bola;\n Ganha a equipe que vencer três sets;\n Se houver empate nos sets (2x2) o 5º set será decisivo.",
+        "benefits": [
+            "Tonifica e modela o corpo",
+            "Aumenta a taxa metabólica",
+            "Melhoria na coordenação",
+            "Desenvolve agilidade, coordenação, velocidade e equilíbrio",
+            "Melhora os sistemas cardiovascular e respiratório",
+            "Aumenta a força muscular",
+            "Aumenta a capacidade aeróbica",
+            "Melhora as habilidades interpessoais",
+            "Melhora o humor e a motivação"
+        ],
+        "target": "Pode ser jogado por qualquer pessoa, com qualquer nível de condicionamento, podendo fazer variações do jogo para crianças." 
     },
     {
         "name": "Tenis de Mesa",
@@ -147,10 +175,23 @@
             "twoHours": false,
             "upper": true,
             "water": false
-        }
+        },
+        "shortDdescription": "O tênis de mesa, também chamado de ping-pong, é um esporte criado na Inglaterra, no século XIX. O jogo, que é uma adaptação do tênis de quadra, consiste na disputa de pontos entre jogadores que golpeiam a bola com suas raquetes sobre a área de jogo (mesa). O objetivo é impedir que o adversário consiga realizar a mesma ação e devolva a bola para a área de jogo.",
+        "description": "O jogo, que é uma adaptação do tênis de quadra, consiste na disputa de pontos entre jogadores que golpeiam a bola com suas raquetes sobre a área de jogo (mesa). O objetivo é impedir que o adversário consiga realizar a mesma ação e devolva a bola para a área de jogo.\nAssim, o atleta vencedor é aquele que obtém mais êxitos dentro do número de sets em disputa. Os sets são disputados e vence o primeiro jogador que atingir a marca de onze pontos ou dois pontos de vantagem, no caso de empate em dez pontos.\nA partida é disputada em sets. A quantidade de sets pode variar, desde que se tenha uma quantidade ímpar (1, 3, 5, 7…). Vence a partida quem conquistar o maior número de sets disputados.\nO vencedor do set é o participante que atingir a marca de 11 pontos. No caso de um empate em 10 pontos (10 a 10), vence o primeiro a abrir dois pontos de vantagem sobre o rival (12 a 10, 13 a 11, 14 a 12…).\nOs adversários trocam de lado na mesa a cada set. No caso do último set (set desempate) essa mudança ocorre a cada 5 pontos.",
+        "benefits": [
+            "melhora da coordenação motora",
+            "melhora da resistência física",
+            "melhora na agilidade",
+            "queima calórica acentuada",
+            "poucos traumas, pois não possui contato físico",
+            "não sobrecarrega as articulações",
+            "estimula o raciocínio logico, criativo e intuitivo",
+            "melhora a capacidade de concentração e reflexos"
+        ],
+        "target": "E uma modalidade que pode ser jogada desde cedo até a velhice, pois possui poucas contraindicações." 
     },
     {
-        "name": "Natacao ",
+        "name": "Natacao",
         "props": {
             "abdomen": true,
             "alone": true,
@@ -197,10 +238,22 @@
             "twoHours": false,
             "upper": true,
             "water": true
-        }
+        },
+        "shortDdescription": "É uma atividade física praticada tanto pelo homem como pelos animais aquáticos. Onde a pessoa se desloca de um lado para o outro na água, através da combinação de movimentos das pernas e braços. Esse esporte é sem dúvida um dos mais completos, pois envolve boa parte dos músculos do corpo durante a atividade. Pode ser praticada em ambientes artificias (piscinas) ou em naturais (mar, lago, lagoa, etc). Requer nenhum material mas necessita saber a técnica do nado.",
+        "description": "É uma atividade física praticada tanto pelo homem como pelos animais aquáticos. Onde a pessoa se desloca de um lado para o outro na água, através da combinação de movimentos das pernas e braços. Esse esporte é sem dúvida um dos mais completos, pois envolve boa parte dos músculos do corpo durante a atividade. Pode ser praticada em ambientes artificias (piscinas) ou em naturais (mar, lago, lagoa, etc). Requer nenhum material mas necessita saber a técnica do nado. \nNas competições de natação, temos quatro estilos: borboleta, costas, peito e crawl. Uma piscina oficial para a prática da natação deve medir 30 metros de comprimento por 22,5 centímetros de largura. De profundidade, a piscina deve ter 1,35 metros ou mais.\nPara quem tem problemas nos joelhos e sofre com o excesso de peso, é muito recomendada, pois as articulações não sofrem com o excesso de peso, além disso ajuda a emagrecer e é muito refrescante, aliviando o calor, sendo uma ótima opção nos meses mais quentes do ano.",
+        "benefits": [
+            "trabalhar o corpo como um todoa",
+            "melhora o tônus muscular",
+            "melhora a respiração e a capacidade cardiorrespiratória",
+            "queima calorias",
+            "fortalece o coração",
+            "proporciona um relaxamento intenso devido a massagem que a água proporciona no corpo",
+            "não tem impacto"
+        ],
+        "target": "Desde crianças que estão aprendendo a nadar até a melhor idade. Não tem contra indicações. A não ser em casos mais severos de alergias ao cloro." 
     },
     {
-        "name": "Futsal ",
+        "name": "Futsal",
         "props": {
             "abdomen": true,
             "alone": false,
@@ -247,10 +300,20 @@
             "twoHours": false,
             "upper": false,
             "water": false
-        }
+        },
+        "shortDdescription": "O futsal, também chamado de futebol de salão, é um esporte coletivo semelhante ao futebol de campo, porém possui suas peculiaridades. Ainda que sejam semelhantes, o futsal possui regras específicas e diferencia-se, por exemplo, pelo número de jogadores e as dimensões do espaço de jogo e tem o objetivo de fazer o maior número de gols no campo do adversário. Somente o goleiro pode usar as mãos para tocar a bola.",
+        "description": "O futsal, também chamado de futebol de salão, é um esporte coletivo semelhante ao futebol de campo, porém possui suas peculiaridades. Ainda que sejam semelhantes, o futsal possui regras específicas e diferencia-se, por exemplo, pelo número de jogadores e as dimensões do espaço de jogo e tem o objetivo de fazer o maior número de gols no campo do adversário. Somente o goleiro pode usar as mãos para tocar a bola.\nPara poder jogar, o jogador deve possuir: uniforme, caneleiras, proteção para partes intimas (goleiro), meias e chuteiras.",
+        "benefits": [
+            "emagrecer",
+            "prevenir problemas cardíacos",
+            "ganhar massa muscular",
+            "trabalhar a coordenação",
+            "aliviar sintomas do estresse e da ansiedade."
+        ],
+        "target": "Vai desde crianças ate a idade adulta. Como todo esporte com disputa de bola, torna-se um pouco mais perigoso para joelhos e tornozelos e para pessoas com idade mais avançada." 
     },
     {
-        "name": "Corrida ",
+        "name": "Corrida",
         "props": {
             "abdomen": true,
             "alone": true,
@@ -297,10 +360,21 @@
             "twoHours": false,
             "upper": false,
             "water": false
-        }
+        },
+        "shortDdescription": "Corrida é uma competição de velocidade ou resistência. Os competidores tentam completar uma determinada tarefa no menor período de tempo. Envolve tradicionalmente percorrer alguma distância, mas pode se referir a qualquer tarefa em que o tempo/velocidade se apliquem.",
+        "description": "Corrida é uma competição de velocidade ou resistência. Os competidores tentam completar uma determinada tarefa no menor período de tempo. Envolve tradicionalmente percorrer alguma distância, mas pode se referir a qualquer tarefa em que o tempo/velocidade se apliquem. As competições acontecem em campeonatos regionais ou até mundiais, mas podem acontecer também em provas de rua como meias-maratonas e maratonas. \nExistem diversas formas de provas de corrida, como: corrida indoor, marcha atlética, corridas de rua, cross country, corridas em montanha e corridas em trilhas. Modalidades diferentes para diferentes tipos de público e grau de aventura.",
+        "benefits": [
+            "ajuda no melhor funcionamento cardíaco",
+            "melhora do retorno venoso", 
+            "auxilia na redução da pressão arterial",
+            "auxilia na redução do LDL (colesterol ruim)",
+            "auxilia na melhora do HDL (colesterol bom)", 
+            "favorece sensações de relaxamento e bem estar" 
+        ],
+        "target": "A corrida pode ser praticada por toda a vida, tendo poucas contraindicações como problemas de joelho, quadris e coluna." 
     },
     {
-        "name": "SKATE ",
+        "name": "SKATE",
         "props": {
             "abdomen": true,
             "alone": true,
@@ -347,10 +421,13 @@
             "twoHours": false,
             "upper": false,
             "water": false
-        }
+        },
+        "shortDdescription": "Skate é um esporte que consiste em deslizar sobre o solo e obstáculos equilibrando-se numa prancha, chamada também de esqueite ou skate, dotada de quatro pequenas rodas e dois eixos chamados de trucks. Com a prancha de skate, executam-se manobras de baixos a altos graus de dificuldade.",
+        "description": "Skate é um esporte que consiste em deslizar sobre o solo e obstáculos equilibrando-se numa prancha, chamada também de esqueite ou skate, dotada de quatro pequenas rodas e dois eixos chamados de trucks. Com a prancha de skate, executam-se manobras de baixos a altos graus de dificuldade.\nO esqueitismo é considerado um esporte radical, dado seu aspecto criativo, cuja proficiência é verificada pelo grau de dificuldade dos movimentos executados.\nA partir das olimpíadas do Japão, se tornará um esporte olímpico. \nPara praticar, e necessário além do skate, todo um material de proteção que envolve: capacete, joelheiras, cotoveleiras e protetores de mão. \nExistem várias modalidade de skate, são elas: street, free style, vertical, Half-pipe, bowl, big air, downhill speed, downhill stand-up, downhill slide e as minirrampas.",
+        "target": "E um esporte considerado radical, com alto risco de quedas e lesões. Então não e tão indicado para pessoas com idade avançada pois nele temos muitas quedas,  traumas cranianos, fraturas de membros superiores e entorse de tornozelo e joelho." 
     },
     {
-        "name": "Surfe ",
+        "name": "Surfe",
         "props": {
             "abdomen": true,
             "alone": true,
@@ -397,10 +474,24 @@
             "twoHours": true,
             "upper": true,
             "water": true
-        }
+        },
+        "shortDdescription": "Surfe é um esporte individual, radical, praticado no mar. No surfe, o desafio é se manter o maior tempo possível em pé sob uma prancha, deslizando sob as ondas e realizando manobras radicais, com vários níveis de dificuldade.",
+        "description": "Surfe é um esporte individual, radical, praticado no mar. No surfe, o desafio é se manter o maior tempo possível em pé sob uma prancha, deslizando sob as ondas e realizando manobras radicais, com vários níveis de dificuldade.\nNão se sabe ao certo quando surgiu o surfe, pois há poucos relatos, mas alguns historiadores defendem a idéia de que surgiu nas Ilhas Polinésias quando os nativos saiam para pescar e, para voltar mais rápido à terra firme, deslizavam com seus barcos através das ondas. Com o passar do tempo esta atividade tornou-se hábito entre estas civilizações. Outras teorias defendem a África ocidental como o berço do surfe.\nPosteriormente, os reis das ilhas do Havaí passaram a praticar este esporte com pranchas feitas de madeira retiradas de árvores locais. Foi no Havaí que o surfe tornou-se uma cultura.\nAs linhas do surfe são:\nClássica - dá mais importância ao estilo em detrimento à força.\nModerna – dá mais importância à força e a radicalidade do que o estilo\nAs manobras mais radicais do surfe são:\nTubo – o surfista fica envolto pela onda, “dentro” dela.\nAéreo – o surfista usa a onda como rampa, alçando vôo e “pousando” novamente sob a água.\nOutras manobras são: 360°, cut-back, rasgada, cavada, batida e floater.",
+        "benefits": [
+            "Aumenta a qualidade de vida e diminui o estresse",
+            "Fortalece e tonifica a musculatura corporal",
+            "Melhora a respiração e a capacidade cardiorrespiratória",
+            "Aumenta a resistência",
+            "Aumenta o equilíbrio",
+            "Melhora a coordenação motora",
+            "Conhecimento e respeito sobre o mar e a natureza",
+            "Conexão com a natureza"
+
+        ],
+        "target": "O surfe pode ser praticado por crianças a partir de 5 anos, desde que saibam nadar." 
     },
     {
-        "name": "Judo ",
+        "name": "Judo",
         "props": {
             "abdomen": true,
             "alone": true,
@@ -447,10 +538,17 @@
             "twoHours": false,
             "upper": true,
             "water": false
-        }
+        },
+        "shortDdescription": "O Judô é uma arte marcial, praticada como esporte de combate e fundada por Jigoro Kano em 1882. Os seus principais objetivos são fortalecer o físico, a mente e o espírito de forma integrada, além de desenvolver técnicas de defesa pessoal. O judô utiliza técnicas de ataque e defesa realizados com o próprio corpo. ",
+        "description": "O Judô é uma arte marcial, praticada como esporte de combate e fundada por Jigoro Kano em 1882. Os seus principais objetivos são fortalecer o físico, a mente e o espírito de forma integrada, além de desenvolver técnicas de defesa pessoal. O judô utiliza técnicas de ataque e defesa realizados com o próprio corpo.\nA primeira escola de judô foi criada no Japão por seu fundador, Jigoro Kano: a Kodokan.\nAlém de desenvolver técnicas de combate do esporte, o fundador aliou essa arte marcial com a filosofia ippon-shobu (luta pelo ponto perfeito).\nDesde o princípio, o judô foi criado para que todos pudessem participar: homens, mulheres, crianças e idosos.\nO tempo de luta do judô varia conforme a categoria, tendo duração de 5 minutos para os homens e 4 minutos para as mulheres.\nDurante esse período, o combate entre dois judocas deverá apresentar um vencedor.\nEntretanto, se isso não acontecer, é adicionado mais três minutos ao combate, momento chamado de Golden Score (pontuação de ouro).\nOs movimentos do judô são baseados em técnicas que envolvem diversas partes do corpo, tais como: pés, braços, pernas e quadris.",
+        "benefits": [
+            "Fortalece abdômen, pernas, braços e diversos músculos.",
+            "Além de desenvolver a disciplina que as artes marciais trabalham."
+        ],
+        "target": "O judô pode ser trabalhado desde a infância até a terceira idade." 
     },
     {
-        "name": "Musculacao ",
+        "name": "Musculacao",
         "props": {
             "abdomen": true,
             "alone": true,
@@ -497,7 +595,26 @@
             "twoHours": false,
             "upper": true,
             "water": false
-        }
+        },
+        "shortDdescription": "O treinamento de força, conhecido popularmente como musculação é uma forma de exercício contra resistência, praticado normalmente em academias de ginastica, para o treinamento e desenvolvimento dos músculos esqueléticos.",
+        "description": "A musculação é um tipo de exercício realizado com pesos de diversas cargas, amplitude e tempo de contração, o que faz dela uma atividade física indicada para pessoas de diversas idades e com diferentes objetivos.\nA musculação é diferente do fisiculturismo, levantamento de peso, pois esses são esporte e aquela uma modalidade de exercício.\nOs resultados obtidos não dependem somente do tipo de treino, outros fatores como flexibilidade, condicionamento cardiorrespiratório, tipo de alimentação e hereditariedade também são importantes.\nTIPO DE TREINOS:\nHipertrofia Muscular\nResistência Muscular\nPotência Muscular\nForça Muscular\nHIIT.\n.",
+        "benefits": [
+            "Auxilia no emagrecimento",
+            "Aumenta o gasto calórico diário",
+            "Estimula o metabolismo",
+            "Previne a osteoporose",
+            "Pode evitar o diabetes",
+            "Melhora a atividade cardíaca",
+            "Melhora a postura",
+            "Aumenta a auto-estima",
+            "Melhora o sono",
+            "Melhora o bem-estar",
+            "Pode ajudar em quadros de depressão",
+            "Aumenta a resistência do sistema imunológico",
+            "Ameniza a celulite",
+            "define os músculos"
+        ],
+        "target": "Vai desde crianças a partir de 10 anos até a terceira idade. Todos tem a ganhar com a realização de um trabalho de forca e/ou resistência." 
     },
     {
         "name": "HANDEBOL",
@@ -547,10 +664,20 @@
             "twoHours": false,
             "upper": true,
             "water": false
-        }
+        },
+        "shortDdescription": "O handebol (ou andebol) é um esporte coletivo que envolve passes de bola com as mãos. Praticado entre duas equipes, o nome dessa modalidade esportiva é proveniente da língua inglesa, visto que hand significa “mão”, O jogo e dividido em dois tempos de 30 minutos cada e possui um intervalo de 10 minutos entre cada etapa. Existem dois árbitros e um cronometrista. O jogo envolve dribles, passes e recepção de bola entre os jogadores e arremesso é uma técnica muito utilizada para fazer gols.",
+        "description": "O handebol (ou andebol) é um esporte coletivo que envolve passes de bola com as mãos. Praticado entre duas equipes, o nome dessa modalidade esportiva é proveniente da língua inglesa, visto que hand significa “mão”. O handebol foi criado em 1919 pelo atleta e professor de educação física alemão Karl Schelenz (1890-1956). O esporte é executado em quadras fechadas de 40 por 20 metros.\nQuando foi criado, ele continha um total de 22 jogadores, ou seja, 11 em cada equipe. Hoje o número foi reduzido para 14 no total (7 jogadores em cada equipe).\nO jogo e dividido em dois tempos de 30 minutos cada e possui um intervalo de 10 minutos entre cada etapa. Existem dois árbitros e um cronometrista. O jogo envolve dribles, passes e recepção de bola entre os jogadores e arremesso é uma técnica muito utilizada para fazer gols. A maneira de segurar a bola no jogo é chamada de \"empunhadura\".\nO objetivo do handebol é fazer gols. Portanto, ganha a equipe que fizer mais gols. Para isso, a habilidade e a rapidez dos jogadores favorecem o resultado final. Quando a bola está na mão do jogador, ele pode dar até três passos até arremessá-la para outro. Isso também vale para o tempo, ou seja, cada jogador pode permanecer com ela nas mãos durante 3 segundos. Isso faz com que o handebol seja um jogo bem dinâmico.\n",
+        "benefits": [
+            "Melhora o desempenho cardiorrespiratório",
+            "Melhora a circulação sanguínea",
+            "Tonifica a musculatura do corpo inteiro",
+            "Aprimora a coordenação motora",
+            "Ajuda no entendimento do trabalho em equipe e a tomar decisões rápidas."
+        ],
+        "target": "Pode ser jogado por crianças, adultos e pessoas na terceira idade." 
     },
     {
-        "name": "Tenis ",
+        "name": "Tenis",
         "props": {
             "abdomen": true,
             "alone": true,
@@ -597,10 +724,22 @@
             "twoHours": true,
             "upper": true,
             "water": false
-        }
+        },
+        "shortDdescription": "Ténis ou tênis é um esporte de origem inglesa, disputado em quadras geralmente abertas e de superfícies sintéticas, cimento, saibro ou relva. Participam do jogo dois oponentes ou duas duplas de oponentes, podendo ser mistas ou não.\n Este esporte pode ser jogado dois ou quatro jogadores (no caso de duplas), munidos de raquete, impelem uma bola especial por cima de uma rede que divide a quadra em dois campos.",
+        "description": "Ténis ou tênis é um esporte de origem inglesa, disputado em quadras geralmente abertas e de superfícies sintéticas, cimento, saibro ou relva. Participam do jogo dois oponentes ou duas duplas de oponentes, podendo ser mistas ou não.\nEste esporte pode ser jogado dois ou quatro jogadores (no caso de duplas), munidos de raquete, impelem uma bola especial por cima de uma rede que divide a quadra em dois campos.\nPara praticar esta modalidade, o jogador irá precisar de uniforme, raquete para o seu tamanho, bolas e um tênis especifico para o esporte.\nOs fundamentos forehand, backhand e saque representam as armas mais poderosas do jogo de tênis, o domínio desses fundamentos é de suma importância para que se tenha um resultado satisfatório.\nUm jogo de tênis é divido em 3 ou 5 sets. Cada set possui 6 games, para ganhar um set é preciso ter uma diferença de 2 games de vantagem sobre o adversário. Os games são disputados por pontos que são contados em 0, 15, 30 e 40. Em caso de empate 40 a 40, ganha quem fizer dois pontos seguidos",
+        "benefits": [
+        "A queima de gordura",
+        "Fortalece e garante massa muscular para pernas, braços, costas e abdômen",
+        "Melhora a saúde cardiovascular",
+        "Exercita o cérebro",
+        "Melhora a coordenação motora e agilidade",
+        "Melhora a autoestima, confiança e otimismo"
+
+        ],
+        "target": "Pode ser praticado desde a infância até a terceira idade, respeitando sempre os limites de cada atleta." 
     },
     {
-        "name": "Caminhada ",
+        "name": "Caminhada",
         "props": {
             "abdomen": true,
             "alone": true,
@@ -647,10 +786,23 @@
             "twoHours": false,
             "upper": false,
             "water": false
-        }
+        },
+        "shortDdescription": "O Trekking é uma atividade física e aeróbica que pode ser praticado como uma forma de lazer ou de competição. Também conhecido como caminhada, consiste no ato de caminhar em trilhas em meio a montanhas e florestas.",
+        "description": "Trekking é uma palavra de origem sul-africana que significa seguir um trilho ou o chamado percurso pedestre e fazê-lo a pé. Como desporto está inserido na modalidade de caminhada ou/e trilha. E a caminhada, só que mais competitiva,  longa e implica dormir em abrigos ou tenda. E um passeio na Natureza por mais que um dia seguido. O prazer da caminhada proporcionado nas provas de trekking e a possibilidade de desfrutar paisagens inéditas, que não estão ao alcance de qualquer um, uma sensação de privilégio de ir a lugares aonde poucos chegam, o de ver coisas que poucos viram, o de superioridade, força, autoconfiança e autoconhecimento.\nA caminhada pode ser feita somente pela saúde, para espairecer, ou com mais regras como no Enduro a pé de regularidade. Este é um esporte constituído de provas onde se devem percorrer trilhas preestabelecidas em planilhas que fornecem informações como figuras representativas sobre o caminho, direções para navegação por bússola, velocidade de caminhada e comprimento dos trechos do percurso. Os desenhos ajudam a identificar o percurso a ser seguido. Esses desenhos podem representar árvores caídas, cercas, rios, mata-burros, porteiras, construções, etc",
+        "benefits": [
+            "Melhora a circulação",
+            "Deixa os pulmões mais eficientes",
+            "Combate a osteoporose",
+            "Afasta a depressão, pois libera endorfina",
+            "Aumenta a sensação de bem-estar",
+            "Deixa o cérebro mais saudável",
+            "Melhora e qualidade do sono",
+            "Mantém o peso em equilíbrio e emagrece;"
+        ],
+        "target": "Pode ser praticado por qualquer pessoa pois é uma atividade de baixo impacto, porém isso irá depender da trilha escolhida." 
     },
     {
-        "name": "Pilates ",
+        "name": "Pilates",
         "props": {
             "abdomen": true,
             "alone": true,
@@ -697,10 +849,23 @@
             "twoHours": false,
             "upper": true,
             "water": false
-        }
+        },
+        "shortDdescription": "Chamado primeiramente de \"contrologia\", o Pilates é um tipo de atividade física que busca o controle do músculos do corpo, fortalecendo a musculatura e melhorando seu tônus, além de conferir maior flexibilidade ao corpo. Hoje, alguns médicos a consideram uma forma de terapia, por ser um exercício individualizado.",
+        "description": "Chamado primeiramente de \"contrologia\", o Pilates é um tipo de atividade física que busca o controle do músculos do corpo, fortalecendo a musculatura e melhorando seu tônus, além de conferir maior flexibilidade ao corpo. Hoje, alguns médicos a consideram uma forma de terapia, por ser um exercício individualizado.\nA técnica é mais próxima a um exercício de força e é conhecida por melhora do contorno corporal, além de trazer mais força, ajustar a postura e melhorar a musculatura do centro do corpo, chamada de core.\nO pilates é uma modalidade capaz de oferecer muitos benefícios ao praticante, promovendo maior consciência corporal e aumentando a flexibilidade. \nPode ser praticado no chão, apenas com um tapetinho ou com a ajuda de aparelhos e bola de pilates. \nPara tanto, ele faz uso principalmente da respiração e de movimentos que usam o peso do corpo ou o auxílio/resistência das molas em seus aparelhos.\nO pilates é um método que estimula o corpo de forma global durante cada exercício, visando o aumento de mobilidade, flexibilidade, força e tônus muscular. ",
+        "benefits": [
+            "Melhora da postura",
+            "Aumento do tônus muscular",
+            "Incremento da flexibilidade",
+            "Maior mobilidade articular",
+            "Foco na respiração",
+            "Alívio de tensões",
+            "Mais prazer na relação sexual, pois trabalha bastante a musculatura do assoalho pélvico"
+
+        ],
+        "target": "O pilates é uma atividade segura, se bem orientada, podendo ser praticada por crianças, adultos e idosos." 
     },
     {
-        "name": "Ciclismo ",
+        "name": "Ciclismo",
         "props": {
             "abdomen": true,
             "alone": true,
@@ -747,6 +912,18 @@
             "twoHours": true,
             "upper": false,
             "water": false
-        }
+        },
+        "shortDdescription": "O ciclismo é um esporte que envolve um atleta e um equipamento: a bicicleta. \nSe pensarmos assim, é possível chamar de ciclismo quaisquer modalidades \nque envolvam essas duas partes, como o ciclismo de estrada, o ciclismo de\n pista, o mountain bike e o bmx.\n",
+        "description": "Ciclismo é a prática de se usar uma bicicleta, seja como esporte ou forma de locomoção. Foi na Inglaterra, em meados do século XIX, que o ciclismo surgiu, época em que o aperfeiçoamento do veículo possibilitou o alcance de maiores velocidades.\nO ciclismo pode ser praticado de forma lúdica, pedalando para relaxar, aliviar o estresse, como forma de deslocamento ou na forma esportiva, com regras pré- estabelecidas.\nNo ciclismo de estrada, os competidores largam todos juntos para completar 120 km e vence quem cruzar a linha de chegada primeiro. Na modalidade Contrarrelógio, os ciclistas partem um de cada vez para fazer o percurso – o ganhador é aquele que fizer o menor tempo.",
+        "benefits": [
+            "Fortalece a musculatura das pernas e abdomen",
+            "Auxilia na saúde do coração",
+            "Reduz o estresse",
+            "Melhora na respiração",
+            "Ajuda no equilíbrio",
+            "Emagrece",
+            "Melhora a circulacao sanguinea"
+        ],
+        "target": "Pedalar é uma atividade natural e prazerosa, sem impacto. Pode ser feita por qualquer pessoa." 
     }
 ]

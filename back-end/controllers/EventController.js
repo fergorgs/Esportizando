@@ -1,5 +1,5 @@
 const db = require("../configs/firebase").database();
-const fields = ["name", "description", "date", "time", "address", "maxCap", "price", "sport"]
+const fields = ["name", "description", "date", "time", "address", "maxCap", "price", "sport", "covidRules", "createdAt"];
 
 module.exports =  {
 
@@ -58,6 +58,7 @@ module.exports =  {
         if(miss.length) return res.status(400).send(`Missing field(s): ${miss}`);
 
         evnt.createdBy = req.user.uid
+        evnt.createdAt = new Date();
 
         db.ref(`events`).push(evnt, (e) => {
             if(e) return res.status(400).send(e);
@@ -67,6 +68,7 @@ module.exports =  {
 
     join(req, res) {
         const { event } = req.body;
+        if(!event) return res.status(400).send("No event specified");
         if(!event.participants) event.participants = {};
         event.participants[req.user.uid] = true
         const update = {};

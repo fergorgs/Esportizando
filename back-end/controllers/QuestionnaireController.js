@@ -1,4 +1,4 @@
-const { fields, recomend } = require("../helpers/SportRecomendation");
+const { fields, recommendSport } = require("../helpers/Recommendation");
 const db = require("../configs/firebase").database();
 
 module.exports =  {
@@ -35,7 +35,7 @@ module.exports =  {
             if(_e) return res.status(400).send(_e.message);
             db.ref(`users/${req.user.uid}/tookTest`).set(true, (e) => {
                 if(e) return res.status(400).send(e.message);
-                recomend(quest, data => res.status(201).send(data));
+                recommendSport(req.user, quest, data => res.status(201).send(data), true);
             });
         });
     },
