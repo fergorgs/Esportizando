@@ -35,8 +35,7 @@ module.exports =  {
             if(_e) return res.status(400).send(_e.message);
             db.ref(`users/${req.user.uid}/tookTest`).set(true, (e) => {
                 if(e) return res.status(400).send(e.message);
-                const sports = recomend(quest);
-                return res.status(201).send(sports);
+                recomend(quest, data => res.status(201).send(data));
             });
         });
     },

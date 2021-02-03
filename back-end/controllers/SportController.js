@@ -7,8 +7,7 @@ module.exports =  {
         db.ref(`users/${req.user.uid}/questionnaire`).once("value", snap => {
             const data = snap.val();
             if(!data) return res.status(200).send([]);
-            const sports = recomend(data);
-            return res.status(200).send(sports);
+            recomend(data, sports => res.status(200).send(sports));
         });
     },
 

@@ -62,10 +62,10 @@ module.exports = {
 
     fields,
 
-    recomend(questionnaire) {
+    recomend(questionnaire, cb) {
         db.ref(`sports`).once("value", snap => {
             const obj = snap.val();
-            if(!obj) return [];
+            if(!obj) cb([]);
             const sports = Object.values(obj);
             const ids = Object.keys(obj);
             for(let i = 0; i < sports.length; ++i) 
@@ -89,9 +89,14 @@ module.exports = {
             sim.sort((a, b) => b[0] - a[0]);
             let mx = sim[0][0];
             const ret = [];
-            for(let i = 0; i < sim.length; ++i)
-                if(sim[i][0] === mx) ret.push(sports[sim[i][1]]);
-            return ret;
+            for(let i = 0; i < sim.length; ++i) {
+                if(sim[i][0] === mx) {
+                    const cur = {...sports[sim[i][1]]};
+                    delete cur.props;
+                    ret.push(cur);
+                }
+            }
+            cb(ret);
         });
     }
 }
