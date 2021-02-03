@@ -3,6 +3,8 @@ import { StyleSheet, Text, TouchableHighlight, View, Image } from "react-native"
 import { Icon } from 'react-native-elements'
 //import { withNavigation } from 'react-navigation';
 
+import Tag from './Tag';
+
 class EventPreviewCard extends Component {
     
     constructor(props) {
@@ -50,21 +52,45 @@ class EventPreviewCard extends Component {
                 }}>
                 <View style={styles.card}>
                     <View style={styles.upperStrip}>
-                        <Image 
+                        { /*<Image 
                             resizeMode = "cover"
                             style={{width: 130, height: 73}}
                             source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Football_iu_1996.jpg'}}
-                        />
-                        <Text style={{fontSize: 20, paddingLeft: 10, paddingRight: 40 }}>
+                        /> */}
+                        <Text style={{fontSize: 20, paddingLeft: 10, paddingRight: 40, color: 'white'}}>
                             {this.state.eventObject.name}
                         </Text>
                     </View>
                     <View style={styles.middleStrip}>
-                        <Text>{this.state.eventObject.address}</Text>
-                        <Text>{this.state.eventObject.date}</Text>
-                        <Text> { this.getSubCount() } </Text>
+                        <View style={{ flexDirection: 'row', ...styles.info }}>
+                            <Tag text={ this.state.eventObject.sport } />
+                        </View>
+                        <Text
+                            style={styles.info}
+                        >
+                            {this.state.eventObject.address}
+                        </Text>
+                        <View style={{ ...styles.info, flexDirection: 'row'}}>
+                            <Text
+                                style={{ ...styles.info, marginRight: 10 }}
+                            >
+                                {this.state.eventObject.date}
+                            </Text>
+                            <Text
+                                style={styles.info}
+                            >
+                                {this.state.eventObject.time}
+                            </Text>
+                        </View>
+                        { this.getSubCount() && 
+                        <Text
+                            style={{ ...styles.info, color: '#444' }}
+                        > 
+                            { this.getSubCount() } 
+                        </Text>
+                        }
                     </View>
-                    <Icon name="info" style={{flexDirection: "row-reverse"}}/>
+                    { /*<Icon name="info" style={{flexDirection: "row-reverse"}}/>*/}
                 </View>
             </TouchableHighlight>
         )
@@ -74,33 +100,51 @@ class EventPreviewCard extends Component {
 const styles = StyleSheet.create({
 
     container: {
-        borderRadius: 20,
-        margin: 15,
-        minHeight: 200,
+        borderRadius: 10,
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        //margin: 10,
+        //minHeight: 200,
+        elevation: 2
     },
     
     card: {
         flex: 1,
-        borderColor: "black",
-        borderWidth: 1,
-        borderRadius: 20,
+        //borderColor: "black",
+        //borderWidth: 1,
+        borderRadius: 10,
         backgroundColor: "#fff",
-        paddingTop: 20,
-        paddingHorizontal: 20,
-        minHeight: 200,
+        paddingBottom: 10,
+        //paddingTop: 20,
+        //paddingHorizontal: 20,
+        //minHeight: 200,
     },
 
     upperStrip: {
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10,
         flex: 1,
         flexDirection: 'row',
-        maxHeight: 73,
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        //maxHeight: 73,
+        backgroundColor: '#446a9c'
     },
 
     middleStrip: {
         flex: 1,
-        justifyContent: "space-evenly",
-        marginTop: 5,
-        maxHeight: 65,
+        flexDirection: 'column',
+        //justifyContent: "space-evenly",
+        marginTop: 20,
+        marginHorizontal: 20
+        //maxHeight: 65,
+    },
+
+    info: {
+        marginBottom: 10,
+        fontSize: 16,
+        color: '#777'
     }
 })
 

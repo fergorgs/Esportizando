@@ -42,14 +42,15 @@ const MainObjectivesSlide = ({ update }) => {
             <Text style={styles.text}>
                 Agora nos diga quais são os seus objetivos principais
             </Text>
-            <View style={{margin: 50, justifyContent: 'space-between', height: 400}}>
+            <View style={{padding: 50, width: '100%'}}>
                 <LabeledCheckbox
                     status={checked1 ? 'checked' : 'unchecked'}
                     onPress={() => {
                       setChecked1(!checked1);
                     }}
                     label='Melhorar o condicionamento físico'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
                 <LabeledCheckbox
                     status={checked2 ? 'checked' : 'unchecked'}
@@ -57,7 +58,8 @@ const MainObjectivesSlide = ({ update }) => {
                       setChecked2(!checked2);
                     }}
                     label='Emagrecer / Queimar gordura'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
                 <LabeledCheckbox
                     status={checked3 ? 'checked' : 'unchecked'}
@@ -65,7 +67,8 @@ const MainObjectivesSlide = ({ update }) => {
                       setChecked3(!checked3);
                     }}
                     label='Aumentar a força e a massa muscular'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
                 <LabeledCheckbox
                     status={checked4 ? 'checked' : 'unchecked'}
@@ -73,7 +76,8 @@ const MainObjectivesSlide = ({ update }) => {
                       setChecked4(!checked4);
                     }}
                     label='Relaxar e aliviar o estresse'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
                 <LabeledCheckbox
                     status={checked5 ? 'checked' : 'unchecked'}
@@ -81,7 +85,8 @@ const MainObjectivesSlide = ({ update }) => {
                       setChecked5(!checked5);
                     }}
                     label='Interagir com os outros e socializar'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
                 <LabeledCheckbox
                     status={checked6 ? 'checked' : 'unchecked'}
@@ -89,7 +94,8 @@ const MainObjectivesSlide = ({ update }) => {
                       setChecked6(!checked6);
                     }}
                     label='Participar de competições'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
             </View>
             {/* <Text style={styles.text2}>
@@ -106,10 +112,11 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#9DD6EB',
+      backgroundColor: '#446a9c',
       padding: 5
     },
     text: {
+        marginHorizontal: 50,
       color: '#fff',
       fontSize: 30,
       fontWeight: 'bold',

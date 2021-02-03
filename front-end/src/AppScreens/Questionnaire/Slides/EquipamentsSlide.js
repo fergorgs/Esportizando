@@ -22,7 +22,7 @@ const EquipamentsSlide = ({ update }) => {
             <Text style={styles.text}>
                 Quanto ao uso de equipamentos
             </Text>
-            <View style={{margin: 50, justifyContent: 'space-between', height: 210}}>
+            <View style={{padding: 50, width: '100%'}}>
               <LabeledRadioButton
                 label="Quero só esportes que usam equipamento"
                 status={ checked1 && !checked2 ? 'checked' : 'unchecked' }
@@ -30,6 +30,8 @@ const EquipamentsSlide = ({ update }) => {
                     setChecked1(true);
                     setChecked2(false);
                 }}
+                color='#D4DFEC'
+                textStyle={{ color: '#eee' }}
               />
               <LabeledRadioButton
                 label="Quero esportes que necessitam apenas do corpo"
@@ -39,6 +41,8 @@ const EquipamentsSlide = ({ update }) => {
                     setChecked2(true);
                     setChecked1(false);
                 }}
+                color='#D4DFEC'
+                textStyle={{ color: '#eee' }}
               />
               <LabeledRadioButton
                 label="Quero os dois tipos de esporte"
@@ -48,6 +52,8 @@ const EquipamentsSlide = ({ update }) => {
                     setChecked1(true);
                     setChecked2(true);
                 }}
+                color='#D4DFEC'
+                textStyle={{ color: '#eee' }}
               />
             </View>
             {/* <Text style={styles.text2}>
@@ -63,10 +69,11 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#9DD6EB',
+      backgroundColor: '#446a9c',
       padding: 5
     },
     text: {
+        marginHorizontal: 50,
       color: '#fff',
       fontSize: 30,
       fontWeight: 'bold',

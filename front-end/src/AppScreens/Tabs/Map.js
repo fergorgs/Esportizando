@@ -13,6 +13,9 @@ let location = {
     id: 3694513521542
 }
 
+const mainColor = '#446A9C';
+const textColor = '#ffffff';
+
 const Map = (props) => {
 
     const navigation = useNavigation();
@@ -20,10 +23,29 @@ const Map = (props) => {
     return (
         <View>
             <Header
+                statusBarProps={{
+                    backgroundColor: mainColor,
+                    translucent: true,
+                    hidden: false
+                }}
+                containerStyle={{
+                    borderBottomWidth: 0
+                }}
+                backgroundColor={ mainColor }
+                leftComponent={{ 
+                    text: 'Mapa', 
+                    style: { 
+                        color: textColor, 
+                        fontSize: 20,
+                    }
+                }}
+                leftContainerStyle={{margin: 5, flex: 3}}
+            />
+            { /* <Header
                 backgroundColor="white"
                 leftComponent={{ text: 'Mapa', style: { color: '#000', fontSize: 20 }}}
                 leftContainerStyle={{margin: 5, flex: 3}}
-            />
+            /> */ }
             <MapView
                 style={styles.map}
                 region={{

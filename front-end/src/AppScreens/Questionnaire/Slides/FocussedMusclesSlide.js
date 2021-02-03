@@ -27,14 +27,15 @@ const FocussedMusclesSlide = ({ update }) => {
             <Text style={styles.text}>
                 Quais músculos você gostaria de desenvolver?
             </Text>
-            <View style={{margin: 50, justifyContent: 'space-between', height: 180}}>
+            <View style={{padding: 50, width: '100%'}}>
                 <LabeledCheckbox
                     status={checked1 ? 'checked' : 'unchecked'}
                     onPress={() => {
                       setChecked1(!checked1);
                     }}
                     label='Membros superiores e costas'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#fff' }}
                 />
                 <LabeledCheckbox
                     status={checked2 ? 'checked' : 'unchecked'}
@@ -42,7 +43,8 @@ const FocussedMusclesSlide = ({ update }) => {
                       setChecked2(!checked2);
                     }}
                     label='Abdômen'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#fff' }}
                 />
                 <LabeledCheckbox
                     status={checked3 ? 'checked' : 'unchecked'}
@@ -50,7 +52,8 @@ const FocussedMusclesSlide = ({ update }) => {
                       setChecked3(!checked3);
                     }}
                     label='Membros inferiores e glúteos'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#fff' }}
                 />
             </View>
             {/* <Text style={styles.text2}>
@@ -67,10 +70,11 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#9DD6EB',
+      backgroundColor: '#446a9c',
       padding: 5
     },
     text: {
+        marginHorizontal: 50,
       color: '#fff',
       fontSize: 30,
       fontWeight: 'bold',

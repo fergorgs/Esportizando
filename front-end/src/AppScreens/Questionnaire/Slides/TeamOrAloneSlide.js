@@ -21,14 +21,15 @@ const TeamOrAloneSlide = ({ update }) => {
             <Text style={styles.text}>
                 Primeiro, você gosta de esportes:
             </Text>
-            <View style={{margin: 50, justifyContent: 'space-between', height: 130}}>
+            <View style={{padding: 40, width: '100%'}}>
                 <LabeledCheckbox
                     status={checked1 ? 'checked' : 'unchecked'}
                     onPress={() => {
                       setChecked1(!checked1);
                     }}
                     label='individuais (tênis, natação, musculação)'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
                 <LabeledCheckbox
                     status={checked2 ? 'checked' : 'unchecked'}
@@ -36,7 +37,8 @@ const TeamOrAloneSlide = ({ update }) => {
                       setChecked2(!checked2);
                     }}
                     label='coletivos (futebol, basquete, vôlei)'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
             </View>
             <Text style={styles.text2}>
@@ -52,10 +54,11 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#9DD6EB',
+      backgroundColor: '#446a9c',
       padding: 5
     },
     text: {
+        marginHorizontal: 50,
       color: '#fff',
       fontSize: 30,
       fontWeight: 'bold',

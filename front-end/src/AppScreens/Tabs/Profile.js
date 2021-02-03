@@ -1,11 +1,14 @@
 import React from 'react';
-import { Text, Button, View, ScrollView, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, Button, View, ScrollView, StyleSheet } from 'react-native';
 import { Header } from 'react-native-elements';
 
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '../../auth/fire';
 
 import SportPreviewCard from '../General/SportPreviewCard'
+
+const mainColor = '#446A9C';
+const textColor = '#ffffff';
 
 function Profile(props) {
     
@@ -40,21 +43,98 @@ function Profile(props) {
       />)
   })
 
-    const onLogout = () => {
-        auth.signOut()
+    const onLogout = () => { auth.signOut()
             .catch(error => console.log(error));
     };
     
     return (
       <View style={styles.container}>
+        <Header
+            statusBarProps={{
+                backgroundColor: mainColor,
+                translucent: true,
+                hidden: false
+            }}
+            containerStyle={{
+                borderBottomWidth: 0,
+            }}
+            backgroundColor={ mainColor }
+            leftComponent={{ 
+                text: 'Perfil', 
+                style: { 
+                    color: textColor, 
+                    fontSize: 20,
+                }
+            }}
+            leftContainerStyle={{margin: 5, flex: 3}}
+        />
         <ScrollView style={{flex: 1}}>
-          <Header
+
+          { /* <Header
               backgroundColor="white"
               leftComponent={{ text: 'Perfil', style: { color: '#000', fontSize: 20 }}}
               leftContainerStyle={{margin: 5, flex: 3}}
-          />
-          <Text style={styles.singleLineText}>Esportes que você segue</Text>
+          /> */ }
+          <View style={styles.searchMenu}>
+                <Text
+                    style={styles.singleLineInput}
+                    //onChangeText={(val) => {setTitleKey(val)}}
+                >
+                    Esportes que vocês segue:
+                </Text>
+              
+              {/* <Icon name="list"/> */}
+          </View>
+          { /*<Text style={styles.singleLineText}>Esportes que você segue</Text>*/}
           {sportCards}
+          <View style={{
+              marginVertical: 10,
+              backgroundColor: 'white',
+              marginHorizontal: 10,
+              padding: 20,
+              borderRadius: 10,
+              elevation: 2
+          }}>
+            
+            <TouchableOpacity
+                style={{ 
+                    borderRadius: 10,
+                    backgroundColor: '#3E618E',
+                    flex: 1,
+                    height: 48,
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}
+                onPress={ () => navigation.navigate('Questionario') }
+            >
+                <Text
+                    style={{
+                        color: '#fff',
+                        fontSize: 16
+                    }}
+                > Refazer o teste de Esportes </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={{ 
+                    marginTop:10,
+                    borderRadius: 10,
+                    backgroundColor: '#E94F37',
+                    flex: 1,
+                    height: 48,
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}
+                onPress={ onLogout }
+            >
+                <Text
+                    style={{
+                        color: '#fff',
+                        fontSize: 16
+                    }}
+                > Logout </Text>
+            </TouchableOpacity>
+          </View>
+          { /**
           <View style={styles.button}>
             <Button 
               title='Refazer o teste de esportes'
@@ -62,12 +142,15 @@ function Profile(props) {
               onPress={ () => {navigation.navigate('Questionario')} } 
             />
           </View>
+          */}
+          { /**
           <View style={styles.button}>
             <Button 
               title='Logout' 
               onPress={ onLogout } 
             />
           </View>
+          */ }
         </ScrollView>
       </View>
     );
@@ -80,20 +163,43 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     alignItems: 'center'
   },
-  singleLineText: {
-    marginTop: 20,
-    marginHorizontal: 15,
-    padding: 8,
-    backgroundColor: "white",
-    borderColor: "black",
-    borderWidth: 1,
-    borderRadius: 10,
-    fontSize: 20
+  spacer: {
+      marginVertical: 10,
   },
+  //singleLineText: {
+  //  marginTop: 20,
+  //  marginHorizontal: 15,
+  //  padding: 8,
+  //  backgroundColor: "white",
+  //  borderColor: "black",
+  //  borderWidth: 1,
+  //  borderRadius: 10,
+  //  fontSize: 20
+  //},
   button: {
     marginHorizontal: 15,
-    marginVertical: 20
   },
+    searchMenu: {
+        backgroundColor: '#557EB4', 
+        //borderColor: 'black', 
+        //borderTopWidth: 1,
+        // flexDirection: 'row'
+    },
+    singleLineInput: {
+        //margin: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 6,
+        marginBottom: 6,
+        padding: 8,
+        backgroundColor: "#557EB4",
+        color: 'white',
+        fontSize: 16
+        //borderColor: "black",
+        //borderWidth: 1,
+        //borderRadius: 1,
+        // width: '100%'
+    }
 })
 
 export default Profile;

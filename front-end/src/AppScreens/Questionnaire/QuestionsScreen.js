@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import Swiper from 'react-native-swiper'
 
+import Icon from "react-native-vector-icons/Ionicons";
 import WelcomeSlide from './Slides/WelcomeSlide'
 import ExplanationSlide from './Slides/ExplanationSlide'
 import TeamOrAloneSlide from './Slides/TeamOrAloneSlide'
@@ -31,7 +32,13 @@ const QuestionsScreen = () => {
     //};
 
     return (
-        <Swiper loop={false} showsButtons={true}>
+        <Swiper 
+            loop={false} 
+            showsButtons={true}
+            nextButton={<Icon name='chevron-forward' size={36} color='#D4DFEC'/>}
+            prevButton={<Icon name='chevron-back' size={36} color='#D4DFEC'/>}
+            activeDotColor={'#D4DFEC'}
+        >
             <WelcomeSlide/>
             <ExplanationSlide/>
             <TeamOrAloneSlide update={ update } />

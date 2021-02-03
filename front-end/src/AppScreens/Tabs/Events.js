@@ -7,6 +7,9 @@ import { Icon } from 'react-native-elements'
 
 import Event from '../../api/controllers/Event';
 
+const mainColor = '#446a9c';
+const textColor = '#ffffff';
+
 function Events(props) {
   
     const [titleKey, setTitleKey] = useState("")
@@ -84,13 +87,33 @@ function Events(props) {
     return (
         <View style={{flex: 1}}>
             <Header
+                statusBarProps={{
+                    backgroundColor: mainColor,
+                    translucent: true,
+                    hidden: false 
+                }}
+                containerStyle={{
+                    borderBottomWidth: 0
+                }}
+                backgroundColor={ mainColor }
+                leftComponent={{ 
+                    text: 'Eventos', 
+                    style: { 
+                        color: textColor, 
+                        fontSize: 20,
+                    }
+                }}
+                leftContainerStyle={{margin: 5, flex: 3}}
+            />
+            { /*<Header
                 backgroundColor="white"
                 leftComponent={{ text: 'Eventos', style: { color: '#000', fontSize: 20 }}}
                 leftContainerStyle={{margin: 5, flex: 3}}
-            />
+            />*/ }
             <View style={styles.searchMenu}>
                 <TextInput
                     placeholder="Pesquisa por nome"
+                    placeholderTextColor="#dddddd"
                     style={styles.singleLineInput}
                     onChangeText={(val) => {setTitleKey(val)}}
                 />
@@ -110,6 +133,9 @@ function Events(props) {
                         />
                     }}
                     keyExtractor={ item => item.id }
+                    ListFooterComponent={ 
+                        <View style={{ height: 10 }}></View> 
+                    }
                     //refreshing={ fetching }
                     //onRefresh={ fetchData }
                 />
@@ -126,6 +152,9 @@ function Events(props) {
                     keyExtractor={ item => item.id }
                     refreshing={ fetching }
                     onRefresh={ fetchData }
+                    ListFooterComponent={ 
+                        <View style={{ height: 10 }}></View> 
+                    }
                 />
                 }
             </View>
@@ -136,18 +165,24 @@ function Events(props) {
 
 const styles = StyleSheet.create({
     searchMenu: {
-        backgroundColor: 'white', 
-        borderColor: 'black', 
-        borderTopWidth: 1,
+        backgroundColor: '#557EB4', 
+        //borderColor: 'black', 
+        //borderTopWidth: 1,
         // flexDirection: 'row'
     },
     singleLineInput: {
-        margin: 10,
+        //margin: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 2,
+        marginBottom: 2,
         padding: 8,
-        backgroundColor: "white",
-        borderColor: "black",
-        borderWidth: 1,
-        borderRadius: 1,
+        backgroundColor: "#557EB4",
+        color: 'white',
+        fontSize: 16
+        //borderColor: "black",
+        //borderWidth: 1,
+        //borderRadius: 1,
         // width: '100%'
     }
 })

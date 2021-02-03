@@ -5,6 +5,9 @@ import SportPreviewCard from '../General/SportPreviewCard'
 import { Header } from 'react-native-elements';
 // import LocationPreviewCard from '../General/LocationPreviewCard'
 
+const mainColor = '#446A9C';
+const textColor = '#ffffff';
+
 class Timeline extends Component {
   
     constructor(props) {
@@ -14,11 +17,19 @@ class Timeline extends Component {
     posts = [
     {
         type: 'event',
-        title: 'Titulo do evento',
+        name: 'Titulo do evento',
         address: 'Rua dos Bobos, 0, Cachoeira Paulista',
         date: '30/02/2022',
         owned: false,
+        sport: 'Futebol',
+        description: 'Descrição do evento, onde vamos todos nos juntar para jogar aquele futebas maroto',
         subCount: 7,
+        time: '19:20',
+        maxCap: 10,
+        participants: {
+            aa: 'aksdv',
+            bbb: 'da',
+        },
         id: 3694513521542
     },
     {
@@ -64,10 +75,29 @@ class Timeline extends Component {
         return (
             <View>
                 <Header
+                    statusBarProps={{
+                        backgroundColor: mainColor,
+                        translucent: true,
+                        hidden: false
+                    }}
+                    containerStyle={{
+                        borderBottomWidth: 0
+                    }}
+                    backgroundColor={ mainColor }
+                    leftComponent={{ 
+                        text: 'Timeline', 
+                        style: { 
+                            color: textColor, 
+                            fontSize: 20,
+                        }
+                    }}
+                    leftContainerStyle={{margin: 5, flex: 3}}
+                />
+                { /* <Header
                     backgroundColor="white"
                     leftComponent={{ text: 'Timeline', style: { color: '#000', fontSize: 20 }}}
                     leftContainerStyle={{margin: 5, flex: 3}}
-                />
+                /> */ }
                 <FlatList
                     data={this.posts}
                     renderItem={({item}) => {
@@ -85,7 +115,10 @@ class Timeline extends Component {
                         }
                     }}
                     keyExtractor={item => item.id}
-                    style={{marginBottom: 80}}
+                    style={{marginBottom: 78}}
+                    ListFooterComponent={ 
+                        <View style={{ height: 10 }}></View> 
+                    }
                 />
             </View>
         );

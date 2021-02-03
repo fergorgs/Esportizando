@@ -51,7 +51,7 @@ function Switch(props) {
         setLoading(false);
     });
 
-    console.log({ token });
+        console.log({ token });
 
     if (loading) 
         return <Loading />

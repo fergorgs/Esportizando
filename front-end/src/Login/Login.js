@@ -15,6 +15,8 @@ import { useForm, Controller } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { auth } from "../auth/fire.js";
 
+import Icon from "react-native-vector-icons/Ionicons";
+
 import { config } from "../api";
 
 import User from "../api/controllers/User";
@@ -78,7 +80,15 @@ function Login({ navigation }) {
             
              {/*Text Input email*/}
             <View style={styles.inputContainer}>
-                <Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/envelope/androidL/40/3498db'}}/>
+                { /*<Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/envelope/androidL/40/3498db'}}/>*/}
+                <Icon 
+                    style={{
+                        marginLeft: 15
+                    }}
+                    name='mail' 
+                    size={20} 
+                    color='#3e5f8e'
+                />
                 <Controller
                     control={ control }
                     name="email"
@@ -102,7 +112,15 @@ function Login({ navigation }) {
             
              {/*Text Input password*/}
             <View style={styles.inputContainer}>
-                <Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/password/androidL/40/3498db'}}/>
+                {/*<Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/password/androidL/40/3498db'}}/>*/}
+                <Icon 
+                    style={{
+                        marginLeft: 15
+                    }}
+                    name='lock-closed' 
+                    size={20} 
+                    color='#3e5f8e'
+                />
                 <Controller
                     control={ control }
                     name="password"
@@ -125,8 +143,9 @@ function Login({ navigation }) {
             </View>
             
             {/*Button - Screen Recover Password */}
-            <TouchableOpacity style={styles.restoreButtonContainer}>
+            { /*<TouchableOpacity style={styles.restoreButtonContainer}>
             {/*  onPress={() => this.props.navigation.navigate('RecoverScreen')}> */}
+            {/*
                 <Text>Forgot your password?</Text>
             </TouchableOpacity>
             
@@ -139,10 +158,10 @@ function Login({ navigation }) {
             </TouchableOpacity>
             
             {/*Button - Screen Sign Up */}
-            <TouchableOpacity style={styles.buttonContainer}
+            <TouchableOpacity style={[styles.buttonContainer, styles.registerButton]}
                 onPress={() => navigation.navigate('Register')}
             >
-                <Text>Register</Text>
+                <Text style={styles.loginText}>Register</Text>
             </TouchableOpacity>
         
         </KeyboardAvoidingView>
@@ -157,15 +176,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#686F9A',
+    backgroundColor: '#D4DEEC',
   },
   inputContainer: {
-      borderBottomColor: '#F5FCFF',
+      //borderBottomColor: '#F5FCFF',
       backgroundColor: '#FFFFFF',
-      borderRadius:30,
-      borderBottomWidth: 1,
-      width:250,
-      height:45,
+      borderRadius: 5,
+      elevation: 2,
+      //borderBottomWidth: 1,
+      //width:250,
+      //height:45,
+      marginHorizontal: 30,
       marginBottom:15,
       flexDirection: 'row',
       alignItems:'center'
@@ -173,7 +194,9 @@ const styles = StyleSheet.create({
   inputs:{
       height:45,
       marginLeft:16,
-      borderBottomColor: '#FFFFFF',
+      marginRight: 16,
+      //borderBottomColor: '#FFFFFF',
+
       flex:1,
   },
   icon:{
@@ -185,22 +208,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonContainer: {
-    height:45,
+    height:48,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom:20,
-    width:250,
-    borderRadius:30,
+    marginBottom:10,
+        //width:250,
+    marginHorizontal: 30,
+    borderRadius: 5,
   },
   loginButton: {
-    backgroundColor: '#3b5998',
+    backgroundColor: '#3e5f8e',
+  },
+  registerButton: {
+    backgroundColor: '#569F61',
   },
   fabookButton: {
     backgroundColor: "#3b5998",
   },
   loginText: {
     color: 'white',
+    flex: 1,
+    textAlign: 'center'
   },
   restoreButtonContainer:{
     width:250,
