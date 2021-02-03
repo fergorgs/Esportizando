@@ -66,8 +66,8 @@ module.exports = {
 
     recommendEvent(user, count, cb) {
         db.ref(`events`).orderByValue("createdAt").once("value", eSnap => { // all events
-            db.ref(`users/${user.id}/subscribedSports`).once("value", ssSnap => { // users` subscribed sports
-                db.ref(`recommended/${user.id}/events`).once("value", rSnap => { // events already recommended to user
+            db.ref(`users/${user.uid}/subscribedSports`).once("value", ssSnap => { // users` subscribed sports
+                db.ref(`recommended/${user.uid}/events`).once("value", rSnap => { // events already recommended to user
                     if(!eSnap.val() || !ssSnap.val()) return cb([]); // no events or no subbed sport, nothing to do here.
                     const recommendedEvents = rSnap.val() ?? {};
                     const events = Object.values(eSnap.val()).reverse(); // reverse to get most recently created events
@@ -82,7 +82,7 @@ module.exports = {
                     }
                     retEvt = retEvt.filter(e => subsSports[e.sport.id]).slice(0, count); // filter in events whose sports are being followed by the user
                     for(let evnt of retEvt) recommendedEvents[evnt.id] = true; // mark returned events as already recommended
-                    db.ref(`recommended/${user.id}/events`).set(recommendedEvents, e => { // update recommendedEvents
+                    db.ref(`recommended/${user.uid}/events`).set(recommendedEvents, e => { // update recommendedEvents
                         if(e) return cb([], e); // throw error
                         return cb(retEvt); // return recommendedEvents
                     });
@@ -94,8 +94,8 @@ module.exports = {
 
     recommendSport(user, questionnaire, cb, resetQuestionnaire) {
         db.ref(`sports`).once("value", snap => {
-            db.ref(`recommended/${user.id}/sports`).once("value", rSnap => {
-                const recommend = rSnap.val() ?? {};
+            db.ref(`recommended/${user.uid}/sports`).once("value", rSnap => {
+                let recommend = rSnap.val() ?? {};
                 const obj = snap.val();
                 if(!obj) cb([]);
                 let sports = Object.values(obj);
@@ -103,12 +103,12 @@ module.exports = {
                 for(let i = 0; i < sports.length; ++i) 
                     sports[i].id = ids[i];
 
-                const retSports = sports.filter(el => !recommend[el.id]); // filter out sports already recommended;
+                let retSports = sports.filter(el => !recommend[el.id]); // filter out sports already recommended;
                 if(resetQuestionnaire || !retSports.length) { // if reset questionnaire -> whole new recommendation profile -> reset recommendation
                     retSports = sports; // if all recommended recommend again...
                     recommend = {}; // reset recommendation tracking
                 }
-                retSports = retSports.filter(el => !el?.followers[user.uid]);
+                retSports = retSports.filter(el => !el?.followers?.[user.uid]);
                 const sim = [];
                 for(let i = 0; i < retSports.length; ++i) {
                     let ignore = false;
@@ -136,7 +136,7 @@ module.exports = {
                         ret.push(cur);
                     }
                 }
-                db.ref(`recommended/${user.id}/sports`).set(recommend, e => {
+                db.ref(`recommended/${user.uid}/sports`).set(recommend, e => {
                     if(e) return cb([], e);
                     return cb(ret);
                 })
