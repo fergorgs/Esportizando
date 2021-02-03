@@ -1,7 +1,6 @@
   
 const router = require("express").Router();
 const { authenticate } = require("./configs/authMiddleware");
-const { auth } = require("./configs/firebase");
 // import Controllers
 const { EventController, PlaceController, QuestionnaireController, SportController, UserController } = require("./controllers/controllers");
 
