@@ -31,6 +31,8 @@ module.exports =  {
         if(!sport) return res.status(400).send("No sport specified");
         if(!sport.followers) sport.followers = {};
         sport.followers[req.user.uid] = true
+        if(sport.subscribed !== undefined)
+            delete sport.subscribed;
         const update = {};
         for(let follower in sport.followers) 
             update[`users/${follower}/subscribedSports/${sport.id}`] = sport;
@@ -46,6 +48,7 @@ module.exports =  {
             if(!subscribedSports.val()) return res.status(200).send([]);
             let ret = Object.values(subscribedSports.val()).map(el => {
                 delete el.props;
+                el.subscribed = true;
                 return el;
             });
             return res.status(200).send(ret);
@@ -82,6 +85,6 @@ module.exports =  {
     //             return res.sendStatus(200);
     //         });
     //     });
-    // }
+    // },
 
 }

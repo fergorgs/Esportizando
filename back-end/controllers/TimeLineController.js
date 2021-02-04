@@ -12,9 +12,9 @@ module.exports =  {
                 if(e) return res.status(400).send(e.message);
                 recommendEvent(req.user, 3, (evnts, e) => {
                     if(e) return res.status(400).send(e.message);
-                    const ret = [];
-                    ret.concat(evnts.map(el => ({type: "event", data: el})));
-                    ret.concat(sports.map(el => ({type: "sport", data: el})));
+                    let ret = [];
+                    ret = ret.concat(evnts.map(el => ({type: "event", data: el})));
+                    ret = ret.concat(sports.map(el => ({type: "sport", data: el})));
                     return res.status(200).send(ret);
                 });
             });

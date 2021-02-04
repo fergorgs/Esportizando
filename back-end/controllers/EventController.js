@@ -1,5 +1,5 @@
 const db = require("../configs/firebase").database();
-const fields = ["name", "description", "date", "time", "address", "maxCap", "price", "sport", "covidRules", "createdAt"];
+const fields = ["name", "description", "date", "time", "address", "maxCap", "price", "sport"];
 
 module.exports =  {
 
@@ -50,15 +50,17 @@ module.exports =  {
 
     create(req, res) {
         const miss = [];
+        const payload = req.body.event;
         const evnt = {};
         for(let f of fields) {
-            if(req.body[f] === undefined) miss.push(f);
-            else evnt[f] = req.body[f];
+            if(payload[f] === undefined) miss.push(f);
+            else evnt[f] = payload[f];
         }
+
         if(miss.length) return res.status(400).send(`Missing field(s): ${miss}`);
 
-        evnt.createdBy = req.user.uid
-        evnt.createdAt = new Date();
+        evnt.createdBy = req.user.uid;
+        evnt.createdAt = Date.now();
 
         db.ref(`events`).push(evnt, (e) => {
             if(e) return res.status(400).send(e);

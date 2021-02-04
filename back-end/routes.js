@@ -28,8 +28,8 @@ router.post("/questionnaire/", authenticate, QuestionnaireController.create);
 //Sports
 router.get("/sport/", authenticate, SportController.index);
 router.get("/sport/list/", authenticate, SportController.list);
-router.get("/port/subscribe/", authenticate, SportController.listSubscribed);
-router.post("/sport/subscribe/", authenticate, SportController.subs);
+router.get("/sport/subscribed/", authenticate, SportController.listSubscribed);
+router.post("/sport/subscribed/", authenticate, SportController.subs);
 // router.post("/sport/", SportController.create); //dev
 // router.put("/sport/", SportController.update); // dev
 
