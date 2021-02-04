@@ -92,7 +92,7 @@ function NewEventCard({ navigation, route }) {
         } else {
             //create
             try {
-                const res = await Event.create(data, token);
+                const res = await Event.create({ event: data });
                 console.log(res);
 
                 route.params?.refresh();
@@ -120,12 +120,13 @@ function NewEventCard({ navigation, route }) {
         setPicking(false);
         
         if (mode === 'date') {
-            setValue('date', curr);
+            setValue('date', curr.toLocaleDateString('pt-BR'));
             setDate(curr);
         }
-        if (mode === 'time')
-            setValue('time', curr);
+        if (mode === 'time') {
+            setValue('time', curr.toLocaleTimeString('pt-BR'));
             setTime(curr);
+        }
     };
 
     return (
@@ -234,7 +235,7 @@ function NewEventCard({ navigation, route }) {
                         defaultValue={ getValues('address') }
                         placeholder="Endereço"
                         style={styles.singleLineInput}
-                        date={ text => {
+                        onChangeText={ text => {
                             setValue('address', text);
                         }}
                     />
@@ -417,10 +418,21 @@ function NewEventCard({ navigation, route }) {
                             }}
                         >
                             <Picker.Item label="Selecione um esporte" value="none"/>
-                            <Picker.Item label="Futebol" value="futebol"/>
-                            <Picker.Item label="Volei" value="volei"/>
-                            <Picker.Item label="Basquete" value="basquete"/>
-                            <Picker.Item label="Handbol" value="handbol"/>
+                            <Picker.Item label="Futebol" value="-MSZqegztjKz5W63RPRh"/>
+                            <Picker.Item label="Voleibol" value="-MSZqegztjKz5W63RPRi"/>
+                            <Picker.Item label="Tênis de Mesa" value="-MSZqegztjKz5W63RPRj"/>
+                            <Picker.Item label="Natação" value="-MSZqeh-7GAAHtjAf_yi"/>
+                            <Picker.Item label="Futsal" value="-MSZqeh-7GAAHtjAf_yj"/>
+                            <Picker.Item label="Corrida" value="-MSZqeh-7GAAHtjAf_yk"/>
+                            <Picker.Item label="Skate" value="-MSZqeh-7GAAHtjAf_yl"/>
+                            <Picker.Item label="Surfe" value="-MSZqeh-7GAAHtjAf_ym"/>
+                            <Picker.Item label="Judô" value="-MSZqeh-7GAAHtjAf_yn"/>
+                            <Picker.Item label="Musculação" value="-MSZqeh-7GAAHtjAf_yo"/>
+                            <Picker.Item label="Handebol" value="-MSZqeh-7GAAHtjAf_yp"/>
+                            <Picker.Item label="Tênis" value="-MSZqeh-7GAAHtjAf_yq"/>
+                            <Picker.Item label="Caminhada" value="-MSZqeh-7GAAHtjAf_yr"/>
+                            <Picker.Item label="Pilates" value="-MSZqeh-7GAAHtjAf_ys"/>
+                            <Picker.Item label="Ciclismo" value="-MSZqeh-7GAAHtjAf_yt"/>
                         </Picker>
                     </View>
                     { /*

@@ -15,6 +15,24 @@ class EventPreviewCard extends Component {
         }
     }
 
+    sports = {   
+        "-MSZqegztjKz5W63RPRh": "Futebol",
+        "-MSZqegztjKz5W63RPRi": "Voleibol",
+        "-MSZqegztjKz5W63RPRj": "Tênis de Mesa",
+        "-MSZqeh-7GAAHtjAf_yi": "Natação",
+        "-MSZqeh-7GAAHtjAf_yj": "Futsal",
+        "-MSZqeh-7GAAHtjAf_yk": "Corrida",
+        "-MSZqeh-7GAAHtjAf_yl": "Skate",
+        "-MSZqeh-7GAAHtjAf_ym": "Surfe",
+        "-MSZqeh-7GAAHtjAf_yn": "Judô",
+        "-MSZqeh-7GAAHtjAf_yo": "Musculação",
+        "-MSZqeh-7GAAHtjAf_yp": "Handebol",
+        "-MSZqeh-7GAAHtjAf_yq": "Tênis",
+        "-MSZqeh-7GAAHtjAf_yr": "Caminhada",
+        "-MSZqeh-7GAAHtjAf_ys": "Pilates",
+        "-MSZqeh-7GAAHtjAf_yt": "Ciclismo"
+    }
+
     getSubCount(){
         console.log(this.props.eventObject);
         if (this.props.eventObject.participants)
@@ -63,7 +81,7 @@ class EventPreviewCard extends Component {
                     </View>
                     <View style={styles.middleStrip}>
                         <View style={{ flexDirection: 'row', ...styles.info }}>
-                            <Tag text={ this.state.eventObject.sport } />
+                            <Tag text={ this.sports[this.state.eventObject.sport] } />
                         </View>
                         <Text
                             style={styles.info}

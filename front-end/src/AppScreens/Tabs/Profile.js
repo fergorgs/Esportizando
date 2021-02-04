@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, Button, View, ScrollView, StyleSheet } from 'react-native';
 import { Header } from 'react-native-elements';
 
@@ -7,35 +7,50 @@ import { auth } from '../../auth/fire';
 
 import SportPreviewCard from '../General/SportPreviewCard'
 
+import Sport from '../../api/controllers/Sport';
+
 const mainColor = '#446A9C';
 const textColor = '#ffffff';
 
 function Profile(props) {
     
-  const sports = [
-    {
-        name: 'Basquete',
-        benefits: [
-            'aeróbico',
-            'trabalha o superior',
-            'melhora o condicionamento',
-            'baixo impacto'
-        ],
-        id: 3641556241542
-    },
-    {
-        name: 'Pilates',
-        benefits: [
-            'melhora a flexibilidade',
-            'trabalha o corpo todo',
-            'melhora a concentração'
-        ],
-        id: 3641964541542
-    }]
+  //const sports = [
+  //  {
+  //      name: 'Basquete',
+  //      benefits: [
+  //          'aeróbico',
+  //          'trabalha o superior',
+  //          'melhora o condicionamento',
+  //          'baixo impacto'
+  //      ],
+  //      id: 3641556241542
+  //  },
+  //  {
+  //      name: 'Pilates',
+  //      benefits: [
+  //          'melhora a flexibilidade',
+  //          'trabalha o corpo todo',
+  //          'melhora a concentração'
+  //      ],
+  //      id: 3641964541542
+  //  }]
+
+    const [ sports, setSports ] = useState([]);
+
+    useEffect(() => {
+        const fetch = async () => {
+            const { data } = await Sport.getAllSubscribed();
+            console.log(data);
+            setSports(data);
+        }
+
+        fetch();
+    }, [ ]);
+
 
     const navigation = useNavigation();
 
-    let sportCards = sports.map((item) => {
+    const sportCards = sports.map((item) => {
 
       return (<SportPreviewCard 
           sportObject={item} 
@@ -68,7 +83,7 @@ function Profile(props) {
             }}
             leftContainerStyle={{margin: 5, flex: 3}}
         />
-        <ScrollView style={{flex: 1}}>
+        <ScrollView style={{flex: 1, width: '100%'}}>
 
           { /* <Header
               backgroundColor="white"

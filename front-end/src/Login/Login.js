@@ -73,7 +73,7 @@ function Login({ navigation }) {
             <Image
                 resizeMode = "contain"
                 style={{width: 200, height: 200, marginBottom:30}}
-                source={{uri: 'https://previews.123rf.com/images/huad262/huad2621212/huad262121200005/16765900-the-letter-e-caught-on-blazing-fire.jpg'}}
+                source={require('../img/logo.png')}
             />
             { Boolean(error) && <Text>{ error }</Text> }
             { Boolean(token) && <Text>{ token }</Text> }

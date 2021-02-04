@@ -37,7 +37,7 @@ class SportPreviewCard extends Component {
         return (
             <TouchableHighlight 
                 style={styles.container} 
-                onPress={() => {this.props.navigation.navigate('Esporte')}}>
+                onPress={() => {this.props.navigation.navigate('Esporte', this.props.sportObject)}}>
                 <View style={styles.card}>
                     <View style={styles.upperStrip}>
                         <View
@@ -59,7 +59,7 @@ class SportPreviewCard extends Component {
                                 //borderWidth: 5,
                                 //borderColor: "#446a9C"
                             }}
-                            source={{uri: 'https://thumbs.dreamstime.com/z/menina-dos-desenhos-animados-que-joga-o-projeto-do-esporte-basquetebol-110224192.jpg'}}
+                            source={{uri: this.state.sportObject.image}}
                         />
                         </View>
                         <Text 

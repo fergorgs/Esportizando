@@ -5,15 +5,17 @@ import ImagePicker from 'react-native-image-picker'
 import { Header } from 'react-native-elements';
 import { Icon } from 'react-native-elements'
 import { unstable_renderSubtreeIntoContainer } from 'react-dom';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import Tag from '../General/Tag';
+
+import Sport from '../../api/controllers/Sport';
 
 const mainColor = '#446a9c';
 const textColor = '#ffffff';
 
 const SportCardScreen = (props) => {
-
+    const route = useRoute();
     const navigation = useNavigation();
 
     // tutorial from:
@@ -36,17 +38,25 @@ const SportCardScreen = (props) => {
     // render(){
 
         // const { photo } = this.state
-
-        const benefits = ['benefício 1', 'benefício 2', 'benefício 3', 'benefício 4']
-
-        let getMainBenefits = () => {
+        const { params: sport } = route;
+        //const benefits = ['benefício 1', 'benefício 2', 'benefício 3', 'benefício 4']
+        const { benefits } = sport;
+        const getMainBenefits = () => {
 
             let temp = []
-    
-            for(let i = 0; i < benefits.length; i++)
-                temp.push(<Tag style={{ marginRight: 4, marginBottom: 6 }} text={ benefits[i] } />)
+            
+            if (benefits)
+                for(let i = 0; i < benefits.length; i++)
+                    temp.push(<Tag style={{ marginRight: 4, marginBottom: 6 }} text={ benefits[i] } />)
             
             return temp
+        }
+
+        const submitSubscription = async () => {
+            const { data } = await Sport.subscribe({ sport });
+
+            console.log(data);
+            navigation.goBack();
         }
 
         return (
@@ -71,7 +81,7 @@ const SportCardScreen = (props) => {
                         />
                     }
                     centerComponent={{ 
-                        text: 'Esporte', // TODO: trocar para o nome do esporte
+                        text: 'Esporte', 
                         style: { 
                             color: textColor, 
                             fontSize: 20,
@@ -96,31 +106,25 @@ const SportCardScreen = (props) => {
                 >
                     <View style={styles.container}>
                         {/* {photo && ( */}
-                        { /* <Image
-                            style={{ width: '100%', height: 200 }}
-                            source={{uri: 'https://mrconfeccoes.com.br/wp-content/uploads/2018/03/default.jpg'}}
-                        /> */ }
-                        <Text style={{...styles.singleLineInput, fontSize: 25, borderTopRightRadius: 10, borderTopLeftRadius: 10}}>
-                            Nome do Esporte
+                        <View style={{...styles.singleLineInput, borderTopRightRadius: 10, borderTopLeftRadius: 10}}>
+                            <Image
+                                style={{ width: '100%', height: 200 }}
+                                source={{uri: sport.image }}
+                            /> 
+                        </View>
+                        <Text style={{...styles.singleLineInput, fontSize: 25}}>
+                            { sport.name }
                         </Text>
                         <View style={styles.multiLineInput}>
                             <Text style={{fontSize: 14, color: '#aaa'}}>Resumo</Text>
                             <Text style={{fontSize: 15}}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore 
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                                { sport.shortDescription }
                             </Text>
                         </View>
                         <View style={styles.multiLineInput}>
                             <Text style={{fontSize: 14, color: '#aaa'}}>Descrição</Text>
                             <Text style={{fontSize: 15}}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore 
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud. 
-                                Duis aute irure dolor in reprehenderit in voluptate 
-                                velit esse cillum dolore eu fugiat nulla pariatur. 
-                                Excepteur sint occaecat cupidatat non proident, sunt 
-                                in culpa qui officia deserunt mollit anim id est laborum.
+                                { sport.description }
                             </Text>
                         </View>
                         <View style={styles.multiLineInput}>
@@ -132,9 +136,7 @@ const SportCardScreen = (props) => {
                         <View style={styles.multiLineInput}>
                             <Text style={{fontSize: 14, color: '#aaa'}}>Público recomendado</Text>
                             <Text style={{fontSize: 15}}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore 
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                                { sport.target }
                             </Text>
                         </View>
                         <View 
@@ -145,7 +147,7 @@ const SportCardScreen = (props) => {
                                 borderBottomLeftRadius: 10
                             }}
                         >
-                            { 
+                            { !sport.subscribed &&
                                 <TouchableOpacity
                                     style={{ 
                                         borderRadius: 10,
@@ -155,7 +157,7 @@ const SportCardScreen = (props) => {
                                         alignItems: 'center',
                                         justifyContent: 'center'
                                     }}
-                                    //onPress={ submitSubscription }
+                                    onPress={ submitSubscription }
                                 >
                                     <Text
                                         style={{

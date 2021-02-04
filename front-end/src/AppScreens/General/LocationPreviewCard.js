@@ -13,11 +13,11 @@ const LocationPreviewCard = (props) => {
                     <WebView 
                         style={{ minHeight: 50, maxWidth: 50, }}
                         source={{
-                            uri: 'https://mrconfeccoes.com.br/wp-content/uploads/2018/03/default.jpg'
+                            uri: props.locationObject.image
                         }}
                     />
                 </View>
-                <Text style={{marginLeft: 7}}>{props.locationObject.name}</Text>
+                <Text style={{marginLeft: 7, color: "#fff"}}>{props.locationObject.name}</Text>
             </View>
             <Text style={{marginTop: 7, color: '#777'}}>
                 {props.locationObject.description}
