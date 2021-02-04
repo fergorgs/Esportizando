@@ -47,8 +47,6 @@ const Map = (props) => {
         </MapView.Marker>
     );
 
-    console.log('markers', markers);
-
     return (
         <View>
             <Header
@@ -108,7 +106,7 @@ const Map = (props) => {
         >
             <MapView.Callout
                 onPress={() => {
-                    navigation.navigate('Local');
+                    navigation.navigate('Local', { location });
                 }}
             >
                 <LocationPreviewCard locationObject={location}></LocationPreviewCard>

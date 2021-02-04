@@ -4,7 +4,7 @@ import {Picker} from '@react-native-community/picker';
 import ImagePicker from 'react-native-image-picker'
 import { Header } from 'react-native-elements';
 import { Icon } from 'react-native-elements'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const mainColor = '#446a9c';
 const textColor = '#ffffff';
@@ -13,6 +13,9 @@ const textColor = '#ffffff';
 const LocationCardScreen = () => {
 
     const navigation = useNavigation();
+    const route = useRoute();
+
+    const { location } = route.params;
 
     return (
         <View style={{flex: 1}}>
@@ -63,25 +66,22 @@ const LocationCardScreen = () => {
                     >
                         <Image
                             style={{ width: '100%', height: 200, resizeMode: 'cover'}}
-                            source={{uri: 'https://mrconfeccoes.com.br/wp-content/uploads/2018/03/default.jpg'}}
+                            source={{uri: location.image }}
                         />
                     </View>
                     <Text style={{...styles.singleLineInput, ...{fontSize: 25}}}>
-                        Nome do Local
+                        { location.name }
                     </Text>
                     <View style={styles.multiLineInput}>
                         <Text style={{fontSize: 14, color: '#aaa'}}>Descrição</Text>
                         <Text>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                            sed do eiusmod tempor incididunt ut labore et dolore magna 
-                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                            ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            { location.description }
                         </Text>
                     </View>
                     <View style={{ ...styles.singleLineInput, paddingBottom: 20, borderBottomRightRadius: 10, borderBottomLeftRadius: 10 }}>
                         <Text style={{fontSize: 14, color: '#aaa'}}>Endereço:</Text>
                         <Text style={{fontSize: 15, marginTop: 5}}>
-                            Avenida dos Bandeirantes, 1034, São Paulo
+                            { location.address }
                         </Text>
                     </View>
                     { /**

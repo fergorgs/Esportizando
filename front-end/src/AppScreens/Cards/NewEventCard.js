@@ -74,6 +74,8 @@ function NewEventCard({ navigation, route }) {
         const set = () => {
             setValue('price', '0');
             setValue('maxCap', '0');
+            setValue('date', date.toLocaleDateString('pt-BR'));
+            setValue('time', time.toLocaleTimeString('pt-BR'));
         };
 
         if (route.params?.event)
