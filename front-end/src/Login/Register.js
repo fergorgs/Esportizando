@@ -15,12 +15,17 @@ import { useForm, Controller } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { auth } from "../auth/fire.js";
 
+import Icon from "react-native-vector-icons/Ionicons";
+
 import User from "../api/controllers/User";
 import { config } from "../api";
 // import * as firebase from 'firebase';
 // import moment from "moment";
 // import * as Facebook from 'expo-facebook';
 
+
+const mainColor = '#446a9c';
+const textColor = '#ffffff';
 
 function Register({ navigation }) { 
   //Sets the Header to be null
@@ -67,19 +72,28 @@ function Register({ navigation }) {
     }
 
     return (
+
         <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
-          
+
             <Image
                 resizeMode = "contain"
                 style={{width: 200, height: 200, marginBottom:30}}
-                source={{uri: 'https://previews.123rf.com/images/huad262/huad2621212/huad262121200005/16765900-the-letter-e-caught-on-blazing-fire.jpg'}}
+                source={require('../img/logo.png')}
             />
             { Boolean(error) && <Text>{ error }</Text> }
             { Boolean(token) && <Text>{ token }</Text> }
             
              {/*Text Input email*/}
             <View style={styles.inputContainer}>
-                <Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/envelope/androidL/40/3498db'}}/>
+                { /*<Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/envelope/androidL/40/3498db'}}/>*/}
+                <Icon 
+                    style={{
+                        marginLeft: 15
+                    }}
+                    name='mail' 
+                    size={20} 
+                    color='#3e5f8e'
+                />
                 <Controller
                     control={ control }
                     name="email"
@@ -103,7 +117,15 @@ function Register({ navigation }) {
             
              {/*Text Input password*/}
             <View style={styles.inputContainer}>
-                <Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/password/androidL/40/3498db'}}/>
+                {/*<Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/password/androidL/40/3498db'}}/>*/}
+                <Icon 
+                    style={{
+                        marginLeft: 15
+                    }}
+                    name='lock-closed' 
+                    size={20} 
+                    color='#3e5f8e'
+                />
                 <Controller
                     control={ control }
                     name="password"
@@ -127,7 +149,15 @@ function Register({ navigation }) {
             
             {/*Text Input confirm password*/}
             <View style={styles.inputContainer}>
-                <Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/password/androidL/40/3498db'}}/>
+                { /*<Image style={[styles.icon, styles.inputIcon]} source={{uri: 'https://png.icons8.com/password/androidL/40/3498db'}}/>*/}
+                <Icon 
+                    style={{
+                        marginLeft: 15
+                    }}
+                    name='lock-closed' 
+                    size={20} 
+                    color='#3e5f8e'
+                />
                 <Controller
                     control={ control }
                     name="confirmPassword"
@@ -162,14 +192,13 @@ function Register({ navigation }) {
             </TouchableOpacity>
             
             {/*Button - Screen Login*/}
-            <TouchableOpacity style={styles.buttonContainer}
+            <TouchableOpacity style={[styles.buttonContainer, styles.loginButton]}
                 onPress={() => navigation.navigate('Login')}
             >
-                <Text>Login</Text>
+                <Text style={styles.loginText}>Fazer Login</Text>
             </TouchableOpacity>
         
         </KeyboardAvoidingView>
-        
     );
 }
 
@@ -180,15 +209,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#686F9A',
+    backgroundColor: '#D4DEEC',
   },
   inputContainer: {
-      borderBottomColor: '#F5FCFF',
+      //borderBottomColor: '#F5FCFF',
       backgroundColor: '#FFFFFF',
-      borderRadius:30,
-      borderBottomWidth: 1,
-      width:250,
-      height:45,
+      borderRadius: 5,
+      elevation: 2,
+      //borderBottomWidth: 1,
+      //width:250,
+      //height:45,
+      marginHorizontal: 30,
       marginBottom:15,
       flexDirection: 'row',
       alignItems:'center'
@@ -196,7 +227,9 @@ const styles = StyleSheet.create({
   inputs:{
       height:45,
       marginLeft:16,
-      borderBottomColor: '#FFFFFF',
+      marginRight: 16,
+      //borderBottomColor: '#FFFFFF',
+
       flex:1,
   },
   icon:{
@@ -208,22 +241,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonContainer: {
-    height:45,
+    height:48,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom:20,
-    width:250,
-    borderRadius:30,
+    marginBottom:10,
+        //width:250,
+    marginHorizontal: 30,
+    borderRadius: 5,
+  },
+  loginButton: {
+    backgroundColor: '#3e5f8e',
   },
   registerButton: {
-    backgroundColor: '#3b5998',
+    backgroundColor: '#569F61',
   },
   fabookButton: {
     backgroundColor: "#3b5998",
   },
   loginText: {
     color: 'white',
+    flex: 1,
+    textAlign: 'center'
   },
   restoreButtonContainer:{
     width:250,
@@ -245,4 +284,74 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
- 
+//const styles = StyleSheet.create({
+//  container: {
+//    flex: 1,
+//    justifyContent: 'center',
+//    alignItems: 'center',
+//    backgroundColor: '#686F9A',
+//  },
+//  inputContainer: {
+//      borderBottomColor: '#F5FCFF',
+//      backgroundColor: '#FFFFFF',
+//      borderRadius:30,
+//      borderBottomWidth: 1,
+//      width:250,
+//      height:45,
+//      marginBottom:15,
+//      flexDirection: 'row',
+//      alignItems:'center'
+//  },
+//  inputs:{
+//      height:45,
+//      marginLeft:16,
+//      borderBottomColor: '#FFFFFF',
+//      flex:1,
+//  },
+//  icon:{
+//    width:30,
+//    height:30,
+//  },
+//  inputIcon:{
+//    marginLeft:15,
+//    justifyContent: 'center'
+//  },
+//  buttonContainer: {
+//    height:45,
+//    flexDirection: 'row',
+//    justifyContent: 'center',
+//    alignItems: 'center',
+//    marginBottom:20,
+//    width:250,
+//    borderRadius:30,
+//  },
+//  registerButton: {
+//    backgroundColor: '#3b5998',
+//  },
+//  fabookButton: {
+//    backgroundColor: "#3b5998",
+//  },
+//  loginText: {
+//    color: 'white',
+//  },
+//  restoreButtonContainer:{
+//    width:250,
+//    marginBottom:15,
+//    alignItems: 'flex-end'
+//  },
+//  socialButtonContent:{
+//    flexDirection: 'row',
+//    justifyContent: 'center',
+//    alignItems: 'center', 
+//  },
+//  socialIcon:{
+//    color: "#FFFFFF",
+//    marginRight:5
+//  },
+//  containerLoading: {
+//    flex: 1,
+//    justifyContent: 'center',
+//    alignItems: 'center',
+//  },
+//});
+// 

@@ -19,10 +19,11 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#9DD6EB',
+      backgroundColor: '#446a9c',
       padding: 5
     },
     text: {
+        marginHorizontal: 50,
       color: '#fff',
       fontSize: 30,
       fontWeight: 'bold',

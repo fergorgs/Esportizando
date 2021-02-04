@@ -9,9 +9,10 @@ const LabeledRadioButton = (props) => {
     const textStyle = {...{textAlignVertical: 'center', 
                             fontSize: 20, 
                             color: 'gray',
-                            flexWrap: 'wrap'}, 
+                            flexWrap: 'wrap',
+                            flex: 1}, 
                         ...props.textStyle}
-    return (<View style={{flexDirection: 'row'}}>
+    return (<View style={{marginBottom: 10, flexDirection: 'row'}}>
 
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <RadioButton
@@ -22,7 +23,12 @@ const LabeledRadioButton = (props) => {
                 disabled={props.disabled}
             />
         </View>
-        <Text style={textStyle}>{props.label}</Text>
+        <Text 
+            style={textStyle}
+            onPress={props.onPress}
+        >
+            {props.label}
+        </Text>
 
     </View>)
 }

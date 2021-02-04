@@ -32,7 +32,7 @@ const TimeSlide = ({ update }) => {
             <Text style={styles.text}>
                 Quanto tempo você gostaria de dedicar por sessão de treino?
             </Text>
-            <View style={{margin: 50, justifyContent: 'space-between', height: 240}}>
+            <View style={{padding: 50, width: '100%'}}>
               <LabeledRadioButton
                 label="Até 30 minutos"
                 status={ checked1 ? 'checked' : 'unchecked' }
@@ -42,6 +42,8 @@ const TimeSlide = ({ update }) => {
                     setChecked3(false);
                     setChecked4(false);
                 }}
+                color="#D4DFEC"
+                textStyle={{ color: '#eee' }}
               />
               <LabeledRadioButton
                 label="Até 1 hora"
@@ -53,6 +55,8 @@ const TimeSlide = ({ update }) => {
                     setChecked3(false);
                     setChecked4(false);
                 }}
+                color="#D4DFEC"
+                textStyle={{ color: '#eee' }}
               />
               <LabeledRadioButton
                 label="Até 2 horas"
@@ -64,6 +68,8 @@ const TimeSlide = ({ update }) => {
                     setChecked1(false);
                     setChecked4(false);
                 }}
+                color="#D4DFEC"
+                textStyle={{ color: '#eee' }}
               />
               <LabeledRadioButton
                 label="Mais de 2 horas"
@@ -75,6 +81,8 @@ const TimeSlide = ({ update }) => {
                     setChecked3(false);
                     setChecked1(false);
                 }}
+                color="#D4DFEC"
+                textStyle={{ color: '#eee' }}
               />
             </View>
         </View>
@@ -87,10 +95,11 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#9DD6EB',
+      backgroundColor: '#446a9c',
       padding: 5
     },
     text: {
+        marginHorizontal: 50,
       color: '#fff',
       fontSize: 30,
       fontWeight: 'bold',

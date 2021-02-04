@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet, ScrollView, Button } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, ScrollView, Button } from 'react-native';
 import SportPreviewCard from '../General/SportPreviewCard'
 import { Header } from 'react-native-elements';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -61,7 +61,7 @@ const ResultScreen = () => {
 
 
     return (
-        <View style={{backgroundColor: 'lightblue', flex: 1}}>
+        <View style={{backgroundColor: '#f2f2f2', flex: 1}}>
             <ScrollView 
                 contentContainerStyle={styles.container}
             >
@@ -70,12 +70,28 @@ const ResultScreen = () => {
                     achamos que podem te interessar!
                 </Text>
                 {sportCards}
-                <View style={{backgroundColor: 'red', marginBottom: 80, marginTop: 20}}>
-                    <Button 
-                        title={'Voltar ao app'}
-                        onPress={() => navigation.navigate('Timeline')}
-                    />
-                </View>
+                <TouchableOpacity
+                    style={{
+                        marginBottom: 50,
+                        backgroundColor: '#3E628E',
+                        marginTop: 20,
+                        padding: 20,
+                        marginHorizontal: 10,
+                        borderRadius: 10,
+                        elevation: 2,
+                    }}
+                    onPress={() => navigation.navigate('Timeline')}
+                >
+                    <Text
+                        style={{
+                            textAlign: 'center',
+                            color: 'white',
+                            fontSize: 16
+                        }}
+                    >
+                        Voltar ao App
+                    </Text>
+                </TouchableOpacity>
             </ScrollView>
         </View>
     );
@@ -83,15 +99,19 @@ const ResultScreen = () => {
 
 const styles = StyleSheet.create({
     text: {
+        backgroundColor: '#446a9c',
+        padding: 20,
+        borderRadius: 10,
         color: '#fff',
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginHorizontal: 20
+        marginHorizontal: 10,
+        elevation: 2
       },
     container: {
         justifyContent: 'space-around',
-        marginTop: 40,
+        marginTop: 36,
     }
 })
 

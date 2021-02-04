@@ -47,14 +47,15 @@ const ConditionsSlide = ({ update }) => {
             <Text style={styles.text}>
                 Pra terminar, você tem alguma dessas doenças preexistentes?
             </Text>
-            <View style={{margin: 50, justifyContent: 'space-between', height: 400}}>
+            <View style={{padding: 50, width: '100%'}}>
                 <LabeledCheckbox
                     status={checked1 ? 'checked' : 'unchecked'}
                     onPress={() => {
                       setChecked1(!checked1);
                     }}
                     label='Diabetes'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
                 <LabeledCheckbox
                     status={checked2 ? 'checked' : 'unchecked'}
@@ -62,7 +63,8 @@ const ConditionsSlide = ({ update }) => {
                       setChecked2(!checked2);
                     }}
                     label='Pressão alta'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
                 <LabeledCheckbox
                     status={checked3 ? 'checked' : 'unchecked'}
@@ -70,7 +72,8 @@ const ConditionsSlide = ({ update }) => {
                       setChecked3(!checked3);
                     }}
                     label='Pressão baixa'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
                 <LabeledCheckbox
                     status={checked4 ? 'checked' : 'unchecked'}
@@ -78,7 +81,8 @@ const ConditionsSlide = ({ update }) => {
                       setChecked4(!checked4);
                     }}
                     label='Doenças cardíacas'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
                 <LabeledCheckbox
                     status={checked5 ? 'checked' : 'unchecked'}
@@ -86,7 +90,8 @@ const ConditionsSlide = ({ update }) => {
                       setChecked5(!checked5);
                     }}
                     label='Osteoporose'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
                 <LabeledCheckbox
                     status={checked6 ? 'checked' : 'unchecked'}
@@ -94,7 +99,8 @@ const ConditionsSlide = ({ update }) => {
                       setChecked6(!checked6);
                     }}
                     label='Tonturas frequentes'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
                 <LabeledCheckbox
                     status={checked7 ? 'checked' : 'unchecked'}
@@ -102,7 +108,8 @@ const ConditionsSlide = ({ update }) => {
                       setChecked7(!checked7);
                     }}
                     label='Problemas ósseos ou articulares'
-                    color='red'
+                    color='#D4DFEC'
+                    textStyle={{ color: '#eee' }}
                 />
             </View>
             {/* <Text style={styles.text2}>
@@ -119,10 +126,11 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#9DD6EB',
+      backgroundColor: '#446a9c',
       padding: 5
     },
     text: {
+        marginHorizontal: 50,
       color: '#fff',
       fontSize: 30,
       fontWeight: 'bold',

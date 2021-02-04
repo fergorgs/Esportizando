@@ -61,6 +61,10 @@ function App() {
             );
           },
         })}
+        tabBarOptions={{
+            activeTintColor: "#446A9C",
+            inactiveTintColor: '#dddddd'
+        }}
       >
           <Tab.Screen name="Timeline" component={TimelineScreen} />
           <Tab.Screen name="Events" component={EventsScreen} />

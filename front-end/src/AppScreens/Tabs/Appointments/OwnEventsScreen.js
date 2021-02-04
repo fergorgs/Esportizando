@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import EventPreviewCard from '../../General/EventPreviewCard'
 import { FloatingAction } from "react-native-floating-action";
+import Icon from "react-native-vector-icons/Ionicons";
 
 import Event from '../../../api/controllers/Event';
 
@@ -75,9 +76,33 @@ function OwnEventsScreen({ navigation }) {
                     keyExtractor={ item => item.id }
                     refreshing={ fetching }
                     onRefresh={ fetchData }
+                    ListFooterComponent={ 
+                        <View style={{ height: 10 }}></View> 
+                    }
                 />
             </View>
-            <FloatingAction
+            <TouchableOpacity
+                style={{
+                    alignItems:'center',
+                    justifyContent:'center',
+                    width:60,
+                    position: 'absolute',                                          
+                    bottom: 20,                                                    
+                    right: 20,
+                    height:60,
+                    backgroundColor:'#3E618E',
+                    borderRadius:100,
+                }}
+                onPress={ () => {
+                    navigation.navigate('Novo Evento', {
+                        refresh: fetchData
+                    });
+                }}
+            >
+                <Icon name="add" size={30} color="#ffffff" />
+            </TouchableOpacity> 
+                {/* <FloatingAction
+                color="#3E618E"
               onPressMain={() => {
                 //   console.log(this.props.navigation)
                 navigation.navigate('Novo Evento', {
@@ -91,6 +116,7 @@ function OwnEventsScreen({ navigation }) {
               //}}
               showBackground={false}
             />
+            */ }
         </View>
     )
     //}

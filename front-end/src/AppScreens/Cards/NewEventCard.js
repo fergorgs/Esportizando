@@ -6,7 +6,8 @@ import {
     ScrollView,
     TextInput,
     Button,
-    StyleSheet
+    StyleSheet,
+    TouchableOpacity
 } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import { Header, Icon } from 'react-native-elements';
@@ -21,13 +22,18 @@ import Loading from '../../Loading';
 import Event from '../../api/controllers/Event';
 
 
+const mainColor = '#446a9c';
+const textColor = '#ffffff';
+
 
 function NewEventCard({ navigation, route }) {
     const { register, handleSubmit, setValue, getValues, errors } = useForm();
 
     const [ selected, setSelected ] = useState('none');
+
     const now = new Date();
     now.setSeconds(0);
+
     const [ picking, setPicking ] = useState(false);
     const [ date, setDate ] = useState(now);
     const [ time, setTime ] = useState(now);
@@ -42,7 +48,8 @@ function NewEventCard({ navigation, route }) {
         register('address');
         register('maxCap');
         register('price');
-        register('dateTime');
+        register('date');
+        register('time');
         register('sport');
     }, [ register ]);
 
@@ -85,7 +92,7 @@ function NewEventCard({ navigation, route }) {
         } else {
             //create
             try {
-                const res = await Event.create(data, token);
+                const res = await Event.create({ event: data });
                 console.log(res);
 
                 route.params?.refresh();
@@ -112,16 +119,49 @@ function NewEventCard({ navigation, route }) {
         //setShow(Platform.OS === 'ios');
         setPicking(false);
         
-        if (mode === 'date')
+        if (mode === 'date') {
+            setValue('date', curr.toLocaleDateString('pt-BR'));
             setDate(curr);
-        if (mode === 'time')
+        }
+        if (mode === 'time') {
+            setValue('time', curr.toLocaleTimeString('pt-BR'));
             setTime(curr);
+        }
     };
 
     return (
         loading ?
         <Loading /> :
         <View style={{flex: 1}}>
+            <Header
+                statusBarProps={{
+                    backgroundColor: mainColor,
+                    translucent: true,
+                    hidden: false
+                }}
+                containerStyle={{
+                    borderBottomWidth: 0
+                }}
+                backgroundColor={ mainColor }
+                leftComponent={ 
+                    <Icon
+                        name='chevron-left'
+                        onPress={ () =>
+                            navigation.goBack()
+                        }
+                        color='white'
+                    />
+                }
+                centerComponent={{ 
+                    text: 'Criar Novo Evento', 
+                    style: { 
+                        color: textColor, 
+                        fontSize: 20,
+                    }
+                }}
+                //leftContainerStyle={{margin: 5, flex: 3}}
+            />
+            { /*
             <Header
                 backgroundColor="white"
                 leftComponent={
@@ -140,6 +180,7 @@ function NewEventCard({ navigation, route }) {
                     } 
                 }}
             />
+            */ }
             <ScrollView 
                 contentContainerStyle={{
                     justifyContent: 'space-around'
@@ -147,7 +188,7 @@ function NewEventCard({ navigation, route }) {
             >
                 <View style={styles.container}>
                     {/* {photo && ( */}
-                    <Image
+                    { /*<Image
                         style={{ 
                             width: 150, 
                             height: 150 
@@ -155,14 +196,15 @@ function NewEventCard({ navigation, route }) {
                         source={{
                             uri: 'https://mrconfeccoes.com.br/wp-content/uploads/2018/03/default.jpg'
                         }}
-                    />
+                    /> */}
                     {/* )} */}
-                    <View style={styles.imageButton}>
+                    { /*<View style={styles.imageButton}>
                         <Button 
                             title="Escolher imagem" 
                             //onPress={this.handleChoosePhoto}  
                         />
                     </View>
+                    */}
                     <TextInput
                         defaultValue={ getValues('name') }
                         placeholder="Nome do evento"
@@ -180,33 +222,109 @@ function NewEventCard({ navigation, route }) {
                             setValue('description', text);
                         }}
                     />
-                    <Text>Insira uma descrição breve, conte o que será feito, pipipi popopo</Text>
+                    <Text style={{
+                        padding: 5,
+                        textAlign: 'justify',
+                        backgroundColor: '#D4DEEC',
+                        borderBottomLeftRadius: 3,
+                        borderBottomRightRadius: 3,
+                        color: '#888'
+                    }}>
+                        Insira uma descrição breve, explicando o que será feito durante o evento.</Text>
                     <TextInput
                         defaultValue={ getValues('address') }
                         placeholder="Endereço"
                         style={styles.singleLineInput}
-                        date={ text => {
+                        onChangeText={ text => {
                             setValue('address', text);
                         }}
                     />
-                    <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-                        <View 
+                    <View style={{ flexDirection: 'row', height: 48, marginTop: 10}}>
+                        { /*<View 
                             style={{ 
-                                marginTop: 15,
+                                marginTop: 10,
                                 alignItems: 'center',
                                 flexDirection: 'row', 
                                 width: '100%' 
                             }}
+                        >*/ }
+                        <TouchableOpacity
+                            onPress={ () => showPicker('date') }
+                            style={{
+                                backgroundColor: 'white',
+                                flex: 1,
+                                marginRight: 10,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                borderRadius: 3,
+                                elevation: 2,
+                                overflow: 'hidden'
+                            }}
                         >
-                            <Button 
-                                onPress={ () => showPicker('date') } 
-                                title="Selecione Data"
-                            />
-                            <Text> { date.toLocaleDateString('pt-BR') } </Text>
-                        </View>
+                            <Text 
+                                style={{ 
+                                    color: '#fff',
+                                    backgroundColor: '#3E618E',
+                                    lineHeight: 48,
+                                    paddingLeft: 10,
+                                    paddingRight: 10,
+                                    height: '100%',
+                                    fontSize: 14
+                                }}
+                            > 
+                                Data 
+                            </Text>
+                            <Text
+                                style={{ 
+                                    color: 'black',
+                                    paddingLeft: 10,
+                                    paddingRight: 10,
+
+                                }}
+                            > 
+                                { date.toLocaleDateString('pt-BR') } 
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={ () => showPicker('time') }
+                            style={{
+                                backgroundColor: 'white',
+                                flex: 1,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                borderRadius: 3,
+                                elevation: 2,
+                                overflow: 'hidden'
+                            }}
+                        >
+                            <Text 
+                                style={{ 
+                                    color: '#fff',
+                                    backgroundColor: '#3E618E',
+                                    lineHeight: 48,
+                                    paddingLeft: 10,
+                                    paddingRight: 10,
+                                    height: '100%',
+                                    fontSize: 14
+                                }}
+                            > 
+                                Hora
+                            </Text>
+                            <Text
+                                style={{ 
+                                    color: 'black',
+                                    paddingLeft: 10,
+                                    paddingRight: 10,
+
+                                }}
+                            > 
+                                { time.toLocaleTimeString('pt-BR') } 
+                            </Text>
+                        </TouchableOpacity>
+                        {/*</View>
                         <View 
                             style={{ 
-                                marginTop: 15,
+                                marginTop: 10,
                                 alignItems: 'center',
                                 flexDirection: 'row', 
                                 width: '100%' 
@@ -217,7 +335,7 @@ function NewEventCard({ navigation, route }) {
                                 title="Selecione Hora"
                             />
                             <Text> { time.toLocaleTimeString('pt-BR') } </Text>
-                        </View>
+                        </View> */}
                     </View>
                     { 
                         picking &&
@@ -244,7 +362,16 @@ function NewEventCard({ navigation, route }) {
                                     setValue('maxCap', text);
                                 }}
                             />
-                            <Text>Máximo de pessoas</Text>
+                            <Text style={{
+                                padding: 5,
+                                textAlign: 'justify',
+                                backgroundColor: '#D4DEEC',
+                                borderBottomLeftRadius: 3,
+                                borderBottomRightRadius: 3,
+                                color: '#888'
+                            }}>
+                                Máximo de pessoas
+                            </Text>
                         </View>
                         <View style={{width: '50%', paddingLeft: 7}}>
                             <TextInput
@@ -255,35 +382,83 @@ function NewEventCard({ navigation, route }) {
                                     setValue('price', text);
                                 }}
                             />
-                            <Text>Preço por pessoa</Text>
+                            <Text style={{
+                                padding: 5,
+                                textAlign: 'justify',
+                                backgroundColor: '#D4DEEC',
+                                borderBottomLeftRadius: 3,
+                                borderBottomRightRadius: 3,
+                                color: '#888'
+                            }}>
+                                Preço por pessoa
+                            </Text>
                         </View>
                     </View>
                     <View 
                         style={{
-                            borderColor: "black",
-                            borderWidth: 1,
-                            borderRadius: 1,
-                            marginTop: 15
+                            //borderColor: "black",
+                            //borderWidth: 1,
+                            borderRadius: 3,
+                            marginTop: 10,
+                            elevation: 2,
+                            overflow: 'hidden'
                         }}
                     >
                         <Picker
                             selectedValue={ selected }
-                            style={styles.picker}
+                            //style={styles.picker}
+                            style={{
+                                padding: 5,
+                                color: selected === 'none' ? '#999' : '#000',
+                                backgroundColor: 'white',
+                            }}
                             onValueChange={ (text, _) => {
                                 setValue('sport', text);
                                 setSelected(text);
                             }}
                         >
                             <Picker.Item label="Selecione um esporte" value="none"/>
-                            <Picker.Item label="Futebol" value="futebol"/>
-                            <Picker.Item label="Volei" value="volei"/>
-                            <Picker.Item label="Basquete" value="basquete"/>
-                            <Picker.Item label="Handbol" value="handbol"/>
+                            <Picker.Item label="Futebol" value="-MSZqegztjKz5W63RPRh"/>
+                            <Picker.Item label="Voleibol" value="-MSZqegztjKz5W63RPRi"/>
+                            <Picker.Item label="Tênis de Mesa" value="-MSZqegztjKz5W63RPRj"/>
+                            <Picker.Item label="Natação" value="-MSZqeh-7GAAHtjAf_yi"/>
+                            <Picker.Item label="Futsal" value="-MSZqeh-7GAAHtjAf_yj"/>
+                            <Picker.Item label="Corrida" value="-MSZqeh-7GAAHtjAf_yk"/>
+                            <Picker.Item label="Skate" value="-MSZqeh-7GAAHtjAf_yl"/>
+                            <Picker.Item label="Surfe" value="-MSZqeh-7GAAHtjAf_ym"/>
+                            <Picker.Item label="Judô" value="-MSZqeh-7GAAHtjAf_yn"/>
+                            <Picker.Item label="Musculação" value="-MSZqeh-7GAAHtjAf_yo"/>
+                            <Picker.Item label="Handebol" value="-MSZqeh-7GAAHtjAf_yp"/>
+                            <Picker.Item label="Tênis" value="-MSZqeh-7GAAHtjAf_yq"/>
+                            <Picker.Item label="Caminhada" value="-MSZqeh-7GAAHtjAf_yr"/>
+                            <Picker.Item label="Pilates" value="-MSZqeh-7GAAHtjAf_ys"/>
+                            <Picker.Item label="Ciclismo" value="-MSZqeh-7GAAHtjAf_yt"/>
                         </Picker>
                     </View>
+                    { /*
                     <View style={{marginTop: 15}}>
                         <Button onPress={ handleSubmit(onSubmit) } title="Criar evento"/>
                     </View>
+                    */ }
+                    <TouchableOpacity
+                        style={{
+                            backgroundColor: '#3E618E',
+                            marginTop: 10,
+                            height: 48,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            borderRadius: 3,
+                            elevation: 2
+                        }}
+                        onPress={ handleSubmit(onSubmit) }
+                    >
+                        <Text
+                            style={{
+                                color: 'white',
+                                fontSize: 16
+                            }}
+                        > Criar Evento </Text>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         </View>
@@ -303,30 +478,33 @@ const styles = StyleSheet.create({
         width: 150,
     },
     singleLineInput: {
-        marginTop: 15,
+        marginTop: 10,
         padding: 8,
         backgroundColor: "white",
-        borderColor: "black",
-        borderWidth: 1,
-        borderRadius: 1
+        //borderColor: "black",
+        //borderWidth: 1,
+        elevation: 2,
+        borderRadius: 3
     },
     multiLineInput: {
-        marginTop: 15,
+        marginTop: 10,
         padding: 8,
         backgroundColor: "white",
-        borderColor: "black",
-        borderWidth: 1,
-        borderRadius: 1,
+        //borderColor: "black",
+        //borderWidth: 1,
+        elevation: 2,
+        borderRadius: 3,
         height: 100,
         textAlignVertical: 'top'
     },
     numberInput: {
-        marginTop: 15,
+        marginTop: 10,
         padding: 8,
         backgroundColor: "white",
-        borderColor: "black",
-        borderWidth: 1,
-        borderRadius: 1,
+        //borderColor: "black",
+        //borderWidth: 1,
+        elevation: 2,
+        borderRadius: 3,
         // width: '45%'
     },
     picker: {

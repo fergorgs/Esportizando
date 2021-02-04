@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableHighlight, View, Image } from "react-native";
 import { withNavigation } from 'react-navigation';
 
+import Tag from './Tag';
+
 class SportPreviewCard extends Component {
     
     constructor(props) {
@@ -15,11 +17,14 @@ class SportPreviewCard extends Component {
     getMainBenefits() {
 
         let temp = []
-
+        
         let benefits = this.props.sportObject.benefits
-
-        for(let i = 0; i < benefits.length; i++)
-            temp.push(<Text style={{marginTop: 5}}>{'>> ' + benefits[i]}</Text>)
+        
+        temp.push(<View style={{ width:  85, height: 30}}></View>);
+        
+        if (benefits && benefits.lenght !== 0)
+            for(let i = 0; i < benefits.length; i++)
+                temp.push(<Tag text={ benefits[i] } style={{marginTop: 5, marginRight: 5}} />)
         
         return temp
     }
@@ -32,15 +37,43 @@ class SportPreviewCard extends Component {
         return (
             <TouchableHighlight 
                 style={styles.container} 
-                onPress={() => {this.props.navigation.navigate('Esporte')}}>
+                onPress={() => {this.props.navigation.navigate('Esporte', this.props.sportObject)}}>
                 <View style={styles.card}>
                     <View style={styles.upperStrip}>
+                        <View
+                            style={{
+                                elevation: 2,
+                                borderRadius: 35,
+                                width: 70,
+                                height: 70,
+                                marginBottom: -40
+                            }}
+                        >
                         <Image 
                             resizeMode = "cover"
-                            style={{width: 70, height: 70, borderRadius: 35}}
-                            source={{uri: 'https://thumbs.dreamstime.com/z/menina-dos-desenhos-animados-que-joga-o-projeto-do-esporte-basquetebol-110224192.jpg'}}
+                            style={{
+                                width: 70, 
+                                height: 70, 
+                                //marginBottom: -40, 
+                                borderRadius: 35,
+                                //borderWidth: 5,
+                                //borderColor: "#446a9C"
+                            }}
+                            source={{uri: this.state.sportObject.image}}
                         />
-                        <Text style={{fontSize: 20, paddingLeft: 10, paddingRight: 40 }}>
+                        </View>
+                        <Text 
+                            style={{
+                                //paddingLeft: 10, 
+                                //backgroundColor: '#446a9C',
+                                //paddingRight: 40,
+                                color: 'white',
+                                paddingHorizontal: 20,
+                                fontSize: 20,
+                                flex: 1,
+                                //paddingVertical: 10
+                            }}
+                        >
                             {this.state.sportObject.name}
                         </Text>
                     </View>
@@ -56,30 +89,41 @@ class SportPreviewCard extends Component {
 const styles = StyleSheet.create({
 
     container: {
-        borderRadius: 20,
-        margin: 15,
+        borderRadius: 10,
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        elevation: 2
     },
     
     card: {
         flex: 1,
-        borderColor: "black",
-        borderWidth: 1,
-        borderRadius: 20,
+        //borderColor: "black",
+        //borderWidth: 1,
+        borderRadius: 10,
         backgroundColor: "#fff",
-        padding: 20
+        //padding: 20
     },
 
     upperStrip: {
         flex: 1,
         flexDirection: 'row',
-        maxHeight: 73,
+        //maxHeight: 73,
+        alignItems: 'flex-start',
+        backgroundColor: '#446a9C',
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10,
+        paddingHorizontal: 20,
+        paddingVertical: 10
     },
 
     middleStrip: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 5,
+        //justifyContent: 'space-between',
+        marginTop: 10,
+        marginHorizontal: 20,
+        marginBottom: 20,
         flexWrap: 'wrap'
         // maxHeight: 65,
     }

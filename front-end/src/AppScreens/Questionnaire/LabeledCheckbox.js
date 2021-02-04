@@ -9,19 +9,23 @@ const LabeledCheckbox = (props) => {
     const textStyle = {...{textAlignVertical: 'center', 
                             fontSize: 20, 
                             color: 'gray',
-                            flexWrap: 'wrap'}, 
+                            flexWrap: 'wrap',
+                            flex: 1}, 
                         ...props.textStyle}
-    return (<View style={{flexDirection: 'row'}}>
+    return (<View style={{marginBottom: 10, flexDirection: 'row'}}>
 
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Checkbox
+                
                 status={props.status}
                 onPress={props.onPress}
                 uncheckedColor={props.uncheckedColor}
                 color={props.color}
             />
         </View>
-        <Text style={textStyle}>{props.label}</Text>
+        <Text
+            onPress={props.onPress}
+            style={textStyle}>{props.label}</Text>
 
     </View>)
 }
@@ -32,7 +36,6 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#9DD6EB',
       padding: 5
     },
     text: {

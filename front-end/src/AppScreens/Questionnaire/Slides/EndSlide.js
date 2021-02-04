@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 
 import { useDispatch } from "react-redux";
@@ -27,10 +27,26 @@ const EndSlide = ({ answers }) => {
             <Text style={styles.text}>
                 Pronto pra conhecer alguns esportes?
             </Text>
-            <Button 
-              title={'Conhecer!'}
-              onPress={ handleSubmit }
-            />
+            <TouchableOpacity
+                onPress={ handleSubmit }
+                style={{
+                    backgroundColor: '#D4DFEC',
+                    paddingVertical: 15,
+                    paddingHorizontal: 30,
+                    borderRadius: 10,
+                    elevation: 2
+                }}
+            >   
+                <Text
+                    style={{
+                        color: '#3E628E',
+                        fontSize: 16,
+                        fontWeight: 'bold'
+                    }}
+                >
+                    Conhecer!
+                </Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -41,10 +57,11 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#9DD6EB',
+      backgroundColor: '#446a9c',
       padding: 5
     },
     text: {
+        marginHorizontal: 50,
       color: '#fff',
       fontSize: 30,
       fontWeight: 'bold',

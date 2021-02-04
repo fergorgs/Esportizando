@@ -66,6 +66,9 @@ function SubscribedEventsScreen({ navigation }) {
 
     return (
         <FlatList
+            style={{
+                backgroundColor: '#f2f2f2'
+            }}
             data={events}
             renderItem={({item}) => {
                 return <EventPreviewCard 
@@ -76,6 +79,9 @@ function SubscribedEventsScreen({ navigation }) {
             keyExtractor={item => item.id}
             refreshing={ fetching }
             onRefresh={ fetchData }
+            ListFooterComponent={ 
+                <View style={{ height: 10 }}></View> 
+            }
         />
     )
     //}

@@ -9,19 +9,29 @@ export default class Loading extends Component {
 
   //}
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={{color:'#e93766', fontSize: 40}}>Loading</Text>
-        <ActivityIndicator color='#e93766' size="large" />
-      </View>
-    )
-  }
+    render() {
+        return (
+            <View style={styles.container}>
+                  <View style={styles.bubble}>
+                      <Text style={{color:'#44699c', marginBottom: 20, fontSize: 20}}>Carregando</Text>
+                      <ActivityIndicator color='#44699c' size="large" />
+                  </View>
+            </View>
+        )
+    }
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#44699C'
+  },
+  bubble: {
+      backgroundColor: 'white',
+      paddingVertical: 20,
+      paddingHorizontal: 30,
+      elevation: 4,
+      borderRadius: 10
   }
 });

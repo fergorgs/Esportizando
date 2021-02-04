@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { Header } from 'react-native-elements';
 import MapView from 'react-native-maps';
 import LocationPreviewCard from '../General/LocationPreviewCard'
 import { useNavigation } from '@react-navigation/native';
+import Location from '../../api/controllers/Location';
 // import Marker from 'react-native-maps';
 
 let location = {
@@ -13,17 +14,67 @@ let location = {
     id: 3694513521542
 }
 
+const mainColor = '#446A9C';
+const textColor = '#ffffff';
+
 const Map = (props) => {
 
     const navigation = useNavigation();
+    const [ locations, setLocations ] = useState([]);
+
+    useEffect(() => {
+        const fetch = async () => {
+            const { data } = await Location.getAll();
+            setLocations(data);
+        }
+
+        fetch();
+    }, [ ]);
+
+    const markers = locations.map(location => 
+        <MapView.Marker
+            key={ location.id }
+            coordinate={{ latitude : Number(location.lat), longitude : Number(location.long) }}
+        >
+            <MapView.Callout
+                onPress={() => {
+                    navigation.navigate('Local');
+                }}
+            >
+                <LocationPreviewCard locationObject={location}></LocationPreviewCard>
+            </MapView.Callout>
+
+        </MapView.Marker>
+    );
+
+    console.log('markers', markers);
 
     return (
         <View>
             <Header
+                statusBarProps={{
+                    backgroundColor: mainColor,
+                    translucent: true,
+                    hidden: false
+                }}
+                containerStyle={{
+                    borderBottomWidth: 0
+                }}
+                backgroundColor={ mainColor }
+                leftComponent={{ 
+                    text: 'Mapa', 
+                    style: { 
+                        color: textColor, 
+                        fontSize: 20,
+                    }
+                }}
+                leftContainerStyle={{margin: 5, flex: 3}}
+            />
+            { /* <Header
                 backgroundColor="white"
                 leftComponent={{ text: 'Mapa', style: { color: '#000', fontSize: 20 }}}
                 leftContainerStyle={{margin: 5, flex: 3}}
-            />
+            /> */ }
             <MapView
                 style={styles.map}
                 region={{
@@ -34,6 +85,7 @@ const Map = (props) => {
                 }}
                 showsUserLocation={true}
             >
+                { /*
                 <MapView.Marker
                     key={123}
                     coordinate={{ latitude : -22.016986, longitude : -47.8894043 }}
@@ -46,7 +98,24 @@ const Map = (props) => {
                         <LocationPreviewCard locationObject={location}></LocationPreviewCard>
                     </MapView.Callout>
 
-                </MapView.Marker>
+                </MapView.Marker> 
+                */ }
+                
+   { locations.map(location => 
+        <MapView.Marker
+            key={ location.id }
+            coordinate={{ latitude : Number(location.lat), longitude : Number(location.long) }}
+        >
+            <MapView.Callout
+                onPress={() => {
+                    navigation.navigate('Local');
+                }}
+            >
+                <LocationPreviewCard locationObject={location}></LocationPreviewCard>
+            </MapView.Callout>
+
+        </MapView.Marker>
+    )}
             </MapView>
         </View>
     )

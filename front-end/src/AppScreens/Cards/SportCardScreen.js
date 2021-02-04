@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
-import { Image, View, Text, StyleSheet, KeyboardAvoidingView, TextInput, Button, ScrollView, Dimensions } from 'react-native'
+import { Image, TouchableOpacity, View, Text, StyleSheet, KeyboardAvoidingView, TextInput, Button, ScrollView, Dimensions } from 'react-native'
 import {Picker} from '@react-native-community/picker';
 import ImagePicker from 'react-native-image-picker'
 import { Header } from 'react-native-elements';
 import { Icon } from 'react-native-elements'
 import { unstable_renderSubtreeIntoContainer } from 'react-dom';
+import { useNavigation, useRoute } from '@react-navigation/native';
+
+import Tag from '../General/Tag';
+
+import Sport from '../../api/controllers/Sport';
+
+const mainColor = '#446a9c';
+const textColor = '#ffffff';
 
 const SportCardScreen = (props) => {
-
-    
+    const route = useRoute();
+    const navigation = useNavigation();
 
     // tutorial from:
     // https://heartbeat.fritz.ai/how-to-upload-images-in-a-react-native-app-4cca03ded855
@@ -30,21 +38,58 @@ const SportCardScreen = (props) => {
     // render(){
 
         // const { photo } = this.state
-
-        const benefits = ['benefício 1', 'benefício 2', 'benefício 3', 'benefício 4']
-
-        let getMainBenefits = () => {
+        const { params: sport } = route;
+        //const benefits = ['benefício 1', 'benefício 2', 'benefício 3', 'benefício 4']
+        const { benefits } = sport;
+        const getMainBenefits = () => {
 
             let temp = []
-    
-            for(let i = 0; i < benefits.length; i++)
-                temp.push(<Text style={{marginTop: 5}}>{'>> ' + benefits[i]}</Text>)
+            
+            if (benefits)
+                for(let i = 0; i < benefits.length; i++)
+                    temp.push(<Tag style={{ marginRight: 4, marginBottom: 6 }} text={ benefits[i] } />)
             
             return temp
         }
 
+        const submitSubscription = async () => {
+            const { data } = await Sport.subscribe({ sport });
+
+            console.log(data);
+            navigation.goBack();
+        }
+
         return (
             <View style={{flex: 1}}>
+                <Header
+                    statusBarProps={{
+                        backgroundColor: mainColor,
+                        translucent: true,
+                        hidden: false
+                    }}
+                    containerStyle={{
+                        borderBottomWidth: 0
+                    }}
+                    backgroundColor={ mainColor }
+                    leftComponent={ 
+                        <Icon
+                            name='chevron-left'
+                            onPress={ () =>
+                                navigation.goBack()
+                            }
+                            color='white'
+                        />
+                    }
+                    centerComponent={{ 
+                        text: 'Esporte', 
+                        style: { 
+                            color: textColor, 
+                            fontSize: 20,
+                        }
+                    }}
+                    //leftContainerStyle={{margin: 5, flex: 3}}
+                />
+                { /*
                 <Header
                     backgroundColor="white"
                     leftComponent={
@@ -55,61 +100,73 @@ const SportCardScreen = (props) => {
                     }
                     centerComponent={{ text: 'Nome do esporte', style: { color: '#000', fontSize: 20 } }}
                 />
+                */ }
                 <ScrollView 
                     contentContainerStyle={{justifyContent: 'space-around'}}
                 >
                     <View style={styles.container}>
                         {/* {photo && ( */}
-                        <Image
-                            style={{ width: '100%', height: 200 }}
-                            source={{uri: 'https://mrconfeccoes.com.br/wp-content/uploads/2018/03/default.jpg'}}
-                        />
-                        <Text style={{...styles.singleLineInput, ...{fontSize: 25}}}>
-                            Nome do Esporte
+                        <View style={{...styles.singleLineInput, borderTopRightRadius: 10, borderTopLeftRadius: 10}}>
+                            <Image
+                                style={{ width: '100%', height: 200 }}
+                                source={{uri: sport.image }}
+                            /> 
+                        </View>
+                        <Text style={{...styles.singleLineInput, fontSize: 25}}>
+                            { sport.name }
                         </Text>
                         <View style={styles.multiLineInput}>
-                            <Text style={{fontSize: 20}}>Resumo</Text>
+                            <Text style={{fontSize: 14, color: '#aaa'}}>Resumo</Text>
                             <Text style={{fontSize: 15}}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore 
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                                { sport.shortDescription }
                             </Text>
                         </View>
                         <View style={styles.multiLineInput}>
-                            <Text style={{fontSize: 20}}>Descrição</Text>
+                            <Text style={{fontSize: 14, color: '#aaa'}}>Descrição</Text>
                             <Text style={{fontSize: 15}}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore 
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud. 
-                                Duis aute irure dolor in reprehenderit in voluptate 
-                                velit esse cillum dolore eu fugiat nulla pariatur. 
-                                Excepteur sint occaecat cupidatat non proident, sunt 
-                                in culpa qui officia deserunt mollit anim id est laborum.
+                                { sport.description }
                             </Text>
                         </View>
                         <View style={styles.multiLineInput}>
-                            <Text style={{fontSize: 20}}>Benefícios</Text>
+                            <Text style={{fontSize: 14, color: '#aaa', marginBottom: 6}}>Benefícios</Text>
                             <View style={styles.benefits}>
                                 {getMainBenefits()}
                             </View>
                         </View>
                         <View style={styles.multiLineInput}>
-                            <Text style={{fontSize: 20}}>Público recomendado</Text>
+                            <Text style={{fontSize: 14, color: '#aaa'}}>Público recomendado</Text>
                             <Text style={{fontSize: 15}}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore 
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                                { sport.target }
                             </Text>
                         </View>
-                        <View style={{marginTop: 20}}>
-                            <Button title="Começar a seguir"/>
-                            {/*        LISTEN!        */}
-                            {/* <Button title={() => {
-                                if(usuario.segueOEsporte)
-                                    return "Deixar de seguir"
-                                else
-                                    return "Começar a seguir"
-                            }}/> */}
+                        <View 
+                            style={{
+                                backgroundColor: 'white',
+                                padding: 20,
+                                borderBottomRightRadius: 10,
+                                borderBottomLeftRadius: 10
+                            }}
+                        >
+                            { !sport.subscribed &&
+                                <TouchableOpacity
+                                    style={{ 
+                                        borderRadius: 10,
+                                        backgroundColor: '#3E618E',
+                                        flex: 1,
+                                        height: 48,
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}
+                                    onPress={ submitSubscription }
+                                >
+                                    <Text
+                                        style={{
+                                            color: '#fff',
+                                            fontSize: 16
+                                        }}
+                                    > Seguir Esporte </Text>
+                                </TouchableOpacity>
+                            }
                         </View>
                     </View>
                 </ScrollView>
@@ -128,28 +185,34 @@ const styles = StyleSheet.create({
         width: 150,
     },
     singleLineInput: {
-        marginTop: 20,
-        padding: 8,
+        //marginTop: 20,
+        paddingTop: 20,
+        paddingLeft: 20,
+        paddingRight: 20,
         backgroundColor: "white",
-        borderColor: "black",
-        borderWidth: 1,
-        borderRadius: 10,
+        //borderColor: "black",
+        //borderWidth: 1,
+        //borderRadius: 10,
         fontSize: 20
     },
     multiLineInput: {
-        marginTop: 20,
-        padding: 8,
+        //marginTop: 20,
+        paddingTop: 20,
+        paddingLeft: 20,
+        paddingRight: 20,
         backgroundColor: "white",
-        borderColor: "black",
-        borderWidth: 1,
-        borderRadius: 10,
+        //borderColor: "black",
+        //borderWidth: 1,
+        //borderRadius: 10,
         fontSize: 15,
         // height: 100,
         textAlignVertical: 'top'
     },
     numberInput: {
-        marginTop: 15,
-        padding: 8,
+        //marginTop: 15,
+        paddingTop: 20,
+        paddingLeft: 20,
+        paddingRight: 20,
         backgroundColor: "white",
         borderColor: "black",
         borderWidth: 1,
@@ -163,7 +226,7 @@ const styles = StyleSheet.create({
     benefits: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        //justifyContent: 'space-between',
         flexWrap: 'wrap'
         // maxHeight: 65,
     }

@@ -24,22 +24,14 @@ const Stack = createStackNavigator();
 function AuthStack(props) {
     return (
         <NavigationContainer>
-            <Stack.Navigator headerMode='screen'>
+            <Stack.Navigator headerMode='none'>
                 <Stack.Screen 
                     name='Login' 
                     component={ Login } 
-                    options={{
-                        headerShown: false
-                    }}
                 />
                 <Stack.Screen 
                     name='Register' 
                     component={ Register } 
-                    options={{
-                        headerStyle: {
-                            backgroundColor: '#FF800'
-                        }
-                    }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
