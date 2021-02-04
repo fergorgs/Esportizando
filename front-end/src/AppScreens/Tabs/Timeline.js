@@ -3,6 +3,7 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import EventPreviewCard from '../General/EventPreviewCard'
 import SportPreviewCard from '../General/SportPreviewCard'
 import { Header } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
 // import LocationPreviewCard from '../General/LocationPreviewCard'
 
 import Timeline from '../../api/controllers/Timeline';
@@ -14,6 +15,7 @@ function TimelineScreen(props){
     
     const [ posts, setPosts ] = useState([]);
     const [ fetching, setFetching ] = useState(false);
+    const navigation = useNavigation();
     
     useEffect(() => {
         const fetch = async () => {
@@ -132,13 +134,13 @@ function TimelineScreen(props){
                         if(item.type == 'event'){
                             return  <EventPreviewCard 
                                         eventObject={item.data} 
-                                        navigation={props.navigation}
+                                        navigation={navigation}
                                     />
                         }
                         else if(item.type == 'sport'){
                             return  <SportPreviewCard 
                                         sportObject={item.data} 
-                                        navigation={props.navigation}
+                                        navigation={navigation}
                                     />
                         }
                     }}
